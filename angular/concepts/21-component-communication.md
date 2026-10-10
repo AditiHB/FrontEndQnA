@@ -2,6 +2,8 @@
 
 > **Like I'm 5:** Components pass notes like kids in class. A parent hands a toy to a child (input). A child shouts "I'm done!" to the parent (output). Siblings leave notes in a shared mailbox (a service).
 
+> **Learn it by doing:** build this step by step in the tutorial: [Chapter 4: Talking between components](../tutorial/04-talking-between-components.md).
+
 ## Key concepts
 Choose the simplest mechanism that matches the relationship between components:
 

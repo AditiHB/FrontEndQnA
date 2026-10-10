@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" target-language="hi" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="err.navigation" datatype="html">
+        <source>We could not open that page. Please try again.</source>
+        <target>हम वह पेज नहीं खोल सके। कृपया फिर कोशिश करें।</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.config.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="app.offline" datatype="html">
+        <source> You are offline. We are showing the toys we saved earlier. </source>
+        <target>आप ऑफ़लाइन हैं। हम पहले से सहेजे हुए खिलौने दिखा रहे हैं।</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">11,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="confirm.no" datatype="html">
+        <source> No, keep it </source>
+        <target>नहीं, रहने दें</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/confirm-dialog/confirm-dialog.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="card.soldOut" datatype="html">
+        <source>Sold out</source>
+        <target>स्टॉक खत्म</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-card/product-card.html</context>
+          <context context-type="linenumber">27,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="card.low" datatype="html">
+        <source> Only <x id="COUNT" equiv-text="{{
+          p.stock // i18n(ph=&quot;count&quot;)
+        }}"/> left! </source>
+        <target>सिर्फ़ <x id="COUNT" equiv-text="{{
+          p.stock // i18n(ph=&quot;count&quot;)
+        }}"/> बचे हैं!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-card/product-card.html</context>
+          <context context-type="linenumber">31,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="card.inStock" datatype="html">
+        <source>In stock</source>
+        <target>स्टॉक में है</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-card/product-card.html</context>
+          <context context-type="linenumber">39,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="card.add" datatype="html">
+        <source> Add to cart </source>
+        <target>कार्ट में डालें</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-card/product-card.html</context>
+          <context context-type="linenumber">46,48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="card.heart.remove" datatype="html">
+        <source>Remove <x id="name" equiv-text="name"/> from wishlist</source>
+        <target><x id="name" equiv-text="name"/> को पसंदीदा सूची से हटाएँ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-card/product-card.ts</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="card.heart.add" datatype="html">
+        <source>Add <x id="name" equiv-text="name"/> to wishlist</source>
+        <target><x id="name" equiv-text="name"/> को पसंदीदा सूची में जोड़ें</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-card/product-card.ts</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="card.rating" datatype="html">
+        <source>Rated <x id="rating" equiv-text="this.product().rating"/> out of 5</source>
+        <target>5 में से <x id="rating" equiv-text="this.product().rating"/> रेटिंग</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-card/product-card.ts</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.label" datatype="html">
+        <source>Main</source>
+        <target>मुख्य मेनू</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/site-header/site-header.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.toys" datatype="html">
+        <source>Toys</source>
+        <target>खिलौने</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/site-header/site-header.html</context>
+          <context context-type="linenumber">11,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.cart.badge" datatype="html">
+        <source>toys in your cart</source>
+        <target>कार्ट में खिलौने</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/site-header/site-header.html</context>
+          <context context-type="linenumber">19,21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.cart" datatype="html">
+        <source>Cart</source>
+        <target>कार्ट</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/site-header/site-header.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.wishlist.badge" datatype="html">
+        <source>toys on your wishlist</source>
+        <target>पसंदीदा सूची में खिलौने</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/site-header/site-header.html</context>
+          <context context-type="linenumber">30,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.wishlist" datatype="html">
+        <source>Wishlist</source>
+        <target>पसंदीदा</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/site-header/site-header.html</context>
+          <context context-type="linenumber">32,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.orders" datatype="html">
+        <source>My orders</source>
+        <target>मेरे ऑर्डर</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/site-header/site-header.html</context>
+          <context context-type="linenumber">35,37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.admin" datatype="html">
+        <source>Admin</source>
+        <target>एडमिन</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/site-header/site-header.html</context>
+          <context context-type="linenumber">38,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header.hi" datatype="html">
+        <source>Hi, <x id="USERNAME" equiv-text="{{
+          user.name  // i18n(ph=&quot;userName&quot;)
+        }}"/>!</source>
+        <target>नमस्ते, <x id="USERNAME" equiv-text="{{
+          user.name  // i18n(ph=&quot;userName&quot;)
+        }}"/>!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/site-header/site-header.html</context>
+          <context context-type="linenumber">46,49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header.logout" datatype="html">
+        <source> Log out </source>
+        <target>लॉग आउट</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/site-header/site-header.html</context>
+          <context context-type="linenumber">51,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header.yourName" datatype="html">
+        <source>Your name:</source>
+        <target>आपका नाम:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/site-header/site-header.html</context>
+          <context context-type="linenumber">55,56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header.typeHere" datatype="html">
+        <source>Type here</source>
+        <target>यहाँ लिखें</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/site-header/site-header.html</context>
+          <context context-type="linenumber">59,62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header.hello" datatype="html">
+        <source> Hello, <x id="SHOPPERNAME" equiv-text="{{
+          shopperName() || &apos;friend&apos;  // i18n(ph=&quot;shopperName&quot;)
+        }}"/>! </source>
+        <target>नमस्ते, <x id="SHOPPERNAME" equiv-text="{{
+          shopperName() || &apos;friend&apos;  // i18n(ph=&quot;shopperName&quot;)
+        }}"/>!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/site-header/site-header.html</context>
+          <context context-type="linenumber">63,68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header.login" datatype="html">
+        <source>Log in</source>
+        <target>लॉग इन</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/site-header/site-header.html</context>
+          <context context-type="linenumber">68,71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="err.generic" datatype="html">
+        <source>Something went wrong. We wrote it down.</source>
+        <target>कुछ गड़बड़ हो गई। हमने इसे लिख लिया है।</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/error-handler.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="err.offline" datatype="html">
+        <source>We cannot reach the server. Is the internet on?</source>
+        <target>हम सर्वर तक नहीं पहुँच पा रहे। क्या इंटरनेट चालू है?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/interceptors/error-interceptor.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="err.session" datatype="html">
+        <source>Your visit timed out. Please log in again.</source>
+        <target>आपका समय पूरा हो गया। कृपया फिर से लॉग इन करें।</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/interceptors/error-interceptor.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="err.server" datatype="html">
+        <source>The server is having trouble. Please try again soon.</source>
+        <target>सर्वर में दिक्कत आ रही है। कृपया थोड़ी देर बाद कोशिश करें।</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/interceptors/error-interceptor.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cat.all" datatype="html">
+        <source>All</source>
+        <target>सभी</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/models/category-labels.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cat.cars" datatype="html">
+        <source>Cars</source>
+        <target>गाड़ियाँ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/models/category-labels.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cat.soft" datatype="html">
+        <source>Soft toys</source>
+        <target>मुलायम खिलौने</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/models/category-labels.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cat.puzzles" datatype="html">
+        <source>Puzzles</source>
+        <target>पहेलियाँ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/models/category-labels.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cat.games" datatype="html">
+        <source>Games</source>
+        <target>खेल</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/models/category-labels.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.title" datatype="html">
+        <source>Your cart 🛒</source>
+        <target>आपकी कार्ट 🛒</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/cart/cart.html</context>
+          <context context-type="linenumber">1,3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.empty" datatype="html">
+        <source>Your cart is empty. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/&quot;&gt;"/>Go find a toy!<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <target>आपकी कार्ट खाली है। <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/&quot;&gt;"/>कोई खिलौना ढूँढें!<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/cart/cart.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.remove.label" datatype="html">
+        <source>Remove <x id="INTERPOLATION" equiv-text="{{ item.product.name }}"/></source>
+        <target><x id="INTERPOLATION" equiv-text="{{ item.product.name }}"/> हटाएँ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/cart/cart.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.remove" datatype="html">
+        <source> Remove </source>
+        <target>हटाएँ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/cart/cart.html</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.toys" datatype="html">
+        <source>Toys</source>
+        <target>खिलौने</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/cart/cart.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.tax" datatype="html">
+        <source>Tax</source>
+        <target>कर</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/cart/cart.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.total" datatype="html">
+        <source>Total</source>
+        <target>कुल</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/cart/cart.html</context>
+          <context context-type="linenumber">39,40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.checkout" datatype="html">
+        <source>Go to checkout</source>
+        <target>चेकआउट पर जाएँ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/cart/cart.html</context>
+          <context context-type="linenumber">44,45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.empty.button" datatype="html">
+        <source> Empty the cart </source>
+        <target>कार्ट खाली करें</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/cart/cart.html</context>
+          <context context-type="linenumber">46,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.removedAnnounce" datatype="html">
+        <source><x id="name" equiv-text="name"/> removed from your cart</source>
+        <target><x id="name" equiv-text="name"/> आपकी कार्ट से हटा दिया गया</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/cart/cart.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.confirm.title" datatype="html">
+        <source>Empty the cart?</source>
+        <target>कार्ट खाली करें?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/cart/cart.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.confirm.message" datatype="html">
+        <source>All the toys will be taken out of your cart.</source>
+        <target>सारे खिलौने आपकी कार्ट से निकाल दिए जाएँगे।</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/cart/cart.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.confirm.yes" datatype="html">
+        <source>Yes, empty it</source>
+        <target>हाँ, खाली करें</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/cart/cart.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.title" datatype="html">
+        <source>All toys</source>
+        <target>सारे खिलौने</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">1,3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.saleEnds" datatype="html">
+        <source>Sale ends in</source>
+        <target>सेल खत्म होने में</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.saleToggle" datatype="html">
+        <source>{VAR_SELECT, select, true {Hide sale banner} other {Show sale banner}}</source>
+        <target>{VAR_SELECT, select, true {सेल बैनर छिपाएँ} other {सेल बैनर दिखाएँ}}</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">11,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.search.label" datatype="html">
+        <source>Search toys</source>
+        <target>खिलौने खोजें</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.search.placeholder" datatype="html">
+        <source>Search toys…</source>
+        <target>खिलौने खोजें…</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">26,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.findSearch" datatype="html">
+        <source> Find the search box </source>
+        <target>खोज बॉक्स ढूँढें</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">29,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.groups" datatype="html">
+        <source>Toy groups</source>
+        <target>खिलौनों के समूह</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.added" datatype="html">
+        <source>Added:</source>
+        <target>जोड़ा गया:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.retry" datatype="html">
+        <source> Try again </source>
+        <target>फिर कोशिश करें</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">59,61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.loading" datatype="html">
+        <source>Looking for toys… 🔍</source>
+        <target>खिलौने ढूँढ रहे हैं… 🔍</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">65,67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.count" datatype="html">
+        <source> <x id="ICU" equiv-text="{visible().length, plural,
+      =0 {No toys}
+      =1 {One toy}
+      other {{{ visible().length // i18n(ph=&quot;count&quot;) }} toys}
+    }" xid="7704292332646301014"/> </source>
+        <target><x id="ICU" equiv-text="{visible().length, plural,
+      =0 {No toys}
+      =1 {One toy}
+      other {{{ visible().length // i18n(ph=&quot;count&quot;) }} toys}
+    }" xid="7704292332646301014"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">69,77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7206240234411161539" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {No toys} =1 {One toy} other {<x id="COUNT"/> toys}}</source>
+        <target>{VAR_PLURAL, plural, =0 {कोई खिलौना नहीं} =1 {एक खिलौना} other {<x id="COUNT"/> खिलौने}}</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">69,72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.empty" datatype="html">
+        <source>No toys found. 🧸</source>
+        <target>कोई खिलौना नहीं मिला। 🧸</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">88,93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.pages" datatype="html">
+        <source>Pages</source>
+        <target>पेज</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.favs.placeholder" datatype="html">
+        <source>Scroll down to see our favorites…</source>
+        <target>हमारे पसंदीदा खिलौने देखने के लिए नीचे स्क्रॉल करें…</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">114,116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.favs.loading" datatype="html">
+        <source>Loading favorites…</source>
+        <target>पसंदीदा खिलौने लोड हो रहे हैं…</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">116,118</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.favs.error" datatype="html">
+        <source>Sorry, we could not load the favorites.</source>
+        <target>माफ़ कीजिए, हम पसंदीदा खिलौने लोड नहीं कर सके।</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">118,120</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.shelfStuck" datatype="html">
+        <source>Sorry, the toy shelf is stuck. Please try again.</source>
+        <target>माफ़ कीजिए, खिलौनों की अलमारी अटक गई है। कृपया फिर कोशिश करें।</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.ts</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.removed" datatype="html">
+        <source>Removed <x id="name" equiv-text="toy.name"/></source>
+        <target><x id="name" equiv-text="toy.name"/> हटा दिया गया</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.ts</context>
+          <context context-type="linenumber">152</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.saved" datatype="html">
+        <source>Saved <x id="name" equiv-text="toy.name"/> ❤️</source>
+        <target><x id="name" equiv-text="toy.name"/> सहेजा गया ❤️</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.ts</context>
+          <context context-type="linenumber">153</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.undo" datatype="html">
+        <source>Undo</source>
+        <target>वापस करें</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.ts</context>
+          <context context-type="linenumber">154</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="notify.close" datatype="html">
+        <source>Close</source>
+        <target>बंद करें</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/notification-service.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="update.ready" datatype="html">
+        <source>A new version of the shop is ready.</source>
+        <target>दुकान का नया संस्करण तैयार है।</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/update-service.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="update.reload" datatype="html">
+        <source>Reload</source>
+        <target>फिर से लोड करें</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/update-service.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

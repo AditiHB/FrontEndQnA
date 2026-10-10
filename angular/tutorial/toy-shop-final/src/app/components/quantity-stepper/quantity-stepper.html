@@ -1,0 +1,21 @@
+<div class="stepper" role="group" aria-label="Quantity">
+  <button
+    class="btn secondary"
+    type="button"
+    aria-label="One less"
+    [disabled]="value() <= min()"
+    (click)="decrease()"
+  >
+    −
+  </button>
+  <output>{{ value() }}</output>
+  <button
+    class="btn secondary"
+    type="button"
+    aria-label="One more"
+    [disabled]="value() >= max()"
+    (click)="increase()"
+  >
+    +
+  </button>
+</div>

@@ -1,25 +1,36 @@
 # 11. Change Detection
 
-> **Like I'm 5:** Angular is a teacher checking everyone's homework. By default it checks every student every time. With OnPush, it only checks the student whose paper actually changed, which saves time.
+> **Like I'm 5:** Angular is a teacher checking everyone's homework. The old way was to check every student every time. The smart way (OnPush) is to check only the student whose paper actually changed, which saves time. In Angular 22 the smart way is the default.
 
 ## Key concepts
 - Change detection checks component templates and updates the DOM when bound values change.
-- **Default** strategy checks every component on each run.
-- **OnPush** checks a component only when its inputs change by reference, an event fires inside it, an `async` pipe emits, or a signal it reads changes.
-- **Zone.js** triggers change detection after async browser events. **Zoneless** apps rely on signals and explicit notifications instead.
+- **OnPush** checks a component only when its inputs change by reference, an event fires inside it, an `async` pipe emits, a signal it reads changes, or it is marked dirty. **In Angular 22 this is the default for every component.**
+- **Eager** is the strategy that checks the component on each run. It is the old `Default` strategy, renamed in Angular 22. `ng update` adds `ChangeDetectionStrategy.Eager` to existing components so that upgrading does not change their behaviour (see [35](35-upgrades-and-migration.md)).
+- **Zone.js** triggers change detection after async browser events. **Zoneless** apps rely on signals and explicit notifications instead. **New Angular 22 apps are zoneless** (no `zone.js` in `package.json`).
+- Learn it by doing: [Tutorial chapter 16](../tutorial/16-change-detection.md) runs a small lab with all the cases.
 
-## OnPush
+## OnPush (the default) and Eager
 
 ```ts
+// Angular 22: no changeDetection line needed. This component is OnPush.
 @Component({
   selector: 'app-product-list',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `@for (p of products(); track p.id) { <app-product [product]="p" /> }`,
 })
-export class ProductListComponent {
+export class ProductList {
   products = input.required<Product[]>();
 }
+
+// Opt back in to the old "check me on every round" behaviour:
+@Component({
+  selector: 'app-legacy-box',
+  changeDetection: ChangeDetectionStrategy.Eager, // was ChangeDetectionStrategy.Default before Angular 22
+  template: `...`,
+})
+export class LegacyBox {}
 ```
+
+Use `Eager` only for old code that you have not made signal-based yet. A plain field that is changed inside a `setTimeout` is **not** repainted by an OnPush component in a zoneless app. A component marked `Eager` may *seem* to work only because a neighbour rang the bell in the same round (the tutorial chapter shows this). Do not rely on that.
 
 Mutating an array in place does not notify OnPush components:
 
@@ -53,7 +64,7 @@ constructor() {
 }
 ```
 
-## Running work outside Angular (zone-based apps)
+## Running work outside Angular (apps that still use zone.js)
 
 ```ts
 private zone = inject(NgZone);
@@ -71,13 +82,15 @@ onScroll = () => {
 
 ## Zoneless
 
+New Angular 22 apps are zoneless without any setting. In an older app that still loads `zone.js`, you opt in with the provider and then remove `zone.js` from the build:
+
 ```ts
-bootstrapApplication(AppComponent, {
+bootstrapApplication(App, {
   providers: [provideZonelessChangeDetection()],
 });
 ```
 
-In zoneless mode, update state with signals or call `markForCheck` after non-signal updates.
+In zoneless mode, update state with signals or call `markForCheck` after non-signal updates. `NgZone.runOutsideAngular` and `zone.run` are not needed there.
 
 ## Pitfalls
 - `ExpressionChangedAfterItHasBeenCheckedError` in dev mode means a value changed during a check. Move the change earlier or defer it.

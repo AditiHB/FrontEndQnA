@@ -1,0 +1,43 @@
+<h1>My wishlist ❤️</h1>
+
+@if (toys().length === 0) {
+  <p>Nothing here yet. Press the 🤍 on a toy to save it. <a routerLink="/">Go find a toy!</a></p>
+} @else {
+  <p class="hint">Drag a toy to put your favorites first, or use the arrow buttons.</p>
+  <ul class="wishes" cdkDropList (cdkDropListDropped)="drop($event)">
+    @for (toy of toys(); track toy.id; let i = $index) {
+      <li class="wish" cdkDrag>
+        <span class="handle" cdkDragHandle aria-hidden="true">⠿</span>
+        <span class="emoji" aria-hidden="true">{{ toy.emoji }}</span>
+        <a [routerLink]="['/product', toy.id]">{{ toy.name }}</a>
+        <span>{{ toy.price | currency }}</span>
+        <button
+          class="btn secondary"
+          type="button"
+          [attr.aria-label]="'Move ' + toy.name + ' up'"
+          [disabled]="i === 0"
+          (click)="moveBy(i, -1)"
+        >
+          ↑
+        </button>
+        <button
+          class="btn secondary"
+          type="button"
+          [attr.aria-label]="'Move ' + toy.name + ' down'"
+          [disabled]="i === toys().length - 1"
+          (click)="moveBy(i, 1)"
+        >
+          ↓
+        </button>
+        <button
+          class="btn secondary"
+          type="button"
+          [attr.aria-label]="'Remove ' + toy.name + ' from wishlist'"
+          (click)="wishlist.toggle(toy.id)"
+        >
+          Remove
+        </button>
+      </li>
+    }
+  </ul>
+}

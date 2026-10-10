@@ -1,0 +1,21 @@
+<table class="inventory">
+  <caption>
+    How many of each toy are on the shelf
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Toy</th>
+      <th scope="col">Group</th>
+      <th scope="col">In stock</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (toy of toys(); track toy.id) {
+      <tr [class.low]="toy.stock <= 3">
+        <th scope="row">{{ toy.emoji }} {{ toy.name }}</th>
+        <td>{{ toy.category }}</td>
+        <td>{{ toy.stock }}{{ toy.stock <= 3 ? ' (running low!)' : '' }}</td>
+      </tr>
+    }
+  </tbody>
+</table>

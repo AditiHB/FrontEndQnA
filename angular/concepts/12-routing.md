@@ -2,6 +2,8 @@
 
 > **Like I'm 5:** The router is a signboard for your app. Each URL points to a room (a component). `router-outlet` is the empty room where the current page appears.
 
+> **Learn it by doing:** build this step by step in the tutorial: [Chapter 11: Routing](../tutorial/11-routing.md).
+
 ## Key concepts
 - The **router** maps URLs to components and manages navigation, history, and parameters.
 - **RouterOutlet** is the placeholder where the matched component renders.

@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Racing Car",
+    "emoji": "🏎️",
+    "price": 12.5,
+    "category": "cars",
+    "stock": 3,
+    "rating": 4.5,
+    "description": "A fast red racing car with shiny wheels. It zooms around every corner!"
+  },
+  {
+    "id": 2,
+    "name": "Fire Truck",
+    "emoji": "🚒",
+    "price": 18,
+    "category": "cars",
+    "stock": 5,
+    "rating": 4.7,
+    "description": "A big red fire truck with a ladder that goes up and down. Wee-oo wee-oo!"
+  },
+  {
+    "id": 3,
+    "name": "Toy Train",
+    "emoji": "🚂",
+    "price": 24.99,
+    "category": "cars",
+    "stock": 2,
+    "rating": 4.8,
+    "description": "A little steam train with three carriages and a track you can build."
+  },
+  {
+    "id": 4,
+    "name": "Teddy Bear",
+    "emoji": "🧸",
+    "price": 14,
+    "category": "soft",
+    "stock": 0,
+    "rating": 4.9,
+    "description": "The softest teddy bear in the world. Perfect for hugs and bedtime."
+  },
+  {
+    "id": 5,
+    "name": "Fluffy Bunny",
+    "emoji": "🐰",
+    "price": 11.5,
+    "category": "soft",
+    "stock": 9,
+    "rating": 4.4,
+    "description": "A fluffy bunny with long floppy ears and a tiny pink nose."
+  },
+  {
+    "id": 6,
+    "name": "Sleepy Panda",
+    "emoji": "🐼",
+    "price": 16,
+    "category": "soft",
+    "stock": 4,
+    "rating": 4.6,
+    "description": "A sleepy panda who loves naps, bamboo, and cuddles."
+  },
+  {
+    "id": 7,
+    "name": "Jigsaw Castle",
+    "emoji": "🏰",
+    "price": 15,
+    "category": "puzzles",
+    "stock": 6,
+    "rating": 4.3,
+    "description": "A 100-piece jigsaw puzzle of a castle with towers and a moat."
+  },
+  {
+    "id": 8,
+    "name": "Rainbow Blocks",
+    "emoji": "🧩",
+    "price": 9.5,
+    "category": "puzzles",
+    "stock": 12,
+    "rating": 4.1,
+    "description": "Colorful wooden blocks to stack, sort, and build into anything."
+  },
+  {
+    "id": 9,
+    "name": "Space Puzzle",
+    "emoji": "🚀",
+    "price": 13.75,
+    "category": "puzzles",
+    "stock": 1,
+    "rating": 4.7,
+    "description": "A glow-in-the-dark puzzle of rockets, planets, and stars."
+  },
+  {
+    "id": 10,
+    "name": "Chess Set",
+    "emoji": "♟️",
+    "price": 21,
+    "category": "games",
+    "stock": 7,
+    "rating": 4.5,
+    "description": "A wooden chess set with a folding board. Think like a king or queen!"
+  },
+  {
+    "id": 11,
+    "name": "Dice Party",
+    "emoji": "🎲",
+    "price": 7.25,
+    "category": "games",
+    "stock": 15,
+    "rating": 4,
+    "description": "Six dice and a cup. Roll high, roll low, and play five fun games."
+  },
+  {
+    "id": 12,
+    "name": "Memory Match",
+    "emoji": "🃏",
+    "price": 8.9,
+    "category": "games",
+    "stock": 10,
+    "rating": 4.2,
+    "description": "Flip the cards and find the pairs. Can you remember where they are?"
+  }
+]

@@ -141,7 +141,7 @@ src/app/
 
 > **Like I'm 5:** Use different settings for home, school, and the party. Never put secret passwords in the app, because everyone can read it.
 
-**Answer:** Use `environment.ts` / `environment.prod.ts` with `fileReplacements` in `angular.json` for build-time values. For values that change per deployment without a rebuild, load a `config.json` at startup with `APP_INITIALIZER` or `provideAppInitializer`, and then inject it through an `InjectionToken`.
+**Answer:** Use environment files with `fileReplacements` in `angular.json` for build-time values (`ng generate environments` creates `environment.ts`, which is the production default, and `environment.development.ts`; the old `environment.prod.ts` name is gone). For values that change per deployment without a rebuild, load a `config.json` at startup with `APP_INITIALIZER` or `provideAppInitializer`, and then inject it through an `InjectionToken`.
 
 **Never put secrets in the frontend bundle.** Anything in the Angular bundle is public.
 

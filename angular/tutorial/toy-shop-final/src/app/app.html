@@ -1,0 +1,19 @@
+<!-- A thin bar at the very top that shows while any letter is waiting for an answer. -->
+@if (loading.isLoading()) {
+  <div class="loading-bar" role="progressbar" aria-label="Loading"></div>
+}
+
+<!-- The first thing a keyboard user can press: jump straight to the toys. -->
+<a class="skip-link" href="#main" (click)="skipToMain($event)">Skip to the content</a>
+
+@if (!connection.online()) {
+  <p class="offline" role="status" i18n="@@app.offline">
+    You are offline. We are showing the toys we saved earlier.
+  </p>
+}
+
+<app-site-header />
+
+<main id="main" #main class="page" tabindex="-1">
+  <router-outlet />
+</main>

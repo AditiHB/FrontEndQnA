@@ -1,0 +1,71 @@
+<header class="site-header">
+  <span class="logo">🧸 {{ shopName }}</span>
+
+  <nav class="nav" i18n-aria-label="@@nav.label" aria-label="Main">
+    <a
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      i18n="@@nav.toys"
+      >Toys</a
+    >
+    <a
+      routerLink="/cart"
+      routerLinkActive="active"
+      [matBadge]="cart.count()"
+      [matBadgeHidden]="cart.count() === 0"
+      matBadgeOverlap="false"
+      i18n-matBadgeDescription="@@nav.cart.badge"
+      matBadgeDescription="toys in your cart"
+    >
+      🛒 <ng-container i18n="@@nav.cart">Cart</ng-container> · {{ cart.total() | currency }}
+    </a>
+    <a
+      routerLink="/wishlist"
+      routerLinkActive="active"
+      [matBadge]="wishlist.count()"
+      [matBadgeHidden]="wishlist.count() === 0"
+      matBadgeOverlap="false"
+      i18n-matBadgeDescription="@@nav.wishlist.badge"
+      matBadgeDescription="toys on your wishlist"
+    >
+      ❤️ <ng-container i18n="@@nav.wishlist">Wishlist</ng-container>
+    </a>
+    @if (auth.isLoggedIn()) {
+      <a routerLink="/orders" routerLinkActive="active" i18n="@@nav.orders">My orders</a>
+    }
+    @if (auth.isAdmin()) {
+      <a routerLink="/admin" routerLinkActive="active" i18n="@@nav.admin">Admin</a>
+    }
+  </nav>
+
+  <div class="who">
+    @if (auth.user(); as user) {
+      <span i18n="@@header.hi"
+        >Hi,
+        {{
+          user.name  // i18n(ph="userName")
+        }}!</span
+      >
+      <button class="btn secondary small" type="button" (click)="logout()" i18n="@@header.logout">
+        Log out
+      </button>
+    } @else {
+      <label class="name-box">
+        <ng-container i18n="@@header.yourName">Your name:</ng-container>
+        <input
+          [(ngModel)]="shopperName"
+          i18n-placeholder="@@header.typeHere"
+          placeholder="Type here"
+        />
+      </label>
+      <span i18n="@@header.hello">
+        Hello,
+        {{
+          shopperName() || 'friend'  // i18n(ph="shopperName")
+        }}!
+      </span>
+      <a class="login-link" routerLink="/login" i18n="@@header.login">Log in</a>
+    }
+  </div>
+</header>

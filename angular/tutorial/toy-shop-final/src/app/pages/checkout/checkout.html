@@ -1,0 +1,97 @@
+<h1>Checkout 🧾</h1>
+
+@if (placed(); as order) {
+  <section class="thanks" role="status">
+    <h2>Thank you, {{ order.name }}! 🎉</h2>
+    <p>
+      Your order <strong>{{ order.id }}</strong> is on its way. Total: {{ order.total | currency }}.
+    </p>
+    <a class="btn" routerLink="/">Keep shopping</a>
+  </section>
+} @else if (cart.items().length === 0) {
+  <p>Your cart is empty. <a routerLink="/">Go find a toy!</a></p>
+} @else {
+  <form class="form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <label for="name">Your name</label>
+    <input id="name" formControlName="name" autocomplete="name" />
+    @if (form.controls.name.touched && form.controls.name.invalid) {
+      <p class="error" role="alert">Please type your name (at least 2 letters).</p>
+    }
+
+    <label for="email">Email</label>
+    <input id="email" type="email" formControlName="email" autocomplete="email" />
+    @if (form.controls.email.touched && form.controls.email.invalid) {
+      <p class="error" role="alert">Please type a real email.</p>
+    }
+
+    <fieldset formGroupName="address">
+      <legend>Where should we send it?</legend>
+
+      <label for="street">Street</label>
+      <input id="street" formControlName="street" autocomplete="street-address" />
+      @if (
+        form.controls.address.controls.street.touched &&
+        form.controls.address.controls.street.invalid
+      ) {
+        <p class="error" role="alert">Please type your street.</p>
+      }
+
+      <label for="city">City</label>
+      <input id="city" formControlName="city" autocomplete="address-level2" />
+      @if (
+        form.controls.address.controls.city.touched && form.controls.address.controls.city.invalid
+      ) {
+        <p class="error" role="alert">Please type your city.</p>
+      }
+
+      <label for="zip">ZIP code (5 numbers)</label>
+      <input id="zip" formControlName="zip" inputmode="numeric" autocomplete="postal-code" />
+      @if (
+        form.controls.address.controls.zip.touched && form.controls.address.controls.zip.invalid
+      ) {
+        <p class="error" role="alert">A ZIP code has exactly 5 numbers, like 12345.</p>
+      }
+    </fieldset>
+
+    <label class="check">
+      <input type="checkbox" formControlName="giftWrap" />
+      Wrap it as a gift 🎁
+    </label>
+
+    @if (giftWrap()) {
+      <label for="notes">Gift message</label>
+      <textarea id="notes" rows="3" formControlName="notes"></textarea>
+      @if (form.hasError('giftMessage') && form.controls.notes.touched) {
+        <p class="error" role="alert">Please write a message for the gift.</p>
+      }
+      <!-- You may use <b> and <i> in the message. [innerHTML] shows the HTML, but Angular
+           first removes anything dangerous (scripts, onerror=..., javascript: links). -->
+      <p class="gift-preview" aria-live="polite">
+        Preview: <span [innerHTML]="giftMessage()"></span>
+      </p>
+
+      <div formArrayName="giftTags">
+        <p><strong>Gift tags</strong> (names to write on little tags)</p>
+        @for (tag of form.controls.giftTags.controls; track tag; let i = $index) {
+          <div class="tag-row">
+            <input [formControlName]="i" [attr.aria-label]="'Gift tag ' + (i + 1)" />
+            <button class="btn secondary" type="button" (click)="removeTag(i)">Remove</button>
+          </div>
+        }
+        <button class="btn secondary" type="button" (click)="addTag()">Add a gift tag</button>
+      </div>
+    }
+
+    <p class="total">
+      Total to pay: <strong>{{ cart.total() | currency }}</strong>
+    </p>
+
+    @if (problem()) {
+      <p class="error" role="alert">{{ problem() }}</p>
+    }
+
+    <button class="btn" type="submit" [disabled]="sending()">
+      {{ sending() ? 'Sending…' : 'Place order' }}
+    </button>
+  </form>
+}

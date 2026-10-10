@@ -1,0 +1,11 @@
+<p>
+  The warehouse has <strong>{{ boxes.length }}</strong> boxes. We only draw the ones you can see.
+</p>
+
+<!-- itemSize is how tall one row is, so the viewport can work out which rows are visible. -->
+<cdk-virtual-scroll-viewport itemSize="40" class="viewport" aria-label="Warehouse boxes">
+  <div *cdkVirtualFor="let box of boxes; trackBy: trackById" class="box-row">
+    <span>{{ box.label }}</span>
+    <span>{{ box.toys }} toys</span>
+  </div>
+</cdk-virtual-scroll-viewport>

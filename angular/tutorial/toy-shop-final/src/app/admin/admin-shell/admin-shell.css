@@ -1,0 +1,17 @@
+.admin-nav {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.admin-nav a {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.admin-nav a.active {
+  background: var(--color-brand);
+  color: #fff;
+}

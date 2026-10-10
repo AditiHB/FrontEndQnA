@@ -2,7 +2,7 @@
 
 A topic-by-topic reference covering Angular from project setup to deployment, plus supporting areas such as accessibility, i18n, SSR, and micro-frontends. Each document explains the concept, shows code snippets, and lists important points to remember.
 
-Use this section to learn a concept in depth. Use the [interview Q&A](../interviewQnA/README.md) for interview practice.
+Use this section to learn a concept in depth. To learn by building, follow the [step-by-step tutorial](../tutorial/README.md): every concept below has a matching chapter. Use the [interview Q&A](../interviewQnA/README.md) for interview practice.
 
 ## Development fundamentals
 
