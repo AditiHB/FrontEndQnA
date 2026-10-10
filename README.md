@@ -5,30 +5,30 @@ Repository intended to have interview QnA for Front end technologies
 
 ```
 FrontEndQnA/
-└── angular/
-    ├── README.md               # Angular learning hub: links to both sections below
-    ├── interviewQnA/           # interview questions and answers (8+ years, Angular + Java)
-    │   ├── README.md           # index, difficulty legend, how to use
-    │   ├── 01-core-concepts.md
-    │   ├── 02-dependency-injection-and-architecture.md
-    │   ├── 03-routing-and-http.md
-    │   ├── 04-rxjs-state-and-signals.md
-    │   ├── 05-forms.md
-    │   ├── 06-performance.md
-    │   ├── 07-testing.md
-    │   ├── 08-security.md
-    │   ├── 09-fullstack-angular-java.md
-    │   └── 10-system-design-and-leadership.md
-    └── concepts/               # topic-wise concept reference, setup to deployment
-        ├── README.md           # index of all concept documents
-        ├── 01-project-setup-and-cli.md   # each doc starts with a "Like I'm 5" summary
-        ├── ...                 # 02 to 35 (components, signals, routing, SSR, testing, CI/CD, ...)
-        └── 36-a-to-z-glossary.md
+├── angular/
+│   ├── README.md               # Angular learning hub: links to both sections below
+│   ├── interviewQnA/           # interview Q&A (8+ years, Angular + Java)
+│   │   ├── README.md
+│   │   └── 01 to 10 topic files
+│   └── concepts/               # topic-wise reference, setup to deployment
+│       ├── README.md
+│       ├── 01 to 35 topic files  # each starts with a "Like I'm 5" summary
+│       └── 36-a-to-z-glossary.md
+├── javascript/
+│   ├── README.md
+│   ├── interviewQnA/           # interview Q&A, each question has a "Like I'm 5" line
+│   └── concepts/               # topic-wise reference with a glossary
+├── typescript/
+│   ├── README.md
+│   ├── interviewQnA/
+│   └── concepts/
 ```
 
-Future frameworks (React, Vue, and so on) can be added as sibling folders following the same pattern: a `README.md` index plus numbered topic files.
+Each technology follows the same pattern: a `README.md` hub, a `concepts/` folder for topic-by-topic reference, and an `interviewQnA/` folder for questions and answers. Future frameworks can be added as sibling folders using this pattern.
 
-## Angular
+## JavaScript
+
+Start with [javascript/README.md](javascript/README.md). It links to the [JavaScript concepts reference](javascript/concepts/README.md) and the [interview Q&A](javascript/interviewQnA/README.md).
 
 ## TypeScript
 
