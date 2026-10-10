@@ -28,6 +28,10 @@ FrontEndQnA/
 │   └── concepts/               # topic-wise reference with a glossary
 ├── javascript/
 │   ├── README.md
+│   ├── tutorial/               # build a Lemonade Stand step by step, one step per concept
+│   │   ├── README.md
+│   │   ├── 00 to 23 step files   # each step: play, build, try it yourself, checkpoint
+│   │   └── finished-project/     # the complete, tested project to compare with
 │   ├── interviewQnA/           # interview Q&A, each question has a "Like I'm 5" line
 │   └── concepts/               # topic-wise reference with a glossary
 ├── typescript/
@@ -36,7 +40,7 @@ FrontEndQnA/
 │   └── concepts/
 ```
 
-Each technology follows the same pattern: a `README.md` hub, a `concepts/` folder for topic-by-topic reference, and an `interviewQnA/` folder for questions and answers. Future frameworks can be added as sibling folders using this pattern.
+Each technology follows the same pattern: a `README.md` hub, a `concepts/` folder for topic-by-topic reference, and an `interviewQnA/` folder for questions and answers. JavaScript also has a `tutorial/` folder, a step-by-step build that teaches every concept hands-on. Future frameworks can be added as sibling folders using this pattern.
 
 ## React
 
@@ -44,7 +48,7 @@ Start with [react/README.md](react/README.md). It links to the [React concepts r
 
 ## JavaScript
 
-Start with [javascript/README.md](javascript/README.md). It links to the [JavaScript concepts reference](javascript/concepts/README.md) and the [interview Q&A](javascript/interviewQnA/README.md).
+Start with [javascript/README.md](javascript/README.md). It links to the [step-by-step tutorial](javascript/tutorial/README.md) (build a Lemonade Stand and learn every concept by doing), the [JavaScript concepts reference](javascript/concepts/README.md), and the [interview Q&A](javascript/interviewQnA/README.md).
 
 ## TypeScript
 
