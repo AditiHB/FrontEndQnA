@@ -170,7 +170,7 @@ const emptyValues: FormValues = {
 
 type Errors = Partial<Record<'name' | 'price' | 'emoji' | 'description', string>>;
 
-// A plain function: values in, errors out. Easy to test (Lesson 21).
+// A plain function: values in, errors out. Easy to test.
 function validate(values: FormValues): Errors {
   const errors: Errors = {};
   if (values.name.trim().length < 3) {

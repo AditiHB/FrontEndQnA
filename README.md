@@ -16,6 +16,7 @@ FrontEndQnA/
 │       └── 36-a-to-z-glossary.md
 ├── react/
 │   ├── README.md
+│   ├── tutorial/               # 24-lesson build-along course (a toy shop), explained like you're 5
 │   ├── interviewQnA/           # interview Q&A, each question has a "Like I'm 5" line
 │   └── concepts/               # topic-wise reference with a glossary
 ├── javascript/
@@ -32,7 +33,7 @@ Each technology follows the same pattern: a `README.md` hub, a `concepts/` folde
 
 ## React
 
-Start with [react/README.md](react/README.md). It links to the [React concepts reference](react/concepts/README.md) and the [interview Q&A](react/interviewQnA/README.md).
+Start with [react/README.md](react/README.md). It links to the [step-by-step tutorial](react/tutorial/README.md) (build a toy shop from scratch), the [React concepts reference](react/concepts/README.md) and the [interview Q&A](react/interviewQnA/README.md).
 
 ## JavaScript
 

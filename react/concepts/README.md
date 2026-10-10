@@ -2,7 +2,7 @@
 
 A topic-by-topic reference covering React from components and hooks to routing, data fetching, React 19, and deployment. Each document has a "Like I'm 5" explanation, code snippets, and important points to remember.
 
-Use this section to learn a concept in depth. Use the [interview Q&A](../interviewQnA/README.md) for interview practice.
+Use this section to learn a concept in depth. Use the [interview Q&A](../interviewQnA/README.md) for interview practice. Prefer to learn by building? The [step-by-step tutorial](../tutorial/README.md) teaches every topic here while building one project, and each lesson links back to its concept page.
 
 ## Foundations
 
