@@ -24,6 +24,7 @@ FrontEndQnA/
 │       └── 36-a-to-z-glossary.md
 ├── react/
 │   ├── README.md
+│   ├── tutorial/               # 24-lesson build-along course (a toy shop), explained like you're 5
 │   ├── interviewQnA/           # interview Q&A, each question has a "Like I'm 5" line
 │   └── concepts/               # topic-wise reference with a glossary
 ├── javascript/
@@ -40,11 +41,11 @@ FrontEndQnA/
 │   └── concepts/
 ```
 
-Each technology follows the same pattern: a `README.md` hub, a `concepts/` folder for topic-by-topic reference, and an `interviewQnA/` folder for questions and answers. JavaScript also has a `tutorial/` folder, a step-by-step build that teaches every concept hands-on. Future frameworks can be added as sibling folders using this pattern.
+Each technology follows the same pattern: a `README.md` hub, a `concepts/` folder for topic-by-topic reference, and an `interviewQnA/` folder for questions and answers. Angular, React and JavaScript also have a `tutorial/` folder, a step-by-step build that teaches every concept hands-on. Future frameworks can be added as sibling folders using this pattern.
 
 ## React
 
-Start with [react/README.md](react/README.md). It links to the [React concepts reference](react/concepts/README.md) and the [interview Q&A](react/interviewQnA/README.md).
+Start with [react/README.md](react/README.md). It links to the [step-by-step tutorial](react/tutorial/README.md) (build a toy shop from scratch), the [React concepts reference](react/concepts/README.md) and the [interview Q&A](react/interviewQnA/README.md).
 
 ## JavaScript
 
