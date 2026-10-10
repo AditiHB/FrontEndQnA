@@ -19,6 +19,10 @@ At this level, interviewers usually expect more than definitions. They want to h
 | 9 | Full Stack: Angular + Java (Spring Boot) | [09-fullstack-angular-java.md](09-fullstack-angular-java.md) |
 | 10 | System Design, Scenarios & Leadership | [10-system-design-and-leadership.md](10-system-design-and-leadership.md) |
 
+## Topic-wise concept reference
+
+For a concept-by-concept reference from setup to deployment (with code snippets), see **[concepts/README.md](concepts/README.md)**. It includes 36 topic documents and an A to Z glossary.
+
 ## How to use this
 
 1. Read the question, answer it out loud in 60–90 seconds, then compare with the notes.
