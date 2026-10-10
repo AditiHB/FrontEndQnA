@@ -2,6 +2,8 @@
 
 > **Like I'm 5:** A directive is a sticker you put on an element. Some stickers change how something looks (like a highlight). Others add or remove whole pieces of the picture.
 
+> **Learn it by doing:** build this step by step in the tutorial: [Chapter 6: Directives](../tutorial/06-directives.md).
+
 ## Key concepts
 - **Component**: a directive with a template.
 - **Attribute directive**: changes the appearance or behavior of an element (`ngClass`, `ngStyle`, custom).

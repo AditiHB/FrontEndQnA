@@ -2,6 +2,8 @@
 
 > **Like I'm 5:** A pipe is a machine on a conveyor belt. A value goes in one end and a nicer-looking value comes out the other. For example, a plain date goes in and a pretty date comes out.
 
+> **Learn it by doing:** build this step by step in the tutorial: [Chapter 7: Pipes](../tutorial/07-pipes.md).
+
 ## Key concepts
 - A **pipe** transforms a value in a template: `{{ value | pipeName:arg }}`.
 - **Pure pipes** (default) run only when the input reference changes. They are cheap.

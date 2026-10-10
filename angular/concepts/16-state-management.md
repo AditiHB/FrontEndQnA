@@ -2,6 +2,8 @@
 
 > **Like I'm 5:** State is what the app remembers right now. A store is one shared notebook, so the app does not have to keep every memory in a different place.
 
+> **Learn it by doing:** build this step by step in the tutorial: [Chapter 18: State management](../tutorial/18-state-management.md).
+
 ## Key concepts
 - **Local state**: owned by one component (signal in the component).
 - **Shared state**: owned by a service and read by several components.

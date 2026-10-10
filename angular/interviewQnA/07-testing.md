@@ -94,7 +94,7 @@ For `OnPush` components, change inputs with `fixture.componentRef.setInput('name
 
 > **Like I'm 5:** A mock is a stand-in you can check later. Use a fake only when a simple stand-in won't do.
 
-**Answer:** Prefer a **fake** (a small in-memory implementation) for stateful services, and `jasmine.createSpyObj` or `jest.fn()` for simple interactions. Avoid mocking everything, because tests then only verify wiring. Use `overrideProvider` in `TestBed` when a provider is deep in the tree.
+**Answer:** Prefer a **fake** (a small in-memory implementation) for stateful services, and `vi.fn()` / `vi.spyOn()` (Vitest, the Angular 22 default), `jest.fn()`, or `jasmine.createSpyObj` (older Karma/Jasmine projects) for simple interactions. Avoid mocking everything, because tests then only verify wiring. Use `overrideProvider` in `TestBed` when a provider is deep in the tree.
 
 ---
 

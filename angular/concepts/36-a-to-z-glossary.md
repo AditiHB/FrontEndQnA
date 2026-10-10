@@ -2,12 +2,14 @@
 
 > **Like I'm 5:** This is a dictionary of Angular words, from A to Z. Look up a word, then follow its link to learn more.
 
+The tutorial's last chapter, [Chapter 37: Graduation day](../tutorial/37-graduation.md), has a shorter glossary with the chapter where you met each word.
+
 Quick reference for every letter. Each entry links to the topic document for details.
 
 ## A
 - **AOT (Ahead-of-Time compilation)**: templates compiled during build, not in the browser. Faster startup and type checking. → [01](01-project-setup-and-cli.md), [32](32-build-and-bundling.md)
 - **Angular CLI**: command-line tool for creating, building, testing, and updating projects. → [01](01-project-setup-and-cli.md)
-- **Animations**: CSS and `@angular/animations` effects on elements. → [17](17-animations.md)
+- **Animations**: effects on elements: `animate.enter` / `animate.leave` plus CSS (the older `@angular/animations` package is deprecated). → [17](17-animations.md)
 - **Async pipe**: subscribes to observables in templates and cleans up automatically. → [06](06-pipes.md)
 - **Attribute directive**: changes the look or behavior of an element. → [04](04-directives.md)
 
@@ -35,6 +37,7 @@ Quick reference for every letter. Each entry links to the topic document for det
 - **Environments**: build-time and runtime configuration per environment. → [33](33-environments-and-configuration.md)
 - **ErrorHandler**: global hook for unhandled errors. → [29](29-error-handling-and-logging.md)
 - **Elements (Angular Elements)**: Angular components as Web Components. → [24](24-web-components-elements.md)
+- **Eager**: the change detection strategy that checks a component on every round; the old `Default`, renamed in Angular 22. → [11](11-change-detection.md)
 
 ## F
 - **Forms**: template-driven and reactive forms with validators. → [15](15-forms.md)
@@ -59,10 +62,10 @@ Quick reference for every letter. Each entry links to the topic document for det
 
 ## J
 - **JIT (Just-in-Time compilation)**: compiles templates in the browser. Used in some dev and test setups; production uses AOT. → [32](32-build-and-bundling.md)
-- **Jasmine**: a common test framework used with Karma. → [27](27-testing.md)
+- **Jasmine**: the older test framework used with Karma; Angular 22 projects use Vitest by default. → [27](27-testing.md)
 
 ## K
-- **Karma**: a test runner that launches browsers. → [27](27-testing.md)
+- **Karma**: the older test runner that launches browsers; replaced by Vitest as the default. → [27](27-testing.md)
 - **Keyboard navigation**: every interactive element reachable with a keyboard. → [19](19-accessibility.md)
 
 ## L
@@ -86,7 +89,7 @@ Quick reference for every letter. Each entry links to the topic document for det
 - **ngsw (Angular service worker)**: caching and offline support. → [23](23-service-workers-and-pwa.md)
 
 ## O
-- **OnPush**: change detection strategy that checks only when inputs or signals change. → [11](11-change-detection.md)
+- **OnPush**: change detection strategy that checks only when inputs or signals change. The default in Angular 22 (the old strategy is `Eager`). → [11](11-change-detection.md)
 - **Observable**: a stream of values over time. → [10](10-rxjs.md)
 - **output()**: typed event emitter for components. → [21](21-component-communication.md)
 
@@ -112,6 +115,7 @@ Quick reference for every letter. Each entry links to the topic document for det
 - **SSR (Server-Side Rendering)**: rendering HTML on the server. → [22](22-ssr-hydration-and-prerendering.md)
 - **Standalone components**: components without NgModules. → [02](02-components.md)
 - **Services**: shared logic and state. → [08](08-dependency-injection-and-services.md)
+- **@Service()**: the Angular 22 decorator that registers a class as an app-wide singleton service (the older form is `@Injectable({ providedIn: 'root' })`). → [08](08-dependency-injection-and-services.md)
 - **Structural directives**: `*ngIf` and similar (legacy in favor of control flow). → [05](05-control-flow.md)
 
 ## T
@@ -131,6 +135,7 @@ Quick reference for every letter. Each entry links to the topic document for det
 - **Virtual scrolling**: renders only visible rows. → [20](20-material-and-cdk.md)
 - **View Transitions**: browser animations between route changes. → [17](17-animations.md)
 - **Validators**: rules for form controls. → [15](15-forms.md)
+- **Vitest**: the default unit test runner in Angular 22. → [27](27-testing.md)
 
 ## W
 - **Web Components**: browser standard for custom elements. → [24](24-web-components-elements.md)
@@ -146,5 +151,5 @@ Quick reference for every letter. Each entry links to the topic document for det
 - **YAML**: format for CI pipelines such as GitHub Actions. → [34](34-cicd-and-deployment.md)
 
 ## Z
-- **Zone.js**: library that patches async APIs to trigger change detection. → [11](11-change-detection.md)
-- **Zoneless**: Angular without Zone.js, driven by signals and explicit updates. → [11](11-change-detection.md)
+- **Zone.js**: library that patches async APIs to trigger change detection. Not used by new Angular 22 apps. → [11](11-change-detection.md)
+- **Zoneless**: Angular without Zone.js, driven by signals and explicit updates. The default for new Angular 22 apps. → [11](11-change-detection.md)
