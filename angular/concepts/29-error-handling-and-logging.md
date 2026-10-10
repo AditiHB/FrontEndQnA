@@ -1,5 +1,7 @@
 # 29. Error Handling & Logging
 
+> **Like I'm 5:** When something breaks, the whole app should not crash. Error handling is a safety net under a trapeze artist: it catches the fall, shows the user a kind message, and writes a note about what happened.
+
 ## Key concepts
 - Errors come from several places: templates and code (runtime errors), HTTP calls, route navigation, and unhandled promises or events.
 - A global strategy catches errors, logs them, and shows a friendly message.

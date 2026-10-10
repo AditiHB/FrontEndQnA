@@ -1,5 +1,7 @@
 # 19. Accessibility (a11y)
 
+> **Like I'm 5:** Accessibility means everyone can use the app, including people who use only a keyboard, a screen reader, or large text. Use real buttons and real labels, and helpers can read your app.
+
 ## Key concepts
 - Accessible apps work with keyboards, screen readers, zoom, and high-contrast settings.
 - Target **WCAG 2.2 AA** as a baseline.

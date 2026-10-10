@@ -1,5 +1,7 @@
 # 18. Internationalization (i18n)
 
+> **Like I'm 5:** i18n lets your app speak many languages. You write each word in a labelled box (a key), and the app fills in the right language for each visitor.
+
 ## Key concepts
 - **i18n**: preparing the app for multiple languages and regions.
 - **Localization (l10n)**: providing translated content and locale-specific formats.

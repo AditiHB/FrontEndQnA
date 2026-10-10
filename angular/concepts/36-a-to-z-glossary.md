@@ -1,5 +1,7 @@
 # 36. Angular A to Z Glossary
 
+> **Like I'm 5:** This is a dictionary of Angular words, from A to Z. Look up a word, then follow its link to learn more.
+
 Quick reference for every letter. Each entry links to the topic document for details.
 
 ## A
@@ -40,7 +42,7 @@ Quick reference for every letter. Each entry links to the topic document for det
 - **fileReplacements**: swaps files at build time, for example environments. → [33](33-environments-and-configuration.md)
 
 ## G
-- **Guards**: decide whether navigation can proceed (`canActivate`, `canMatch`, `canDeactivate`). → [12](12-routing.md), [../03-routing-and-http.md](../03-routing-and-http.md)
+- **Guards**: decide whether navigation can proceed (`canActivate`, `canMatch`, `canDeactivate`). → [12](12-routing.md), [../interviewQnA/03-routing-and-http.md](../interviewQnA/03-routing-and-http.md)
 - **Generated code (`ng generate`)**: schematics that create components, services, and more. → [01](01-project-setup-and-cli.md)
 
 ## H
@@ -103,7 +105,7 @@ Quick reference for every letter. Each entry links to the topic document for det
 - **Reactive forms**: forms built in TypeScript with `FormGroup` and `FormControl`. → [15](15-forms.md)
 - **Router**: maps URLs to components. → [12](12-routing.md)
 - **RxJS**: reactive streams library used by Angular. → [10](10-rxjs.md)
-- **Resolvers**: load data before a route activates. → [../03-routing-and-http.md](../03-routing-and-http.md)
+- **Resolvers**: load data before a route activates. → [../interviewQnA/03-routing-and-http.md](../interviewQnA/03-routing-and-http.md)
 
 ## S
 - **Signals**: reactive values with `signal`, `computed`, and `effect`. → [09](09-signals.md)

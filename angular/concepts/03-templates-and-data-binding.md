@@ -1,5 +1,7 @@
 # 3. Templates & Data Binding
 
+> **Like I'm 5:** A template is a picture on a sheet of paper. Data binding is a string that connects a box on the picture to a value in your code. When the value changes, the picture changes too.
+
 ## Key concepts
 - **Templates** are HTML with Angular syntax. Angular compiles them ahead of time (AOT) and type-checks them with `strictTemplates`.
 - Binding types: interpolation, property, event, two-way, attribute, class, and style.

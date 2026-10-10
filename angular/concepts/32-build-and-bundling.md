@@ -1,5 +1,7 @@
 # 32. Build & Bundling
 
+> **Like I'm 5:** Build is packing a suitcase before a trip. The build squeezes your code, leaves out the clothes you never wear (tree shaking), and folds everything neatly so it's ready to ship.
+
 ## Key concepts
 - `ng build` compiles TypeScript, templates (AOT), styles, and assets into optimized output in `dist/`.
 - Modern Angular uses the **application builder** (esbuild and Vite-based dev server) by default in new projects.

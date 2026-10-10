@@ -2,6 +2,8 @@
 
 ### Q1. What is the difference between template-driven and reactive forms? `Core`
 
+> **Like I'm 5:** Template-driven forms keep the rules on the page. Reactive forms keep the rules in your code's notebook.
+
 **Answer:**
 - **Template-driven**: the form model is in the template (`ngModel`). It is simple for small forms, but harder to test and less predictable for complex logic.
 - **Reactive**: the form model is in TypeScript (`FormGroup`, `FormControl`, `FormArray`). It is explicit, testable, and better for dynamic or complex forms. Most enterprise apps use reactive forms.
@@ -9,6 +11,8 @@
 ---
 
 ### Q2. How do you write strongly typed reactive forms? `Core`
+
+> **Like I'm 5:** Typed forms tell you what kind of value each box holds, so you don't mix up a word and a number.
 
 **Answer:** Since Angular 14, forms are typed by default.
 
@@ -26,6 +30,8 @@ Use `nonNullable: true` so `reset()` returns to the default value and not to `nu
 ---
 
 ### Q3. What are validators, async validators, and cross-field validators? `Core`
+
+> **Like I'm 5:** A validator is a rule, like "must not be empty". An async validator asks someone else, like the server, whether an answer is OK.
 
 **Answer:**
 ```ts
@@ -49,6 +55,8 @@ const passwordsMatch: ValidatorFn = g =>
 ---
 
 ### Q4. How do you create a custom form control that works with `[formControl]`? `Advanced`
+
+> **Like I'm 5:** A custom control is a new kind of box that plugs into the form, just like a normal input.
 
 **Answer:** Implement `ControlValueAccessor`, a bridge between the form API and your component.
 
@@ -79,11 +87,15 @@ export class StarRatingComponent implements ControlValueAccessor {
 
 ### Q5. What is `updateOn`, and when do you use it? `Advanced`
 
+> **Like I'm 5:** `updateOn: 'blur'` checks the answer only after you leave the box, so the form doesn't yell at you for every letter.
+
 **Answer:** `updateOn` controls when a value updates: `'change'` (default), `'blur'`, or `'submit'`. Use `'blur'` on expensive validation (for example, server checks) to avoid sending a request on every keystroke.
 
 ---
 
 ### Q6. How do you build dynamic forms, for example forms defined by a backend schema? `Architect`
+
+> **Like I'm 5:** A dynamic form is built from a list of instructions, so it changes when the instructions change.
 
 **Answer:**
 1. Describe fields in a config model (type, label, validators, options).
@@ -95,11 +107,15 @@ export class StarRatingComponent implements ControlValueAccessor {
 
 ### Q7. How do you show validation errors in a consistent way? `Core`
 
+> **Like I'm 5:** Show an error only after the person has touched the box, so you don't scold them before they've started.
+
 **Answer:** Create a reusable `<app-field-error>` component, or a directive that reads `control.errors` and shows messages from a central map. Show errors only when `control.touched || form.submitted`, not on the first load.
 
 ---
 
 ### Q8. What are the trade-offs of client-side validation? `Core`
+
+> **Like I'm 5:** Checking in the browser is helpful, but anyone can skip it. The server must check again.
 
 **Answer:** Client-side validation improves user experience, but it is **never** a security control. Every rule must be enforced on the server (for example, Bean Validation with `@Valid` in Spring). I keep the rules in sync by generating or sharing the validation contract, for example from an OpenAPI schema.
 
@@ -107,10 +123,14 @@ export class StarRatingComponent implements ControlValueAccessor {
 
 ### Q9. How do you reset a form and keep the values? `Core`
 
+> **Like I'm 5:** `reset` empties the form, `patchValue` changes only some boxes, and `setValue` changes all of them.
+
 **Answer:** Use `form.reset()` to clear values and states. Use `form.markAsPristine()` if you only want to clear the dirty flag. Use `patchValue()` to update some fields without triggering validation on all of them, and `setValue()` to set all fields (it throws if a key is missing).
 
 ---
 
 ### Q10. Signal-based forms: what do you know about them? `Advanced`
+
+> **Like I'm 5:** New forms built on signals are coming, so the form's answers update like signal boxes do.
 
 **Answer:** Angular is introducing signal-based form APIs that model form state (value, validity, touched) as signals, so templates and computed values update automatically. Check the current status for your version, since this area changes quickly. Mention that reactive forms remain fully supported, and that you would evaluate the new API for new projects after it is stable.

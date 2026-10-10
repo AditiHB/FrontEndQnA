@@ -2,6 +2,8 @@
 
 ### Q1. What is the difference between cold and hot observables? `Core`
 
+> **Like I'm 5:** A cold observable is a movie that starts from the beginning for each viewer. A hot one is live TV, where everyone joins the same show.
+
 **Answer:**
 - **Cold**: each subscriber starts its own execution. `HttpClient` is cold: each subscribe makes a new request.
 - **Hot**: the producer exists independently of subscribers. Subscribers see values from the moment they subscribe. Examples: DOM events, `Subject`, a WebSocket.
@@ -10,6 +12,8 @@
 ---
 
 ### Q2. What is the difference between `Subject`, `BehaviorSubject`, and `ReplaySubject`? `Core`
+
+> **Like I'm 5:** A Subject is a shout, and only people listening at that moment hear it. A BehaviorSubject remembers the last shout and tells new listeners. A ReplaySubject remembers several.
 
 **Answer:**
 - **`Subject`**: multicasts values. New subscribers get nothing until the next emission.
@@ -20,6 +24,8 @@
 ---
 
 ### Q3. Explain `switchMap`, `mergeMap`, `concatMap`, and `exhaustMap`. `Core`
+
+> **Like I'm 5:** `switchMap` throws away the old job when a new one arrives. `mergeMap` does all the jobs at once. `concatMap` lines them up. `exhaustMap` ignores new clicks while one job is running.
 
 **Answer:** All four map a value to an inner observable. They differ in how they handle overlapping inner observables.
 
@@ -35,6 +41,8 @@
 ---
 
 ### Q4. How do you avoid memory leaks with RxJS? `Core`
+
+> **Like I'm 5:** When you leave a room, switch off the radio, so it doesn't keep playing in an empty room.
 
 **Answer:**
 - Use the `async` pipe in templates.
@@ -52,6 +60,8 @@ constructor() {
 
 ### Q5. What is the `shareReplay` pitfall? `Advanced`
 
+> **Like I'm 5:** `shareReplay` without limits keeps the water running even when nobody is listening. Add `refCount` so it turns off when everyone leaves.
+
 **Answer:** `shareReplay()` without arguments keeps the source subscription open forever, even after all subscribers leave. This is a leak. Prefer:
 
 ```ts
@@ -63,6 +73,8 @@ With `refCount: true`, the source is unsubscribed when the last subscriber leave
 ---
 
 ### Q6. How do you convert between signals and observables? `Core`
+
+> **Like I'm 5:** A signal is a box you look at, and an observable is a stream. `toSignal` puts the stream's latest drop into a box. `toObservable` does the reverse.
 
 **Answer:**
 ```ts
@@ -79,6 +91,8 @@ search$ = toObservable(this.searchTerm);
 
 ### Q7. How do you manage application state in a large app? Signals, services, or NgRx? `Architect`
 
+> **Like I'm 5:** For a small house, use simple boxes. For a big house with many people, use one shared notebook, like NgRx.
+
 **Answer:** Choose the simplest tool that fits.
 
 - **Local component state**: a signal in the component.
@@ -91,6 +105,8 @@ search$ = toObservable(this.searchTerm);
 ---
 
 ### Q8. Explain the NgRx flow. `Advanced`
+
+> **Like I'm 5:** You tell the store what happened (an action). A worker does the slow job (an effect). A rule writes the new state (a reducer). You read the notebook through a window (a selector).
 
 **Answer:**
 1. A component dispatches an **action** (`loadOrders()`).
@@ -116,17 +132,23 @@ export const loadOrders$ = createEffect(
 
 ### Q9. How do you handle errors in an effect so the stream does not die? `Advanced`
 
+> **Like I'm 5:** If a worker drops a job and breaks, it stops working for good. Catch the problem inside the job, so the worker keeps going.
+
 **Answer:** Put `catchError` **inside** the inner observable (as shown above), not on the outer action stream. An error on the outer stream terminates the effect, and the app stops responding to that action.
 
 ---
 
 ### Q10. What is a memoized selector and why does it matter? `Advanced`
 
+> **Like I'm 5:** A memoized selector remembers its last answer. If nothing it depends on changed, it gives back the same answer without working again.
+
 **Answer:** `createSelector` caches the last result. If the input state slices do not change, the selector returns the same reference. This helps `OnPush` components and avoids expensive recomputation (for example, filtering 10,000 rows).
 
 ---
 
 ### Q11. What is the difference between `combineLatest`, `forkJoin`, `zip`, and `withLatestFrom`? `Advanced`
+
+> **Like I'm 5:** `combineLatest` shows the latest of each. `forkJoin` waits until all are finished. `withLatestFrom` peeks at the latest value when you press a button.
 
 **Answer:**
 - `combineLatest`: emits whenever any source emits, after all have emitted at least once. Good for combining live filters.
@@ -138,11 +160,15 @@ export const loadOrders$ = createEffect(
 
 ### Q12. How do you handle race conditions in RxJS? `Advanced`
 
+> **Like I'm 5:** Two answers can arrive in the wrong order. `switchMap` keeps only the newest request's answer.
+
 **Answer:** A race happens when an older response arrives after a newer one. Use `switchMap` so only the latest request's result is used. For ordered writes, use `concatMap`. For optimistic UI updates, store a request version or ID and ignore stale responses.
 
 ---
 
 ### Q13. What is an optimistic update, and how do you roll it back? `Architect`
+
+> **Like I'm 5:** Show the change right away. If the server says no, put the old thing back and say sorry.
 
 **Answer:** Update the UI immediately, then send the request. If it fails, restore the previous state.
 
@@ -162,5 +188,7 @@ Use this for low-risk operations (toggles, likes). For payments or irreversible 
 ---
 
 ### Q14. What is a Signal Store? `Advanced`
+
+> **Like I'm 5:** A Signal Store is a small toy box with its own state and buttons, with less paperwork than NgRx.
 
 **Answer:** `@ngrx/signals` provides `signalStore()` with state, computed values, and methods, in a structure similar to a service. It uses signals internally and avoids the action, reducer, and effect boilerplate. It is a good middle ground between services and full NgRx.

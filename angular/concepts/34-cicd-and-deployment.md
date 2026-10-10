@@ -1,5 +1,7 @@
 # 34. CI/CD & Deployment
 
+> **Like I'm 5:** CI/CD is a robot on an assembly line. Every time you change the code, it checks it, builds it, tests it, and ships it, as long as every step passes.
+
 ## Key concepts
 - **CI (continuous integration)**: every change is built and tested automatically.
 - **CD (continuous delivery/deployment)**: every passing build is deployed through environments (dev → test → staging → production).

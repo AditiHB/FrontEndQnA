@@ -1,5 +1,7 @@
 # 2. Components
 
+> **Like I'm 5:** A component is a LEGO brick. It has a shape (HTML), paint (CSS), and a brain (TypeScript). You snap many bricks together to build the whole app.
+
 ## Key concepts
 - A **component** is a class with a `@Component` decorator, a template, and optional styles. It is the basic building block of the UI.
 - **Standalone** components declare their own dependencies in `imports`. This is the default in modern Angular.

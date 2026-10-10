@@ -1,5 +1,7 @@
 # 5. Control Flow & Template Blocks
 
+> **Like I'm 5:** Control flow is the "if" and "repeat" of a template. `@if` shows something only when it is true. `@for` makes one copy for each item in a list, and `track` gives each copy a name tag so Angular can tell them apart.
+
 ## Key concepts
 - Built-in blocks (`@if`, `@for`, `@switch`, `@defer`) were introduced in Angular 17 and replace `*ngIf`, `*ngFor`, and `*ngSwitch`.
 - They are type-checked, need no imports, and are faster for many cases.

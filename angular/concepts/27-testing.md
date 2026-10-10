@@ -1,5 +1,7 @@
 # 27. Testing
 
+> **Like I'm 5:** Testing is checking your homework before you hand it in. Unit tests check one small piece. End-to-end tests play the whole game the way a real user would.
+
 ## Key concepts
 - **Unit tests**: test one class, function, or component in isolation.
 - **Component tests**: test rendering and interactions with `TestBed`.

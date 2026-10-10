@@ -1,5 +1,7 @@
 # 15. Forms
 
+> **Like I'm 5:** A form is a set of boxes to fill in. Reactive forms keep the rules in your code. Validators are the rules, like "name must not be empty", and the form tells the user when a rule is broken.
+
 ## Key concepts
 - **Template-driven forms**: `ngModel` in the template. Good for simple forms.
 - **Reactive forms**: `FormControl`, `FormGroup`, and `FormArray` in TypeScript. Preferred for complex forms.

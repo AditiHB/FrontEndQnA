@@ -1,5 +1,7 @@
 # 33. Environments & Configuration
 
+> **Like I'm 5:** Environments are outfits for different places: home (dev), school (test), and a party (production). Settings like the server address change depending on which outfit the app is wearing.
+
 ## Key concepts
 - **Build-time configuration** is fixed when the app is built (for example, `environment.prod.ts`).
 - **Runtime configuration** is loaded when the app starts (for example, `config.json`). It allows one build to run in many environments.

@@ -1,5 +1,7 @@
 # 22. Server-Side Rendering, Hydration & Prerendering
 
+> **Like I'm 5:** Normally the browser cooks the meal (builds the page) after the recipe (JavaScript) arrives. With SSR, the server cooks it first and the browser just serves it fast. Hydration then makes the food interactive.
+
 ## Key concepts
 - **CSR**: the browser renders everything after JavaScript loads.
 - **SSR**: the server renders HTML for each request. Good for first paint and SEO.

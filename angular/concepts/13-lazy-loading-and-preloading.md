@@ -1,5 +1,7 @@
 # 13. Lazy Loading & Preloading
 
+> **Like I'm 5:** It's like ordering pizza only when you are hungry. The app doesn't carry every feature in its backpack on day one. It fetches a feature when you need it, and preloading fetches it a little early so it's ready.
+
 ## Key concepts
 - **Lazy loading** downloads a feature's code only when the user navigates to it.
 - **Preloading** downloads lazy code in the background after the initial load, so later navigation is fast.

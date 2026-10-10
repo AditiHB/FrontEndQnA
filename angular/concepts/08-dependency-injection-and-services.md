@@ -1,5 +1,7 @@
 # 8. Dependency Injection & Services
 
+> **Like I'm 5:** Dependency injection is like a school library. You don't write your own books. You ask the librarian (Angular) for one. A service is a book that everyone can share, and Angular keeps just one copy.
+
 ## Key concepts
 - **Service**: a class that holds logic or state and is shared through DI.
 - **Injector hierarchy**: element injectors (components), route injectors (lazy routes), and the root (environment) injector.

@@ -1,5 +1,7 @@
 # 35. Upgrades & Migration
 
+> **Like I'm 5:** Upgrading is moving to a new house one room at a time. `ng update` is the moving truck. It carries most of your stuff and tells you which boxes you need to pack by hand.
+
 ## Key concepts
 - Angular releases a major version about every six months, and supports each major for a limited period.
 - `ng update` applies official migrations automatically and tells you what to fix manually.

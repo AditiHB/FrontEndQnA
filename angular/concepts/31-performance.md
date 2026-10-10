@@ -1,5 +1,7 @@
 # 31. Performance
 
+> **Like I'm 5:** Performance is making the app feel quick. Send less stuff (small bundles), show things sooner (lazy loading and defer), and don't repeat the same work (caching).
+
 ## Key concepts
 - Performance has three parts: **load** (how fast the app starts), **runtime** (how smooth interactions are), and **network** (how much data moves).
 - Measure before optimizing. Use real user data (RUM) and lab tools (Lighthouse, Chrome DevTools).

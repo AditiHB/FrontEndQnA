@@ -1,5 +1,7 @@
 # 17. Animations
 
+> **Like I'm 5:** Animations are small cartoon moves, like something sliding in or fading out, so the user understands what just happened. Keep them quick, and turn them off for people who don't want motion.
+
 ## Key concepts
 - Angular supports animations through CSS transitions and keyframes, the Angular animation DSL in `@angular/animations`, and browser APIs such as the View Transitions API.
 - The animation DSL is tied to `trigger`, `state`, `style`, `transition`, and `animate`. Newer Angular versions add native enter and leave animations through CSS. Check the current guidance for your version, because the recommended approach has been changing.
