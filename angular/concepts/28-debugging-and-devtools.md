@@ -2,6 +2,8 @@
 
 > **Like I'm 5:** Debugging is detective work. DevTools is your magnifying glass. Use it to look inside a component, see what the network sent, and find where things went wrong.
 
+> **Learn it by doing:** build this step by step in the tutorial: [Chapter 25: Debugging and DevTools](../tutorial/25-debugging.md).
+
 ## Key concepts
 - **Angular DevTools**: a browser extension for inspecting the component tree, inputs, outputs, signals, and change detection cycles.
 - **Browser DevTools**: Elements, Console, Network, Performance, Memory, and Sources panels.

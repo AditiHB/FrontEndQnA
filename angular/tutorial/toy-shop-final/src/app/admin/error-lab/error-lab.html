@@ -1,0 +1,23 @@
+<h2>Error lab 🧪</h2>
+<p>Press a button to break something on purpose. Then watch what happens.</p>
+
+<div class="buttons">
+  <button class="btn" type="button" (click)="breakServer()">Make the server fail</button>
+  <button class="btn" type="button" (click)="breakCode()">Make the code fail</button>
+</div>
+
+<p role="status">{{ result() }}</p>
+
+<h3>The error notebook</h3>
+@if (logger.errors().length === 0) {
+  <p>Nothing has gone wrong yet.</p>
+} @else {
+  <ul>
+    @for (e of logger.errors(); track e.when) {
+      <li>
+        <code>{{ e.context ?? 'error' }}</code
+        >: {{ e.message }}
+      </li>
+    }
+  </ul>
+}

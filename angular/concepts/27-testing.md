@@ -7,21 +7,22 @@
 - **Component tests**: test rendering and interactions with `TestBed`.
 - **Integration tests**: several parts together, with a mocked backend.
 - **End-to-end (E2E) tests**: test the running app in a real browser (Playwright or Cypress).
-- Test runners: Jasmine and Karma (classic defaults), or Jest and Vitest (common alternatives). Check your project's configured runner.
+- Test runner: **Vitest** is the default in Angular 22 (`ng test` runs the `@angular/build:unit-test` builder with Vitest and jsdom). Older projects use Karma and Jasmine; `ng update @angular/cli --name migrate-karma-to-vitest --migrate-only` migrates them. Check your project's configured runner.
+- Learn it by doing: [Tutorial chapter 24](../tutorial/24-testing.md) tests the Toy Shop at every level.
 
 ## Component test with TestBed
 
 ```ts
-describe('CartBadgeComponent', () => {
-  let fixture: ComponentFixture<CartBadgeComponent>;
+describe('CartBadge', () => {
+  let fixture: ComponentFixture<CartBadge>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CartBadgeComponent],
+      imports: [CartBadge],
       providers: [{ provide: CartService, useValue: { count: signal(3) } }],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CartBadgeComponent);
+    fixture = TestBed.createComponent(CartBadge);
     fixture.detectChanges();
   });
 
@@ -58,16 +59,22 @@ it('loads orders', () => {
 });
 ```
 
-## Async: fakeAsync and fixtures
+## Async: fake timers (Vitest) and fixtures
 
 ```ts
-it('debounces search', fakeAsync(() => {
+it('debounces search', () => {
+  vi.useFakeTimers();
   component.search.setValue('ab');
-  tick(300);
+  vi.advanceTimersByTime(300);
   fixture.detectChanges();
   expect(api.search).toHaveBeenCalledWith('ab');
-}));
+  vi.useRealTimers();
+});
 ```
+
+`fakeAsync` and `tick` belong to zone.js-based projects (Karma/Jasmine or zone-based setups). In a zoneless Vitest project use `vi.useFakeTimers()`. With fake timers, call `fixture.detectChanges()` instead of waiting for `fixture.whenStable()`, which would never finish.
+
+Spies in Vitest are `vi.fn()` and `vi.spyOn(obj, 'method')` (in Jasmine they were `jasmine.createSpy` and `spyOn`).
 
 ## Component harnesses (CDK)
 

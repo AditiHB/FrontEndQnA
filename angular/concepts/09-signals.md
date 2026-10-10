@@ -2,6 +2,8 @@
 
 > **Like I'm 5:** A signal is a box with a label on it. When someone changes what is inside, everyone looking at the box is told automatically. A `computed` box works out its value from other boxes.
 
+> **Learn it by doing:** build this step by step in the tutorial: [Chapter 10: Signals](../tutorial/10-signals.md).
+
 ## Key concepts
 - A **signal** is a reactive value. Reading it inside a template or `computed` or `effect` registers a dependency.
 - Signals are synchronous, glitch-free, and enable fine-grained updates.

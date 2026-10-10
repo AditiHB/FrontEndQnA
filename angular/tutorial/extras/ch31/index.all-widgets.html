@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Toy widgets</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <h1>A plain web page (no Angular app here!)</h1>
+    <p>Racing Car <toy-stars-widget rating="4.5"></toy-stars-widget></p>
+    <p><toy-badge-widget tone="warning">Only 2 left</toy-badge-widget></p>
+    <p><toy-like-widget toy="Racing Car"></toy-like-widget></p>
+    <script>
+      // Plain JavaScript, no framework: listen to the widget's event.
+      document.querySelector('toy-like-widget').addEventListener('changed', (e) => {
+        console.log('heard:', JSON.stringify(e.detail));
+      });
+    </script>
+  </body>
+</html>

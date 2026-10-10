@@ -1,0 +1,81 @@
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.toolbar input {
+  flex: 1;
+  min-width: 12rem;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--color-brand-light);
+  border-radius: var(--radius);
+  font: inherit;
+}
+
+.added {
+  min-height: 1.5rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.chip {
+  padding: 0.25rem 0.875rem;
+  border: 2px solid var(--color-brand);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-brand);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.chip.active {
+  background: var(--color-brand);
+  color: #fff;
+}
+
+.placeholder {
+  margin-top: 2rem;
+  color: var(--color-muted);
+}
+
+.sale {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.sale p {
+  margin: 0;
+}
+
+.pages {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.loading {
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.error {
+  padding: 0.75rem 1rem;
+  background: #ffd9dc;
+  border-radius: var(--radius);
+  color: #7a121b;
+  font-weight: 600;
+}

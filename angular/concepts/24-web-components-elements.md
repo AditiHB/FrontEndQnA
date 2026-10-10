@@ -2,6 +2,8 @@
 
 > **Like I'm 5:** A Web Component is a custom tag you invent, like `<order-widget>`. Any website can use it, even one that doesn't use Angular.
 
+> **Learn it by doing:** build this step by step in the tutorial: [Chapter 31: Web components (Angular Elements)](../tutorial/31-web-components.md).
+
 ## Key concepts
 - **Web Components** are reusable custom HTML elements that work in any framework or no framework.
 - **Angular Elements** (`@angular/elements`) packages an Angular component as a custom element.

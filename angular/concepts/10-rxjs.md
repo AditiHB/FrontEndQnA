@@ -2,6 +2,8 @@
 
 > **Like I'm 5:** RxJS is a water pipe that carries data over time. Operators are valves that change the water on its way through. `subscribe` turns the tap on, and `unsubscribe` turns it off so nothing leaks.
 
+> **Learn it by doing:** build this step by step in the tutorial: [Chapter 12: RxJS](../tutorial/12-rxjs.md).
+
 ## Key concepts
 - **Observable**: a stream of values over time. Lazy: nothing happens until a subscriber subscribes.
 - **Observer**: `next`, `error`, `complete` callbacks.

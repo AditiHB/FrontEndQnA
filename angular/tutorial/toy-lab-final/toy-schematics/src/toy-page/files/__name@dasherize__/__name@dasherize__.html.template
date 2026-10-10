@@ -1,0 +1,2 @@
+<h1><%= capitalize(dasherize(name).replace(/-/g, ' ')) %> 🧸</h1>
+<p>This page was made by the toy-page schematic.</p>

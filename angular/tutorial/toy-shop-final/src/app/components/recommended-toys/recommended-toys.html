@@ -1,0 +1,8 @@
+<section class="recommended">
+  <h2>Our favorites ⭐</h2>
+  <ol>
+    @for (t of toys(); track t.id) {
+      <li>{{ t.emoji }} {{ t.name }} (rated {{ t.rating }} out of 5)</li>
+    }
+  </ol>
+</section>

@@ -2,6 +2,8 @@
 
 > **Like I'm 5:** Material is a box of ready-made LEGO bricks like buttons and tables. The CDK is the set of gears and instructions underneath, so you can build your own bricks.
 
+> **Learn it by doing:** build this step by step in the tutorial: [Chapter 20: Angular Material and the CDK](../tutorial/20-material-and-cdk.md).
+
 ## Key concepts
 - **Angular Material**: a set of ready-made UI components that follow Material Design.
 - **Angular CDK** (Component Dev Kit): behavior building blocks without styles, such as overlays, drag and drop, virtual scrolling, layout, and accessibility utilities.

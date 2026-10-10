@@ -2,6 +2,8 @@
 
 > **Like I'm 5:** Accessibility means everyone can use the app, including people who use only a keyboard, a screen reader, or large text. Use real buttons and real labels, and helpers can read your app.
 
+> **Learn it by doing:** build this step by step in the tutorial: [Chapter 21: Accessibility](../tutorial/21-accessibility.md).
+
 ## Key concepts
 - Accessible apps work with keyboards, screen readers, zoom, and high-contrast settings.
 - Target **WCAG 2.2 AA** as a baseline.

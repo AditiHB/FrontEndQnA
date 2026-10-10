@@ -1,0 +1,119 @@
+<h1 i18n="@@home.title">All toys</h1>
+
+<div class="sale">
+  @if (showSale()) {
+    <p>
+      🔥 <ng-container i18n="@@home.saleEnds">Sale ends in</ng-container>
+      <app-sale-countdown [endsAt]="saleEnds" />
+    </p>
+  }
+  <button class="btn secondary" type="button" (click)="showSale.set(!showSale())">
+    <ng-container i18n="@@home.saleToggle">{showSale(), select,
+      true {Hide sale banner}
+      other {Show sale banner}
+    }</ng-container>
+  </button>
+</div>
+
+<div class="toolbar">
+  <input
+    #searchBox
+    type="search"
+    [formControl]="searchTerm"
+    i18n-aria-label="@@home.search.label"
+    aria-label="Search toys"
+    i18n-placeholder="@@home.search.placeholder"
+    placeholder="Search toys…"
+  />
+  <button class="btn secondary" type="button" (click)="focusSearch()" i18n="@@home.findSearch">
+    Find the search box
+  </button>
+</div>
+
+<nav class="chips" i18n-aria-label="@@home.groups" aria-label="Toy groups">
+  @for (c of categories; track c.id) {
+    <a
+      class="chip"
+      routerLink="/"
+      [queryParams]="{ category: c.id === 'all' ? null : c.id }"
+      [class.active]="selected() === c.id"
+      [attr.aria-current]="selected() === c.id ? 'true' : null"
+    >
+      {{ c.label }}
+    </a>
+  }
+</nav>
+
+<p class="added" aria-live="polite">
+  @if (lastAdded()) {
+    <span animate.enter="pop"
+      ><ng-container i18n="@@home.added">Added:</ng-container> {{ lastAdded() }}</span
+    >
+  }
+</p>
+
+@if (error()) {
+  <p class="error" role="alert">
+    {{ error() }}
+    <button class="btn secondary" type="button" (click)="retry()" i18n="@@home.retry">
+      Try again
+    </button>
+  </p>
+}
+
+@if (loading()) {
+  <p class="loading" role="status" i18n="@@home.loading">Looking for toys… 🔍</p>
+} @else {
+  <!-- An ICU message: the words change with the number (0, 1, or many). -->
+  <p class="count" i18n="@@home.count">
+    {visible().length, plural,
+      =0 {No toys}
+      =1 {One toy}
+      other {{{ visible().length // i18n(ph="count") }} toys}
+    }
+  </p>
+}
+
+<div class="grid">
+  @for (p of pageItems(); track p.id) {
+    <app-product-card
+      animate.enter="fade-in"
+      [product]="p"
+      [liked]="wishlist.has(p.id)"
+      (likeToggled)="toggleWishlist($event)"
+      (added)="onAdded($event)"
+    />
+  } @empty {
+    @if (!loading() && !error()) {
+      <p i18n="@@home.empty">No toys found. 🧸</p>
+    }
+  }
+</div>
+
+@if (pageCount() > 1) {
+  <nav class="pages" i18n-aria-label="@@home.pages" aria-label="Pages">
+    @for (n of pageNumbers(); track n) {
+      <button
+        type="button"
+        class="chip"
+        [class.active]="page() === n"
+        [attr.aria-current]="page() === n ? 'page' : null"
+        (click)="page.set(n)"
+      >
+        {{ n }}
+      </button>
+    }
+  </nav>
+}
+
+@defer (on viewport) {
+  @if (topRated$ | async; as top) {
+    <app-recommended-toys [toys]="top" />
+  }
+} @placeholder {
+  <p class="placeholder" i18n="@@home.favs.placeholder">Scroll down to see our favorites…</p>
+} @loading (minimum 300ms) {
+  <p i18n="@@home.favs.loading">Loading favorites…</p>
+} @error {
+  <p i18n="@@home.favs.error">Sorry, we could not load the favorites.</p>
+}

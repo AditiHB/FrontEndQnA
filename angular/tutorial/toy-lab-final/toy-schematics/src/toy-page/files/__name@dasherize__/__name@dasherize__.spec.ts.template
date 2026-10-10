@@ -1,0 +1,10 @@
+import { TestBed } from '@angular/core/testing';
+import { <%= classify(name) %> } from './<%= dasherize(name) %>';
+
+describe('<%= classify(name) %>', () => {
+  it('shows its heading', async () => {
+    const fixture = TestBed.createComponent(<%= classify(name) %>);
+    await fixture.whenStable();
+    expect(fixture.nativeElement.querySelector('h1')).not.toBeNull();
+  });
+});

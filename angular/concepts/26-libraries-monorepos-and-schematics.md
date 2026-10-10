@@ -2,6 +2,8 @@
 
 > **Like I'm 5:** A library is a toolbox you share with friends. A monorepo is one big toy box holding many toolboxes. A schematic is a robot helper that writes code from a template for you.
 
+> **Learn it by doing:** build this step by step in the tutorial: [Chapter 30: Libraries, monorepos and schematics](../tutorial/30-libraries-and-schematics.md).
+
 ## Key concepts
 - A **library** is reusable Angular code (components, services, pipes) published as a package.
 - A **workspace** can hold several applications and libraries.

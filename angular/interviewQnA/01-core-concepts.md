@@ -214,13 +214,13 @@ input = viewChild.required<ElementRef<HTMLInputElement>>('searchBox');
 
 ---
 
-### Q13. Explain change detection. What is the difference between Default and OnPush? `Core`
+### Q13. Explain change detection. What is the difference between Default (Eager) and OnPush? `Core`
 
-> **Like I'm 5:** Default checks every student every time. OnPush only checks the student whose paper changed.
+> **Like I'm 5:** The old way checks every student every time. OnPush only checks the student whose paper changed. In Angular 22, OnPush is the default.
 
 **Answer:**
-- **Default** strategy: Angular checks every component in the tree after any event, timer, or XHR. Simple, but can get slow in large trees.
-- **OnPush**: a component is checked only when:
+- **Default** strategy (renamed **`Eager`** in Angular 22): Angular checks every component in the tree on every round. Simple, but can get slow in large trees. This was the default before Angular 22; `ng update` writes `ChangeDetectionStrategy.Eager` on existing components so upgrading does not change their behaviour.
+- **OnPush** (**the default for components in Angular 22**): a component is checked only when:
   1. One of its `@Input` references changes.
   2. An event originates from the component or its children.
   3. You explicitly call `markForCheck()` or `detectChanges()`.
@@ -228,7 +228,12 @@ input = viewChild.required<ElementRef<HTMLInputElement>>('searchBox');
   5. A signal it reads changes (in modern Angular).
 
 ```ts
+// Angular 22: OnPush is already the default, so nothing is needed.
+// Older projects write it explicitly:
 @Component({ changeDetection: ChangeDetectionStrategy.OnPush, ... })
+
+// Opt in to the old behaviour:
+@Component({ changeDetection: ChangeDetectionStrategy.Eager, ... })
 ```
 
 **Advanced point:** OnPush requires **immutable** data updates. Mutating an object in place (`this.items.push(x)`) does not change the reference, so the component is not updated. Return new arrays and objects, or use signals.
@@ -240,14 +245,17 @@ input = viewChild.required<ElementRef<HTMLInputElement>>('searchBox');
 > **Like I'm 5:** Zone.js is a helper that tells Angular when something happened. Zoneless means Angular notices changes by itself, with no helper.
 
 **Answer:**
-- **Zone.js** patches browser async APIs (events, timers, promises, XHR) to know when to run change detection. It is the reason Angular updates the UI automatically in older versions.
-- **Zoneless** Angular removes Zone.js. Change detection is triggered by signal updates, `markForCheck`, and template events. It reduces bundle size and makes stack traces and performance easier to reason about.
+- **Zone.js** patches browser async APIs (events, timers, promises, XHR) to know when to run change detection. It is the reason Angular updated the UI automatically in older versions.
+- **Zoneless** Angular removes Zone.js. Change detection is triggered by signal updates, `markForCheck`, and template events. It reduces bundle size and makes stack traces and performance easier to reason about. **New Angular 22 apps are zoneless by default** (no `zone.js` in `package.json`).
 
 ```ts
-bootstrapApplication(AppComponent, {
+// Older apps that still load zone.js opt in with the provider, then remove zone.js:
+bootstrapApplication(App, {
   providers: [provideZonelessChangeDetection()]
 });
 ```
+
+In a zoneless app, a plain field that is changed in a `setTimeout` is not repainted; put screen data in signals (or call `markForCheck()`).
 
 **Trade-off:** Third-party libraries that rely on zone-based updates may need manual `ChangeDetectorRef` calls. Check compatibility before migrating.
 

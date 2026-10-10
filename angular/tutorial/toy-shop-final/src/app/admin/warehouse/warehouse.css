@@ -1,0 +1,15 @@
+.viewport {
+  height: 400px;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.box-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--color-brand-light);
+}
