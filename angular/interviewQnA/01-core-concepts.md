@@ -2,6 +2,8 @@
 
 ### Q1. What is Angular, and how is it different from AngularJS? `Core`
 
+> **Like I'm 5:** Angular is a toy kit for building websites. AngularJS was the old kit, and Angular is the newer one.
+
 **Answer:**
 - **AngularJS (1.x)** is an MVC/MVVM framework built on two-way binding and `$scope`/digest cycles. It was discontinued in 2022.
 - **Angular (2+)** is a component-based framework written in TypeScript. It uses a component tree, unidirectional data flow by default, a hierarchical dependency injector, a compiled template system (AOT), RxJS for async work, and an explicit change detection model.
@@ -9,6 +11,8 @@
 ---
 
 ### Q2. What is the difference between standalone components and NgModule-based components? `Core`
+
+> **Like I'm 5:** A standalone component carries its own tools in its own box. An NgModule component needs a big shared box that everyone has to sign up for.
 
 **Answer:**
 - **NgModule-based**: every component must be declared in exactly one `NgModule`, and modules import each other's dependencies.
@@ -30,6 +34,8 @@ export class UserCardComponent { @Input() user!: User; }
 
 ### Q3. Explain the component lifecycle hooks and their order. `Core`
 
+> **Like I'm 5:** A component is born, grows up, and goes away. Each stage has an alarm clock (a hook) that rings, so you can do something at that moment.
+
 **Answer:** In order of execution:
 
 1. `constructor` (only for DI; do not read `@Input` values here)
@@ -45,6 +51,8 @@ export class UserCardComponent { @Input() user!: User; }
 ---
 
 ### Q4. What are signals, and how do they differ from RxJS observables? `Core`
+
+> **Like I'm 5:** A signal is a box that tells people when its contents change. RxJS is a water pipe that keeps sending drops over time.
 
 **Answer:**
 - A **signal** is a value holder that notifies its readers when it changes. It is synchronous and always has a current value.
@@ -71,6 +79,8 @@ increment() { this.count.update(c => c + 1); }
 
 ### Q5. What is the difference between `effect()` and `computed()`? `Advanced`
 
+> **Like I'm 5:** `computed` is a box whose answer is worked out from other boxes. `effect` is a helper who runs a job every time a box changes.
+
 **Answer:**
 - `computed()` is a **pure, lazy, memoized derivation**. It must not write to other signals.
 - `effect()` runs **side effects** (logging, syncing to `localStorage`, calling a third-party library) whenever its tracked signals change. It runs asynchronously during change detection.
@@ -80,6 +90,8 @@ increment() { this.count.update(c => c + 1); }
 ---
 
 ### Q6. What are the new signal-based `input()`, `output()`, and `model()` APIs? `Advanced`
+
+> **Like I'm 5:** `input` is a mailbox for things coming in. `output` is a mailbox for things going out. `model` is a mailbox that works both ways.
 
 **Answer:**
 ```ts
@@ -100,6 +112,8 @@ value = model(0);                        // [(value)]="x" works
 
 ### Q7. Explain data binding types in Angular. `Core`
 
+> **Like I'm 5:** Data binding is a string between the page and your code. It can go one way or both ways.
+
 **Answer:**
 | Type | Syntax | Direction |
 |------|--------|-----------|
@@ -113,6 +127,8 @@ value = model(0);                        // [(value)]="x" works
 ---
 
 ### Q8. What is the new control flow syntax, and why was it introduced? `Core`
+
+> **Like I'm 5:** The new `@if` and `@for` say "show this if..." and "make a copy for each item". `track` gives each copy a name tag.
 
 **Answer:** Angular 17 introduced built-in block syntax (`@if`, `@for`, `@switch`, `@defer`) to replace `*ngIf`, `*ngFor`, and `*ngSwitch`.
 
@@ -139,6 +155,8 @@ value = model(0);                        // [(value)]="x" works
 
 ### Q9. What is content projection? Explain `<ng-content>` and `select`. `Core`
 
+> **Like I'm 5:** Content projection is putting a gift inside a box. `ng-content` is the gap in the box where the gift goes, and `select` says which gift goes in which gap.
+
 **Answer:** Content projection lets a parent pass markup into a child component's template.
 
 ```html
@@ -161,6 +179,8 @@ Use `<ng-content>` with a `select` attribute for named slots. Use `ngProjectAs` 
 
 ### Q10. What is the difference between `ng-template`, `ng-container`, and `ng-content`? `Core`
 
+> **Like I'm 5:** `ng-template` is a recipe card that waits until you cook it. `ng-container` is an invisible bag. `ng-content` is a gap for gifts.
+
 **Answer:**
 - `<ng-template>`: a template that is not rendered until you instantiate it, using `*ngIf`, `ngTemplateOutlet`, or a `ViewContainerRef`.
 - `<ng-container>`: a logical grouping element that renders no DOM node. Useful for applying structural directives without an extra `<div>`.
@@ -169,6 +189,8 @@ Use `<ng-content>` with a `select` attribute for named slots. Use `ngProjectAs` 
 ---
 
 ### Q11. What is the difference between `ViewChild` and `ContentChild`? How do signal queries change this? `Advanced`
+
+> **Like I'm 5:** `ViewChild` looks inside the component's own room. `ContentChild` looks at the gifts someone put into the box.
 
 **Answer:**
 - `@ViewChild` / `@ViewChildren` query elements in the component's **own template**.
@@ -183,6 +205,8 @@ input = viewChild.required<ElementRef<HTMLInputElement>>('searchBox');
 
 ### Q12. What is the difference between pure and impure pipes? Why is the `async` pipe important? `Core`
 
+> **Like I'm 5:** A pure pipe only works when it gets a brand-new value. An impure pipe checks again every time, which is slower. The `async` pipe turns the tap on and off for you.
+
 **Answer:**
 - **Pure pipes** run only when the input reference changes. They are cheap and recommended.
 - **Impure pipes** run on every change detection cycle. They are expensive and should be avoided unless needed.
@@ -191,6 +215,8 @@ input = viewChild.required<ElementRef<HTMLInputElement>>('searchBox');
 ---
 
 ### Q13. Explain change detection. What is the difference between Default and OnPush? `Core`
+
+> **Like I'm 5:** Default checks every student every time. OnPush only checks the student whose paper changed.
 
 **Answer:**
 - **Default** strategy: Angular checks every component in the tree after any event, timer, or XHR. Simple, but can get slow in large trees.
@@ -211,6 +237,8 @@ input = viewChild.required<ElementRef<HTMLInputElement>>('searchBox');
 
 ### Q14. What is Zone.js, and what does zoneless Angular mean? `Advanced`
 
+> **Like I'm 5:** Zone.js is a helper that tells Angular when something happened. Zoneless means Angular notices changes by itself, with no helper.
+
 **Answer:**
 - **Zone.js** patches browser async APIs (events, timers, promises, XHR) to know when to run change detection. It is the reason Angular updates the UI automatically in older versions.
 - **Zoneless** Angular removes Zone.js. Change detection is triggered by signal updates, `markForCheck`, and template events. It reduces bundle size and makes stack traces and performance easier to reason about.
@@ -226,6 +254,8 @@ bootstrapApplication(AppComponent, {
 ---
 
 ### Q15. What is `@defer` and when would you use it? `Advanced`
+
+> **Like I'm 5:** `@defer` says "load this part later, when it is needed", so the page starts faster.
 
 **Answer:** `@defer` lazily loads part of a template and its dependencies, based on a trigger.
 
@@ -246,6 +276,8 @@ Use it for below-the-fold widgets, rarely used dialogs, or heavy third-party com
 ---
 
 ### Q16. How do you use `trackBy` and `track`? `Core`
+
+> **Like I'm 5:** `track` gives each item in a list a name tag, so Angular knows which copy is which when the list changes.
 
 **Answer:** When a list changes, Angular needs to know which DOM nodes map to which items. Without a tracking function, it recreates every DOM node when the array reference changes. Use a stable identifier:
 

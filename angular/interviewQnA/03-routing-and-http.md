@@ -2,6 +2,8 @@
 
 ### Q1. How do you configure lazy loading routes? `Core`
 
+> **Like I'm 5:** Lazy loading means a feature is only brought to your house when you ask for it.
+
 **Answer:**
 ```ts
 export const routes: Routes = [
@@ -16,6 +18,8 @@ Lazy loading splits the bundle, so users download code only when they navigate t
 
 ### Q2. What are the different route guards, and what is the difference between `canActivate`, `canMatch`, and `canDeactivate`? `Advanced`
 
+> **Like I'm 5:** `canMatch` is a bouncer who says no before you even find the room. `canActivate` checks you when you walk in. `canDeactivate` asks if you're sure before you leave.
+
 **Answer:**
 - **`canMatch`**: decides whether a route can be matched at all. If it returns false, the router keeps looking for other matches. Useful for role-based route variants and for stopping a lazy bundle from loading.
 - **`canActivate`**: decides whether to enter the route. Runs after matching.
@@ -29,6 +33,8 @@ Lazy loading splits the bundle, so users download code only when they navigate t
 
 ### Q3. How do you prevent a user from losing unsaved changes? `Core`
 
+> **Like I'm 5:** A guard can ask "are you sure?" if you still have unsaved work before you leave the page.
+
 **Answer:**
 ```ts
 export const unsavedChangesGuard: CanDeactivateFn<FormComponent> = (component) =>
@@ -40,6 +46,8 @@ Also handle `beforeunload` for browser tab close, since router guards do not cov
 ---
 
 ### Q4. How do you read route parameters? Why is `paramMap` better than `snapshot`? `Core`
+
+> **Like I'm 5:** Route params are the name on the door. `paramMap` keeps watching the name for changes. `snapshot` reads it only once.
 
 **Answer:**
 - `ActivatedRoute.snapshot.paramMap` reads the value once. If the component is reused (for example, `/users/1` → `/users/2`), the snapshot does not update.
@@ -57,11 +65,15 @@ export class UserDetailComponent {
 
 ### Q5. What is a route resolver, and when would you use it instead of fetching in `ngOnInit`? `Advanced`
 
+> **Like I'm 5:** A resolver brings the food before you sit down, so you never see an empty plate.
+
 **Answer:** A resolver fetches data before the route activates, so the component never renders an empty state. Use it for critical data that the page cannot work without. For slow or optional data, fetch in the component so the page can render quickly and show a skeleton.
 
 ---
 
 ### Q6. What are preloading strategies? `Advanced`
+
+> **Like I'm 5:** Preloading downloads the next room's stuff while you're still playing, so it's ready when you walk in.
 
 **Answer:** After the initial load, Angular can download lazy bundles in the background.
 - `PreloadAllModules`: loads everything. Simple, but can waste bandwidth.
@@ -71,11 +83,15 @@ export class UserDetailComponent {
 
 ### Q7. How does `HttpClient` work, and why does it return observables? `Core`
 
+> **Like I'm 5:** HttpClient sends a letter, and it only runs if someone is waiting for the reply. If you stop waiting, the letter is cancelled.
+
 **Answer:** `HttpClient` returns **cold** observables. Nothing is sent until someone subscribes. This allows cancellation (unsubscribe aborts the request), retries, and composing requests with operators. With `async` pipe or `toSignal`, the subscription is managed for you.
 
 ---
 
 ### Q8. How do HTTP interceptors work? Give a real use case. `Core`
+
+> **Like I'm 5:** An interceptor adds your ID card to every letter going out, and checks every reply for trouble coming back.
 
 **Answer:** Interceptors run for each request and response, in order. Common uses:
 - Adding an `Authorization` header.
@@ -93,6 +109,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 ---
 
 ### Q9. How do you implement refresh-token handling without breaking concurrent requests? `Architect`
+
+> **Like I'm 5:** If many letters fail because your ID card expired, only one person goes to get a new card. Everyone else waits in line and then tries again.
 
 **Answer:** This is a common senior-level question.
 
@@ -118,6 +136,8 @@ return refresh$.pipe(switchMap(token => next(withToken(req, token))));
 
 ### Q10. Where should JWT tokens be stored, and what are the trade-offs? `Architect`
 
+> **Like I'm 5:** Keeping a token in local storage is like hiding your house key under the mat, anyone can find it. Keeping it in memory, with the refresh key in a locked cookie, is safer.
+
 **Answer:**
 - **`localStorage` / `sessionStorage`**: easy to use, but any XSS can read the token.
 - **In-memory** (service variable) with a refresh token in an **HttpOnly, Secure, SameSite cookie**: the access token is not readable by JavaScript, and the refresh token is not accessible to scripts. This is the preferred pattern for banking-style apps.
@@ -127,6 +147,8 @@ return refresh$.pipe(switchMap(token => next(withToken(req, token))));
 
 ### Q11. How do you handle HTTP errors globally and locally? `Core`
 
+> **Like I'm 5:** If a letter fails, show one friendly message and write the details down for the grown-ups.
+
 **Answer:**
 - **Global**: an error interceptor or a custom `ErrorHandler` that logs to a monitoring tool (Sentry, Datadog) and shows a generic toast.
 - **Local**: `catchError` in the service or component for specific messages, such as "email already exists" on a `409`.
@@ -135,6 +157,8 @@ return refresh$.pipe(switchMap(token => next(withToken(req, token))));
 ---
 
 ### Q12. How do you cancel an in-flight HTTP request when the user types quickly in a search box? `Core`
+
+> **Like I'm 5:** When you type fast, only the newest search matters. Cancel the old ones so the answers don't arrive in the wrong order.
 
 **Answer:** Use `debounceTime`, `distinctUntilChanged`, and `switchMap`. `switchMap` unsubscribes from the previous request and cancels it.
 
@@ -150,6 +174,8 @@ searchControl.valueChanges.pipe(
 
 ### Q13. How do you upload a file with progress tracking? `Advanced`
 
+> **Like I'm 5:** A progress bar tells you how much of a big box has been sent so far.
+
 **Answer:** Use `reportProgress: true` and `observe: 'events'`. Then check for `HttpEventType.UploadProgress`.
 
 ```ts
@@ -164,10 +190,14 @@ this.http.post(url, formData, { reportProgress: true, observe: 'events' }).subsc
 
 ### Q14. What is the `Router` navigation lifecycle, and how do you handle navigation errors? `Advanced`
 
+> **Like I'm 5:** Each time you move to a new page, the router goes through a checklist. If something fails, it sends you to the error page.
+
 **Answer:** Navigation goes through matching, guards, resolvers, activation, and then the view update. Listen to `NavigationStart`, `NavigationEnd`, `NavigationCancel`, and `NavigationError` on `router.events`. Use a global listener for loading bars and analytics page views.
 
 ---
 
 ### Q15. Why use `withComponentInputBinding()`, and what are its limits? `Advanced`
+
+> **Like I'm 5:** `withComponentInputBinding` puts the URL's details straight into the component's mailboxes. Be careful, because two names can clash.
 
 **Answer:** It binds route params, query params, and resolver data directly to component inputs. It simplifies components, but route data keys can clash with input names. Use explicit names and keep the component focused on inputs that come from the route.
