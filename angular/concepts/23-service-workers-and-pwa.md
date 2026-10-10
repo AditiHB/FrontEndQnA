@@ -1,5 +1,7 @@
 # 23. Service Workers & PWA
 
+> **Like I'm 5:** A PWA is an app you can put on your phone's home screen, and it still opens without internet. A service worker is a helper that keeps copies of things so the app works offline.
+
 ## Key concepts
 - A **service worker** is a script that runs in the background, intercepts network requests, and caches responses.
 - A **Progressive Web App (PWA)** is a web app that can be installed, works offline, and sends push notifications.

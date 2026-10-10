@@ -1,5 +1,7 @@
 # 12. Routing
 
+> **Like I'm 5:** The router is a signboard for your app. Each URL points to a room (a component). `router-outlet` is the empty room where the current page appears.
+
 ## Key concepts
 - The **router** maps URLs to components and manages navigation, history, and parameters.
 - **RouterOutlet** is the placeholder where the matched component renders.
@@ -106,4 +108,4 @@ router.events.pipe(filter(e => e instanceof NavigationEnd))
 ## Important points
 - Use `pathMatch: 'full'` for empty-path redirects, or they match every URL.
 - Put the wildcard route last.
-- Guards and resolvers are covered in [../03-routing-and-http.md](../03-routing-and-http.md). Interceptors are in [14-http-client-and-interceptors.md](14-http-client-and-interceptors.md).
+- Guards and resolvers are covered in [../03-routing-and-http.md](../interviewQnA/03-routing-and-http.md). Interceptors are in [14-http-client-and-interceptors.md](14-http-client-and-interceptors.md).

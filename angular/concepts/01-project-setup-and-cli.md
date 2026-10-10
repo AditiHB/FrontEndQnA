@@ -1,5 +1,7 @@
 # 1. Project Setup & Angular CLI
 
+> **Like I'm 5:** Angular CLI is a helper robot. You say "make me a new app" (`ng new`) or "add a room" (`ng generate`), and it builds the boring parts for you and checks that everything works. `angular.json` is the robot's instruction card.
+
 ## Key concepts
 - **Angular CLI** (`@angular/cli`): creates, builds, serves, tests, and updates Angular projects.
 - **Workspace**: one or more projects described by `angular.json`.

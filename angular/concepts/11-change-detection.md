@@ -1,5 +1,7 @@
 # 11. Change Detection
 
+> **Like I'm 5:** Angular is a teacher checking everyone's homework. By default it checks every student every time. With OnPush, it only checks the student whose paper actually changed, which saves time.
+
 ## Key concepts
 - Change detection checks component templates and updates the DOM when bound values change.
 - **Default** strategy checks every component on each run.

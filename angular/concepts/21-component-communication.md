@@ -1,5 +1,7 @@
 # 21. Component Communication
 
+> **Like I'm 5:** Components pass notes like kids in class. A parent hands a toy to a child (input). A child shouts "I'm done!" to the parent (output). Siblings leave notes in a shared mailbox (a service).
+
 ## Key concepts
 Choose the simplest mechanism that matches the relationship between components:
 

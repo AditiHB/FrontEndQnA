@@ -1,5 +1,7 @@
 # 14. HTTP Client & Interceptors
 
+> **Like I'm 5:** `HttpClient` is the mailman. You send a letter (a request) to the server and wait for a reply (a response). Interceptors are guards who check every letter going out and coming back.
+
 ## Key concepts
 - `HttpClient` makes HTTP requests and returns cold observables.
 - **Interceptors** run for every request and response, in registration order.

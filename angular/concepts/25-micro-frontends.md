@@ -1,5 +1,7 @@
 # 25. Micro-Frontends
 
+> **Like I'm 5:** Instead of one giant kitchen, several small kitchens each cook part of the same meal. Each team has its own kitchen, but the meal arrives on one plate.
+
 ## Key concepts
 - A **micro-frontend** is an independently built and deployed part of a larger UI, often owned by one team.
 - **Module Federation** (Webpack or Rspack) lets an app load code from another app at runtime and share dependencies.
