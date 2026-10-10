@@ -428,11 +428,20 @@ Other parts of the app should not reach into the cart's insides. The feature off
 📄 **`src/features/cart/index.ts`** (new file)
 
 ```ts
+import { lazy } from 'react';
+
 // The cart's public door: the only file other folders should import from.
 export { CartDropdown } from './CartDropdown';
-export { CartPage } from './CartPage';
 export { selectCount, selectTotal, useCartStore } from './cartStore';
+
+// The cart page is only downloaded when somebody visits it (Lesson 17).
+// The feature decides this itself, so nobody else has to remember to lazy-load it.
+export const CartPage = lazy(() =>
+  import('./CartPage').then(module => ({ default: module.CartPage })),
+);
 ```
+
+> **Why is `lazy` inside `index.ts`?** In Lesson 17 the router lazy-loaded the cart page. If the router now wrote `import('./features/cart')`, the build would warn that the dynamic import *"will not move the module into another chunk"*. The reason: the header, the home page and others import the same `index.ts` the normal way, so its code has to be in the main file anyway. A lazy import only splits code that **nobody else imports directly**. Because `CartPage.tsx` is now reached **only** through `lazy(() => import('./CartPage'))`, it (and the checkout form) get their own downloadable chunk. Whenever you add an `index.ts` "door" to a folder, watch the build output for this warning.
 
 Everything not listed here (`CheckoutForm`, `ordersApi`, …) is a private detail we may change freely without breaking anyone.
 
@@ -487,11 +496,17 @@ Everyone outside now imports from `features/cart`:
 📄 **`src/router.tsx`** (edit these lines)
 
 ```diff
- const CartPage = lazy(() =>
+ import { RootLayout } from './components/RootLayout';
++import { CartPage } from './features/cart';
+ import { HomePage } from './pages/HomePage';
+@@
+-const CartPage = lazy(() =>
 -  import('./pages/CartPage').then(module => ({ default: module.CartPage })),
-+  import('./features/cart').then(module => ({ default: module.CartPage })),
- );
+-);
+ const WarehousePage = lazy(() =>
 ```
+
+The router no longer needs to lazy-load the cart itself: it just imports `CartPage` from the feature (which is already lazy). The `<Suspense>` we put in `RootLayout` in Lesson 17 shows "Loading page…" while it downloads.
 
 ## 4. Let the computer guard the doors
 
