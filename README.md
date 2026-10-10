@@ -14,6 +14,10 @@ FrontEndQnA/
 │       ├── README.md
 │       ├── 01 to 35 topic files  # each starts with a "Like I'm 5" summary
 │       └── 36-a-to-z-glossary.md
+├── react/
+│   ├── README.md
+│   ├── interviewQnA/           # interview Q&A, each question has a "Like I'm 5" line
+│   └── concepts/               # topic-wise reference with a glossary
 ├── javascript/
 │   ├── README.md
 │   ├── interviewQnA/           # interview Q&A, each question has a "Like I'm 5" line
@@ -25,6 +29,10 @@ FrontEndQnA/
 ```
 
 Each technology follows the same pattern: a `README.md` hub, a `concepts/` folder for topic-by-topic reference, and an `interviewQnA/` folder for questions and answers. Future frameworks can be added as sibling folders using this pattern.
+
+## React
+
+Start with [react/README.md](react/README.md). It links to the [React concepts reference](react/concepts/README.md) and the [interview Q&A](react/interviewQnA/README.md).
 
 ## JavaScript
 
