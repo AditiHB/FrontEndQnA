@@ -1,0 +1,23 @@
+<a routerLink="/">← All toys</a>
+
+@if (product() === undefined) {
+  <p role="status">Looking for the toy… 🔍</p>
+} @else if (product(); as p) {
+  <article class="detail">
+    <div class="big-emoji" aria-hidden="true">{{ p.emoji }}</div>
+    <div>
+      <h1>{{ p.name }}</h1>
+      <p class="price">{{ p.price | currency }}</p>
+      <p>{{ p.description }}</p>
+      <p>{{ p.stock }} in stock · rated {{ p.rating }} out of 5</p>
+
+      <app-quantity-stepper [(value)]="quantity" [max]="p.stock" />
+      <button class="btn" type="button" [disabled]="p.stock === 0" (click)="addAndGoToCart()">
+        Add and go to cart
+      </button>
+    </div>
+  </article>
+} @else {
+  <h1>Oh no!</h1>
+  <p>We could not find that toy.</p>
+}

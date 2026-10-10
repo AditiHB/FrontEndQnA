@@ -1,0 +1,10 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "toy-page": {
+      "description": "Creates a new toy-shop page: a component with a heading, a template and styles.",
+      "factory": "./toy-page/index#toyPage",
+      "schema": "./toy-page/schema.json"
+    }
+  }
+}

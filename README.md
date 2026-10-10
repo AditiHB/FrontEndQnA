@@ -6,7 +6,15 @@ Repository intended to have interview QnA for Front end technologies
 ```
 FrontEndQnA/
 ├── angular/
-│   ├── README.md               # Angular learning hub: links to both sections below
+│   ├── README.md               # Angular learning hub: links to the three sections below
+│   ├── tutorial/               # step-by-step course: build a toy shop in 37 chapters (Angular 22)
+│   │   ├── README.md           # roadmap and concept-to-chapter map
+│   │   ├── 00 to 37 chapter files
+│   │   ├── toy-shop-final/     # the finished project
+│   │   ├── toy-lab-final/      # library, web component and schematic (chapters 30, 31)
+│   │   ├── toy-federation-final/  # micro-frontend demo (chapter 32)
+│   │   ├── extras/             # practice files and the upgrade practice app
+│   │   └── images/             # screenshots
 │   ├── interviewQnA/           # interview Q&A (8+ years, Angular + Java)
 │   │   ├── README.md
 │   │   └── 01 to 10 topic files
@@ -44,4 +52,4 @@ Start with [typescript/README.md](typescript/README.md). It links to the [TypeSc
 
 ## Angular
 
-Start with [angular/README.md](angular/README.md). It links to the [interview Q&A](angular/interviewQnA/README.md) and the [concepts reference](angular/concepts/README.md).
+Start with [angular/README.md](angular/README.md). It links to the [step-by-step tutorial](angular/tutorial/README.md) (build a toy shop with Angular 22), the [concepts reference](angular/concepts/README.md), and the [interview Q&A](angular/interviewQnA/README.md).

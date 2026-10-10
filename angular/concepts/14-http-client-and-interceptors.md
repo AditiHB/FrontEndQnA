@@ -5,13 +5,14 @@
 ## Key concepts
 - `HttpClient` makes HTTP requests and returns cold observables.
 - **Interceptors** run for every request and response, in registration order.
-- Use `provideHttpClient()` in the app config.
+- Use `provideHttpClient()` in the app config to add interceptors and other features. In Angular 22 `HttpClient` can be injected even without it, and the default backend is the **Fetch API** (we checked: the backend class was `FetchBackend`).
+- Learn it by doing: [Tutorial chapter 13](../tutorial/13-http-client.md) (the client, loading and error states) and [chapter 14](../tutorial/14-interceptors.md) (loading bar, auth token, error pop-ups, a fake backend).
 
 ## Setup
 
 ```ts
 provideHttpClient(
-  withFetch(),                                  // use the Fetch API (optional)
+  withFetch(),                                  // Fetch is already the default in Angular 22; use withXhr() to keep XMLHttpRequest
   withInterceptors([authInterceptor, errorInterceptor]),
 );
 ```
@@ -21,7 +22,7 @@ provideHttpClient(
 ```ts
 export interface Order { id: string; total: number; createdAt: string; }
 
-@Injectable({ providedIn: 'root' })
+@Service()
 export class OrderApi {
   private http = inject(HttpClient);
   private base = '/api/v1/orders';

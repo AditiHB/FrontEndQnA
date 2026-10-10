@@ -1,0 +1,56 @@
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-brand);
+  color: #fff;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.nav a {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav a.active {
+  background: #fff;
+  color: var(--color-brand);
+}
+
+.name-box input {
+  margin-left: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  border: 0;
+}
+
+.who {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.login-link {
+  color: #fff;
+  font-weight: 700;
+}
+
+.btn.small {
+  padding: 0.125rem 0.75rem;
+}

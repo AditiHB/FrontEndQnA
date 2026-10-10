@@ -1,0 +1,25 @@
+.inventory {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+caption {
+  padding: 0.5rem;
+  text-align: left;
+  font-weight: 700;
+}
+
+th,
+td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-brand-light);
+}
+
+tr.low td,
+tr.low th {
+  background: #fff0c2;
+}

@@ -1,0 +1,6 @@
+.recommended {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--color-brand-light);
+  border-radius: var(--radius);
+}

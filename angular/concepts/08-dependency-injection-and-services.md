@@ -6,14 +6,16 @@
 - **Service**: a class that holds logic or state and is shared through DI.
 - **Injector hierarchy**: element injectors (components), route injectors (lazy routes), and the root (environment) injector.
 - Angular resolves a dependency by walking up the hierarchy until it finds a provider.
+- In Angular 22 the CLI writes new services with the **`@Service()`** decorator, which makes one app-wide instance. The older `@Injectable({ providedIn: 'root' })` works the same way and you will meet it in most existing code. `ng generate @angular/core:service` converts `@Injectable` to `@Service()` where it applies.
+- Learn it by doing: [Tutorial chapter 9](../tutorial/09-services-and-dependency-injection.md) builds the cart service and injection tokens.
 
 ## Creating a service
 
 ```ts
-import { Injectable, inject, signal, computed } from '@angular/core';
+import { Service, inject, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-@Injectable({ providedIn: 'root' })
+@Service() // older code: @Injectable({ providedIn: 'root' }), which does the same
 export class CartService {
   private http = inject(HttpClient);
   private _items = signal<CartItem[]>([]);
@@ -55,7 +57,7 @@ const flags = inject(FEATURE_FLAGS);
 
 | Scope | How | Instance |
 |-------|-----|----------|
-| App-wide singleton | `providedIn: 'root'` | One per app |
+| App-wide singleton | `@Service()` or `providedIn: 'root'` | One per app |
 | Lazy feature | `providers` in route config | One per lazy route |
 | Component subtree | `providers` in `@Component` | One per component instance |
 
@@ -79,4 +81,4 @@ private parent = inject(Theme, { skipSelf: true });    // ignore this injector
 - Prefer `inject()` in field initializers. It works in functions too (guards, interceptors).
 - Services must not hold component-specific state unless provided at component level.
 - Avoid circular dependencies. Move shared logic into a third service.
-- Use `providedIn: 'root'` for tree-shakable services. Unused services are removed from the bundle.
+- Use `@Service()` (or `providedIn: 'root'`) for tree-shakable services. Unused services are removed from the bundle.
