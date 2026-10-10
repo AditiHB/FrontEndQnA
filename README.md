@@ -41,7 +41,7 @@ FrontEndQnA/
 │   └── concepts/
 ```
 
-Each technology follows the same pattern: a `README.md` hub, a `concepts/` folder for topic-by-topic reference, and an `interviewQnA/` folder for questions and answers. JavaScript also has a `tutorial/` folder, a step-by-step build that teaches every concept hands-on. Future frameworks can be added as sibling folders using this pattern.
+Each technology follows the same pattern: a `README.md` hub, a `concepts/` folder for topic-by-topic reference, and an `interviewQnA/` folder for questions and answers. Angular, React and JavaScript also have a `tutorial/` folder, a step-by-step build that teaches every concept hands-on. Future frameworks can be added as sibling folders using this pattern.
 
 ## React
 
