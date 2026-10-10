@@ -30,4 +30,10 @@ Future frameworks (React, Vue, and so on) can be added as sibling folders follow
 
 ## Angular
 
+## TypeScript
+
+Start with [typescript/README.md](typescript/README.md). It links to the [TypeScript concepts reference](typescript/concepts/README.md) and the [interview Q&A](typescript/interviewQnA/README.md).
+
+## Angular
+
 Start with [angular/README.md](angular/README.md). It links to the [interview Q&A](angular/interviewQnA/README.md) and the [concepts reference](angular/concepts/README.md).
