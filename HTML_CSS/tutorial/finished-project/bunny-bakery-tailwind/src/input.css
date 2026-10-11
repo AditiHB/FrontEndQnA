@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/* The Bunny Bakery design tokens. Every --color-*, --font-*, --text-*, --shadow-* and --animate-*
+   here also creates utility classes (bg-page, text-ink, font-heading, shadow-card, animate-wiggle...) */
+@theme {
+  /* Colours: light-dark(value for light, value for dark) */
+  --color-ink: light-dark(#4a2c17, #f7ebdd);
+  --color-ink-soft: light-dark(#7a5a44, #cdb8a4);
+  --color-page: light-dark(#fff8f0, #1c1410);
+  --color-tint: light-dark(#ffe4d1, #3a281c);
+  --color-surface: light-dark(#fff, #2a1f19);
+  --color-accent: light-dark(#b3365f, #ff8fb1);
+  --color-accent-strong: light-dark(#8f2a4c, #ffb3cb);
+  --color-on-accent: light-dark(#fff, #2a1f19);
+  --color-highlight: #ffd166;
+  --color-on-highlight: #4a2c17;
+  --color-highlight-soft: light-dark(#fff0d6, #3b2d14);
+  --color-line: light-dark(#e8d5c4, #4a382c);
+  --color-line-strong: light-dark(#b89a84, #8a7360);
+  --color-error: light-dark(#b3261e, #ff8a80);
+  --color-footer: light-dark(#4a2c17, #120d0a);
+  --color-on-footer: light-dark(#fff8f0, #e9dccd);
+
+  /* Fonts */
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: Georgia, "Times New Roman", serif;
+
+  /* Fluid type sizes (and their line heights) */
+  --text-hero: clamp(2rem, 1.4rem + 2.6vw, 3rem);
+  --text-hero--line-height: 1.2;
+  --text-title: clamp(1.6rem, 1.3rem + 1.4vw, 2rem);
+  --text-title--line-height: 1.2;
+  --text-lead: clamp(1.1rem, 1rem + 0.5vw, 1.25rem);
+
+  /* Depth */
+  --shadow-card: 0 1px 2px light-dark(rgb(74 44 23 / 0.08), rgb(0 0 0 / 0.4)),
+    0 2px 8px light-dark(rgb(74 44 23 / 0.08), rgb(0 0 0 / 0.4));
+  --shadow-lift: 0 10px 30px light-dark(rgb(74 44 23 / 0.18), rgb(0 0 0 / 0.55));
+
+  /* The page width: the utility max-w-page */
+  --container-page: 68rem;
+
+  /* An animation: the utility animate-wiggle */
+  --animate-wiggle: wiggle 0.6s ease-in-out;
+
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+
+    25% {
+      transform: rotate(-8deg);
+    }
+
+    75% {
+      transform: rotate(8deg);
+    }
+  }
+}
+
+/* Plain CSS for the whole page, in the base layer */
+@layer base {
+  html {
+    color-scheme: light dark;
+  }
+
+  /* Where is the keyboard focus? */
+  :focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  /* People who asked their device for less motion get (almost) none */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Our own components: a few classes that bundle utilities we use many times */
+@layer components {
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center rounded-full border-2 border-accent bg-accent px-5 py-2 font-bold text-on-accent transition hover:border-accent-strong hover:bg-accent-strong active:translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply bg-transparent text-accent hover:border-accent hover:bg-accent hover:text-on-accent;
+  }
+
+  .badge {
+    @apply absolute -top-2.5 end-4 rotate-3 rounded-full bg-highlight px-3 py-0.5 text-xs font-bold text-on-highlight;
+  }
+
+  .field {
+    @apply w-full max-w-md rounded-lg border border-line-strong bg-surface p-2 user-invalid:border-error user-invalid:outline-2 user-invalid:outline-error;
+  }
+
+  /* A star after the label of a required field. The empty text after the slash is the alt text
+     for screen readers, so that they do not read the star out. */
+  label:has(+ input:required)::after,
+  label:has(+ select:required)::after {
+    content: " *" / "";
+    color: var(--color-accent);
+  }
+}

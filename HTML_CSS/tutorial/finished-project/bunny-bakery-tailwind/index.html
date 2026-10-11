@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en" class="motion-safe:scroll-smooth">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Bunny Bakery | Fresh bread and sweet treats</title>
+    <meta name="description" content="Bunny Bakery in Meadowtown: sourdough, croissants, cupcakes and more, baked by hand every morning.">
+    <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="dist/output.css">
+    <script src="site.js" defer></script>
+  </head>
+  <body class="flex min-h-dvh flex-col bg-page font-body leading-relaxed text-ink">
+    <a class="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-0 focus:z-100 focus:rounded-b-xl focus:bg-accent focus:px-4 focus:py-2 focus:font-bold focus:text-on-accent" href="#main">Skip to the content</a>
+
+    <header class="sticky top-0 z-10 border-b border-line bg-surface py-3 shadow-card print:hidden">
+      <div class="mx-auto flex w-full max-w-page flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4">
+        <a class="group inline-flex items-center gap-2 font-heading text-xl font-bold" href="#top">
+          <img class="group-hover:animate-wiggle" src="images/logo.svg" alt="" width="40" height="40"> Bunny Bakery
+        </a>
+        <button class="inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-line-strong bg-surface px-4 py-2 font-bold md:hidden" type="button" popovertarget="site-nav">
+          <span aria-hidden="true">☰</span> Menu
+        </button>
+        <nav id="site-nav" aria-label="Main" popover class="fixed inset-x-4 top-[4.5rem] bottom-auto m-0 h-auto w-auto rounded-xl border border-line bg-surface px-4 py-2 text-ink shadow-lift md:static md:block md:overflow-visible md:border-0 md:bg-transparent md:p-0 md:shadow-none">
+          <ul class="flex flex-col md:flex-row md:flex-wrap md:gap-x-6 md:gap-y-2">
+            <li><a class="flex min-h-11 items-center font-semibold hover:text-accent hover:underline" href="#menu">Menu</a></li>
+            <li><a class="flex min-h-11 items-center font-semibold hover:text-accent hover:underline" href="#story">Our story</a></li>
+            <li><a class="flex min-h-11 items-center font-semibold hover:text-accent hover:underline" href="#visit">Visit</a></li>
+            <li><a class="flex min-h-11 items-center font-semibold hover:text-accent hover:underline" href="#order">Order</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="mx-auto w-full max-w-page flex-1 px-4">
+      <section class="relative isolate my-6 grid items-center gap-8 overflow-hidden rounded-3xl bg-linear-to-br from-tint to-page to-75% p-6 before:absolute before:-end-24 before:-top-24 before:-z-10 before:size-80 before:rounded-full before:bg-[radial-gradient(circle,var(--color-highlight)_0%,transparent_70%)] before:opacity-60 md:grid-cols-[1.1fr_1fr] md:p-8" aria-labelledby="hero-title">
+        <div>
+          <h1 id="hero-title" class="mb-2 font-heading text-hero font-bold tracking-tight text-accent text-balance">Fresh bread and sweet treats, baked every morning</h1>
+          <p class="mb-4 max-w-prose text-lead text-ink-soft text-pretty">
+            Welcome to <strong>Bunny Bakery</strong>, a small neighbourhood bakery in Meadowtown.
+            Everything is made by hand, in small batches, with real butter.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <a class="btn" href="#menu">See the menu</a>
+            <a class="btn btn-outline" href="#order">Order a box</a>
+          </div>
+        </div>
+        <img
+          class="rounded-xl shadow-lift"
+          src="images/hero-800.webp"
+          srcset="images/hero-400.webp 400w, images/hero-800.webp 800w, images/hero-1200.webp 1200w"
+          sizes="(min-width: 48rem) 45vw, calc(100vw - 5rem)"
+          alt="The Bunny Bakery shop front: a striped awning, a window full of fresh bread and a bunny baker holding a tray of rolls"
+          width="800"
+          height="600"
+          fetchpriority="high">
+      </section>
+
+      <section id="menu" class="scroll-mt-20 py-8" aria-labelledby="menu-title">
+        <h2 id="menu-title" class="mb-2 font-heading text-title font-bold text-accent text-balance">Our menu</h2>
+        <p class="mb-4 max-w-prose text-pretty">New this week: <mark class="bg-highlight text-on-highlight">carrot cupcakes</mark> with cream-cheese frosting.</p>
+        <ul class="mb-6 grid grid-cols-[repeat(auto-fit,minmax(min(16rem,100%),1fr))] gap-4">
+          <li class="@container/card col-span-full">
+            <article class="relative flex h-full flex-col rounded-xl border border-line bg-surface p-4 shadow-card transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-lift has-[.badge]:border-highlight @md/card:grid @md/card:grid-cols-[auto_1fr_auto] @md/card:items-center @md/card:gap-x-6">
+              <span class="mb-2 text-3xl leading-none @md/card:row-span-2 @md/card:mb-0 @md/card:text-5xl" aria-hidden="true">🍞</span>
+              <h3 class="mb-1 font-heading text-xl font-bold text-accent @md/card:col-start-2">Sourdough loaf</h3>
+              <span class="badge">Bestseller</span>
+              <p class="mb-1 @md/card:col-start-2">Slow-risen, with a crackly crust and a soft middle.</p>
+              <p class="mt-auto text-lg font-bold text-accent @md/card:col-span-1 @md/card:col-start-3 @md/card:row-span-2 @md/card:row-start-1 @md/card:m-0 @md/card:text-2xl">$6.00</p>
+            </article>
+          </li>
+          <li class="@container/card">
+            <article class="relative flex h-full flex-col rounded-xl border border-line bg-surface p-4 shadow-card transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-lift has-[.badge]:border-highlight @md/card:grid @md/card:grid-cols-[auto_1fr_auto] @md/card:items-center @md/card:gap-x-6">
+              <span class="mb-2 text-3xl leading-none @md/card:row-span-2 @md/card:mb-0 @md/card:text-5xl" aria-hidden="true">🥐</span>
+              <h3 class="mb-1 font-heading text-xl font-bold text-accent @md/card:col-start-2">Butter croissant</h3>
+              <p class="mb-1 @md/card:col-start-2">Flaky layers, golden on the outside, tender inside.</p>
+              <p class="mt-auto text-lg font-bold text-accent @md/card:col-span-1 @md/card:col-start-3 @md/card:row-span-2 @md/card:row-start-1 @md/card:m-0 @md/card:text-2xl">$3.50</p>
+            </article>
+          </li>
+          <li class="@container/card">
+            <article class="relative flex h-full flex-col rounded-xl border border-line bg-surface p-4 shadow-card transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-lift has-[.badge]:border-highlight @md/card:grid @md/card:grid-cols-[auto_1fr_auto] @md/card:items-center @md/card:gap-x-6">
+              <span class="mb-2 text-3xl leading-none @md/card:row-span-2 @md/card:mb-0 @md/card:text-5xl" aria-hidden="true">🧁</span>
+              <h3 class="mb-1 font-heading text-xl font-bold text-accent @md/card:col-start-2">Carrot cupcake</h3>
+              <span class="badge">New</span>
+              <p class="mb-1 @md/card:col-start-2">Spiced sponge, cream-cheese frosting and a tiny candied carrot.</p>
+              <p class="mt-auto text-lg font-bold text-accent @md/card:col-span-1 @md/card:col-start-3 @md/card:row-span-2 @md/card:row-start-1 @md/card:m-0 @md/card:text-2xl">$4.00</p>
+            </article>
+          </li>
+          <li class="@container/card">
+            <article class="relative flex h-full flex-col rounded-xl border border-line bg-surface p-4 shadow-card transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-lift has-[.badge]:border-highlight @md/card:grid @md/card:grid-cols-[auto_1fr_auto] @md/card:items-center @md/card:gap-x-6">
+              <span class="mb-2 text-3xl leading-none @md/card:row-span-2 @md/card:mb-0 @md/card:text-5xl" aria-hidden="true">🍪</span>
+              <h3 class="mb-1 font-heading text-xl font-bold text-accent @md/card:col-start-2">Oat and raisin cookie</h3>
+              <p class="mb-1 @md/card:col-start-2">Chewy in the middle, crisp at the edge.</p>
+              <p class="mt-auto text-lg font-bold text-accent @md/card:col-span-1 @md/card:col-start-3 @md/card:row-span-2 @md/card:row-start-1 @md/card:m-0 @md/card:text-2xl">$2.50</p>
+            </article>
+          </li>
+          <li class="@container/card">
+            <article class="relative flex h-full flex-col rounded-xl border border-line bg-surface p-4 shadow-card transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-lift has-[.badge]:border-highlight @md/card:grid @md/card:grid-cols-[auto_1fr_auto] @md/card:items-center @md/card:gap-x-6">
+              <span class="mb-2 text-3xl leading-none @md/card:row-span-2 @md/card:mb-0 @md/card:text-5xl" aria-hidden="true">🍩</span>
+              <h3 class="mb-1 font-heading text-xl font-bold text-accent @md/card:col-start-2">Cinnamon bun</h3>
+              <p class="mb-1 @md/card:col-start-2">Warm, sticky and swirled with brown sugar.</p>
+              <p class="mt-auto text-lg font-bold text-accent @md/card:col-span-1 @md/card:col-start-3 @md/card:row-span-2 @md/card:row-start-1 @md/card:m-0 @md/card:text-2xl">$4.00</p>
+            </article>
+          </li>
+          <li class="@container/card">
+            <article class="relative flex h-full flex-col rounded-xl border border-line bg-surface p-4 shadow-card transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-lift has-[.badge]:border-highlight @md/card:grid @md/card:grid-cols-[auto_1fr_auto] @md/card:items-center @md/card:gap-x-6">
+              <span class="mb-2 text-3xl leading-none @md/card:row-span-2 @md/card:mb-0 @md/card:text-5xl" aria-hidden="true">🍓</span>
+              <h3 class="mb-1 font-heading text-xl font-bold text-accent @md/card:col-start-2">Strawberry tart</h3>
+              <p class="mb-1 @md/card:col-start-2">Crisp pastry, vanilla cream and fresh strawberries.</p>
+              <p class="mt-auto text-lg font-bold text-accent @md/card:col-span-1 @md/card:col-start-3 @md/card:row-span-2 @md/card:row-start-1 @md/card:m-0 @md/card:text-2xl">$5.00</p>
+            </article>
+          </li>
+          <li class="@container/card">
+            <article class="relative flex h-full flex-col rounded-xl border border-line bg-surface p-4 shadow-card transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-lift has-[.badge]:border-highlight @md/card:grid @md/card:grid-cols-[auto_1fr_auto] @md/card:items-center @md/card:gap-x-6">
+              <span class="mb-2 text-3xl leading-none @md/card:row-span-2 @md/card:mb-0 @md/card:text-5xl" aria-hidden="true">🍋</span>
+              <h3 class="mb-1 font-heading text-xl font-bold text-accent @md/card:col-start-2">Lemon loaf cake</h3>
+              <p class="mb-1 @md/card:col-start-2">Zesty lemon sponge under a thin, crackly sugar glaze.</p>
+              <p class="mt-auto text-lg font-bold text-accent @md/card:col-span-1 @md/card:col-start-3 @md/card:row-span-2 @md/card:row-start-1 @md/card:m-0 @md/card:text-2xl">$4.50</p>
+            </article>
+          </li>
+        </ul>
+        <aside class="my-6 rounded-e-xl border-s-6 border-highlight bg-highlight-soft p-4">
+          <h3 class="font-heading text-xl font-bold text-accent">Bunny's tip</h3>
+          <p>Bread tastes best on the day it is baked. The next day, toast it with butter.</p>
+        </aside>
+      </section>
+
+      <section id="story" class="grid scroll-mt-20 gap-x-8 gap-y-4 py-8 md:grid-cols-2 md:items-center" aria-labelledby="story-title">
+        <h2 id="story-title" class="font-heading text-title font-bold text-accent text-balance md:col-span-2">Our story</h2>
+        <figure>
+          <picture>
+            <source
+              media="(min-width: 48rem)"
+              srcset="images/story-wide-640.webp 640w, images/story-wide-1280.webp 1280w"
+              sizes="(min-width: 68rem) 520px, 45vw"
+              width="1280"
+              height="720">
+            <img
+              class="rounded-xl"
+              src="images/story-square-800.webp"
+              srcset="images/story-square-400.webp 400w, images/story-square-800.webp 800w"
+              sizes="calc(100vw - 2rem)"
+              alt="Bunny in a chef's hat pointing at a glowing oven, with fresh loaves cooling on a table beside it"
+              width="800"
+              height="800"
+              loading="lazy">
+          </picture>
+          <figcaption class="mt-1 text-ink-soft italic">Bunny checks the first loaves of the morning.</figcaption>
+        </figure>
+        <div>
+          <p class="mb-4 max-w-prose text-pretty">
+            Bunny learned to bake in her grandmother's kitchen, standing on a wooden box
+            to reach the counter. Her first loaf was a little flat, and everybody ate it anyway.
+          </p>
+          <p class="max-w-prose text-pretty">
+            Today she gets up before the sun to start the ovens, so that the first warm
+            bread is on the shelf when the neighbours walk by. Every recipe is still made
+            the slow, careful way she was taught.
+          </p>
+        </div>
+      </section>
+
+      <section id="visit" class="grid scroll-mt-20 gap-x-8 py-8 md:grid-cols-2" aria-labelledby="visit-title">
+        <h2 id="visit-title" class="mb-2 font-heading text-title font-bold text-accent text-balance md:col-span-2">Visit us</h2>
+        <div>
+          <h3 class="mb-2 font-heading text-xl font-bold text-accent">Opening hours</h3>
+          <table class="mb-6 w-full">
+              <caption class="py-2 text-start font-bold">Our weekly opening times</caption>
+              <thead>
+                <tr class="*:border-b *:border-line *:px-3 *:py-2 *:text-start">
+                  <th scope="col">Day</th>
+                  <th scope="col">Opens</th>
+                  <th scope="col">Closes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="*:border-b *:border-line *:px-3 *:py-2 *:text-start hover:bg-highlight-soft">
+                  <th scope="row">Monday to Friday</th>
+                  <td>7:00</td>
+                  <td>18:00</td>
+                </tr>
+                <tr class="*:border-b *:border-line *:px-3 *:py-2 *:text-start hover:bg-highlight-soft">
+                  <th scope="row">Saturday</th>
+                  <td>8:00</td>
+                  <td>16:00</td>
+                </tr>
+                <tr class="*:border-b *:border-line *:px-3 *:py-2 *:text-start hover:bg-highlight-soft">
+                  <th scope="row">Sunday</th>
+                  <td>8:00</td>
+                  <td>13:00</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <div>
+          <h3 class="mb-2 font-heading text-xl font-bold text-accent">Find us</h3>
+          <address class="not-italic">
+            Bunny Bakery<br>
+            12 Carrot Lane<br>
+            Meadowtown<br>
+            <a class="text-accent underline" href="tel:+15550123">+1&nbsp;555&nbsp;0123</a><br>
+            <a class="text-accent underline" href="mailto:hello@bunnybakery.example">hello@bunnybakery.example</a>
+          </address>
+          <p class="mt-4">
+            <a class="text-accent underline after:content-['_↗']" href="https://www.openstreetmap.org/search?query=Carrot%20Lane" target="_blank" rel="noopener">Open the map</a>
+            (opens in a new tab)
+          </p>
+        </div>
+      </section>
+
+      <section id="order" class="scroll-mt-20 py-8" aria-labelledby="order-title">
+        <h2 id="order-title" class="mb-2 font-heading text-title font-bold text-accent text-balance">Order a box</h2>
+        <p class="mb-4 max-w-prose">Choose your treats and tell us when you will come by. We will have your box ready.</p>
+
+        <section class="overflow-x-auto" tabindex="0" aria-label="Our boxes (scrolls sideways on small screens)">
+          <table class="mb-6 w-full">
+              <caption class="py-2 text-start font-bold">Our boxes</caption>
+              <thead>
+                <tr class="*:border-b *:border-line *:px-3 *:py-2 *:text-start">
+                  <th scope="col">Box</th>
+                  <th scope="col">Treats</th>
+                  <th scope="col">Great for</th>
+                  <th scope="col">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="*:border-b *:border-line *:px-3 *:py-2 *:text-start hover:bg-highlight-soft">
+                  <th scope="row">Small box</th>
+                  <td>4</td>
+                  <td>Breakfast for two</td>
+                  <td>$14</td>
+                </tr>
+                <tr class="*:border-b *:border-line *:px-3 *:py-2 *:text-start hover:bg-highlight-soft">
+                  <th scope="row">Large box</th>
+                  <td>8</td>
+                  <td>A family treat</td>
+                  <td>$26</td>
+                </tr>
+                <tr class="*:border-b *:border-line *:px-3 *:py-2 *:text-start hover:bg-highlight-soft">
+                  <th scope="row">Party box</th>
+                  <td>16</td>
+                  <td>Birthdays and office parties</td>
+                  <td>$48</td>
+                </tr>
+              </tbody>
+            </table>
+        </section>
+
+        <form method="get" class="print:hidden">
+          <p class="mb-4">Fields marked with <strong>*</strong> are required.</p>
+          <fieldset class="mb-6 grid grid-cols-[repeat(auto-fit,minmax(min(14rem,100%),1fr))] gap-4 rounded-xl border border-line p-4">
+            <legend class="px-2 font-bold">About you</legend>
+            <div>
+              <label class="mb-1 block font-semibold" for="name">Your name</label>
+              <input class="field" id="name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div>
+              <label class="mb-1 block font-semibold" for="email">Email</label>
+              <input class="field" id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div>
+              <label class="mb-1 block font-semibold" for="phone">Phone (optional)</label>
+              <input class="field" id="phone" name="phone" type="tel" autocomplete="tel">
+            </div>
+          </fieldset>
+
+          <fieldset class="mb-6 grid grid-cols-[repeat(auto-fit,minmax(min(14rem,100%),1fr))] gap-4 rounded-xl border border-line p-4">
+            <legend class="px-2 font-bold">Your box</legend>
+            <fieldset class="col-span-full grid grid-cols-[repeat(auto-fit,minmax(min(14rem,100%),1fr))] gap-4 rounded-xl border border-line p-4">
+              <legend class="px-2 font-bold">Size</legend>
+              <div class="rounded-xl border-2 border-line px-4 py-2 has-checked:border-accent has-checked:bg-highlight-soft">
+                <input class="accent-accent" id="size-small" name="size" type="radio" value="small">
+                <label for="size-small">Small box (4 treats)</label>
+              </div>
+              <div class="rounded-xl border-2 border-line px-4 py-2 has-checked:border-accent has-checked:bg-highlight-soft">
+                <input class="accent-accent" id="size-large" name="size" type="radio" value="large" checked>
+                <label for="size-large">Large box (8 treats)</label>
+              </div>
+              <div class="rounded-xl border-2 border-line px-4 py-2 has-checked:border-accent has-checked:bg-highlight-soft">
+                <input class="accent-accent" id="size-party" name="size" type="radio" value="party">
+                <label for="size-party">Party box (16 treats)</label>
+              </div>
+            </fieldset>
+            <div>
+              <label class="mb-1 block font-semibold" for="favourite">Favourite treat</label>
+              <select class="field" id="favourite" name="favourite">
+                <option value="sourdough">Sourdough loaf</option>
+                <option value="croissant">Butter croissant</option>
+                <option value="cupcake" selected>Carrot cupcake</option>
+                <option value="cookie">Oat and raisin cookie</option>
+                <option value="bun">Cinnamon bun</option>
+                <option value="tart">Strawberry tart</option>
+              </select>
+            </div>
+            <div>
+              <label class="mb-1 block font-semibold" for="boxes">How many boxes?</label>
+              <input class="field" id="boxes" name="boxes" type="number" min="1" max="10" value="1" required>
+            </div>
+            <div>
+              <label class="mb-1 block font-semibold" for="pickup">Pick-up day</label>
+              <input class="field" id="pickup" name="pickup" type="date" required>
+            </div>
+            <div class="col-span-full">
+              <label class="mb-1 block font-semibold" for="notes">Anything we should know? (allergies, a birthday&hellip;)</label>
+              <textarea class="field max-w-none" id="notes" name="notes" rows="4"></textarea>
+            </div>
+            <div class="col-span-full">
+              <input class="accent-accent" id="sms" name="sms" type="checkbox" value="yes">
+              <label for="sms">Text me when my box is ready</label>
+            </div>
+          </fieldset>
+
+          <button class="btn" type="submit">Send my order</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="bg-footer py-6 text-on-footer print:hidden">
+      <div class="mx-auto flex w-full max-w-page flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4">
+        <p>&copy; 2026 Bunny Bakery. Made with &hearts; and a lot of butter.</p>
+        <p><a class="text-highlight underline" href="#top">Back to the top</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

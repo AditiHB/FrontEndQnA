@@ -39,9 +39,20 @@ FrontEndQnA/
 │   ├── README.md
 │   ├── interviewQnA/
 │   └── concepts/
+└── HTML_CSS/
+    ├── README.md               # HTML and CSS learning hub
+    └── tutorial/               # 20-lesson build-along course: the Bunny Bakery, from HTML basics to responsive design and Tailwind CSS
+        ├── README.md           # roadmap and lesson list
+        ├── 00 to 19 lesson files  # each lesson: story, steps, try it yourself, check yourself
+        ├── playgrounds/        # Flexbox and Grid playgrounds and games (open with a double-click)
+        └── finished-project/   # the complete site, in plain HTML/CSS and with Tailwind CSS
 ```
 
-Each technology follows the same pattern: a `README.md` hub, a `concepts/` folder for topic-by-topic reference, and an `interviewQnA/` folder for questions and answers. Angular, React and JavaScript also have a `tutorial/` folder, a step-by-step build that teaches every concept hands-on. Future frameworks can be added as sibling folders using this pattern.
+Each technology follows the same pattern: a `README.md` hub, a `concepts/` folder for topic-by-topic reference, and an `interviewQnA/` folder for questions and answers. Angular, React and JavaScript also have a `tutorial/` folder, a step-by-step build that teaches every concept hands-on. `HTML_CSS/` is a tutorial-first course for beginners (the foundation under all the others). Future frameworks can be added as sibling folders using this pattern.
+
+## HTML and CSS
+
+Start with [HTML_CSS/README.md](HTML_CSS/README.md). It links to the [step-by-step tutorial](HTML_CSS/tutorial/README.md) (build the Bunny Bakery website from an empty file: HTML, CSS, Flexbox, Grid, responsive design, dark mode, modern CSS and Tailwind CSS), the interactive [Flexbox and Grid playgrounds and games](HTML_CSS/tutorial/playgrounds), and the [finished projects](HTML_CSS/tutorial/finished-project).
 
 ## React
 

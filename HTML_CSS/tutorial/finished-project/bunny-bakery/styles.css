@@ -1,0 +1,770 @@
+/* Bunny Bakery: styles */
+
+/* The order of the layers: the later ones win */
+@layer reset, base, components, utilities;
+
+/* ========== Design tokens ========== */
+:root {
+  color-scheme: light dark;
+
+  /* Colours: light-dark(value for light, value for dark) */
+  --text: light-dark(#4a2c17, #f7ebdd);
+  --text-soft: light-dark(#7a5a44, #cdb8a4);
+  --page: light-dark(#fff8f0, #1c1410);
+  --tint: light-dark(#ffe4d1, #3a281c);
+  --surface: light-dark(#fff, #2a1f19);
+  --accent: light-dark(#b3365f, #ff8fb1);
+  --accent-strong: light-dark(#8f2a4c, #ffb3cb);
+  --on-accent: light-dark(#fff, #2a1f19);
+  --highlight: #ffd166;
+  --on-highlight: #4a2c17;
+  --highlight-soft: light-dark(#fff0d6, #3b2d14);
+  --border: light-dark(#e8d5c4, #4a382c);
+  --border-strong: light-dark(#b89a84, #8a7360);
+  --error: light-dark(#b3261e, #ff8a80);
+  --footer: light-dark(#4a2c17, #120d0a);
+  --on-footer: light-dark(#fff8f0, #e9dccd);
+
+  /* Fonts */
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: Georgia, "Times New Roman", serif;
+
+  /* Space */
+  --space-s: 0.5rem;
+  --space-m: 1rem;
+  --space-l: 1.5rem;
+  --space-xl: 2rem;
+
+  /* Sizes */
+  --page-width: 68rem;
+
+  /* Shape and depth */
+  --radius: 0.75rem;
+  --radius-pill: 999px;
+  --shadow-s:
+    0 1px 2px light-dark(rgb(74 44 23 / 0.08), rgb(0 0 0 / 0.4)),
+    0 2px 8px light-dark(rgb(74 44 23 / 0.08), rgb(0 0 0 / 0.4));
+  --shadow-m: 0 10px 30px light-dark(rgb(74 44 23 / 0.18), rgb(0 0 0 / 0.55));
+}
+
+/* ========== Base ========== */
+
+/* Padding and border count inside an element's width and height.
+   This is in the weakest layer, so any other rule can override it. */
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  color: var(--text);
+  background-color: var(--page);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 var(--space-s);
+  color: var(--accent);
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 3rem);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 1.3rem + 1.4vw, 2rem);
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+/* Text never gets wider than about 65 characters */
+p {
+  max-width: 65ch;
+  margin: 0 0 var(--space-m);
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--accent);
+}
+
+/* Pictures: never wider than the space they are in */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+figure {
+  margin: 0 0 var(--space-m);
+}
+
+figcaption {
+  color: var(--text-soft);
+  font-style: italic;
+}
+
+address {
+  font-style: normal;
+}
+
+mark {
+  background-color: var(--highlight);
+  color: var(--on-highlight);
+}
+
+/* Where is the keyboard focus? */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* A little arrow after links that open a new tab */
+a[target="_blank"]::after {
+  content: " ↗";
+}
+
+/* ========== Layout ========== */
+.container {
+  width: 100%;
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding-inline: var(--space-m);
+}
+
+main > section {
+  padding: var(--space-xl) 0;
+  scroll-margin-top: 5rem;
+}
+
+main {
+  flex: 1;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 0.75rem 0;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-s);
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s) var(--space-l);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-s);
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* The Menu button: only for small screens */
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-s);
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  background-color: var(--surface);
+  color: var(--text);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* On small screens the navigation is a panel that drops down from under the header */
+nav[popover] {
+  inset: 4.5rem var(--space-m) auto var(--space-m);
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: var(--space-s) var(--space-m);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  box-shadow: var(--shadow-m);
+}
+
+.site-footer {
+  padding: var(--space-l) 0;
+  background-color: var(--footer);
+  color: var(--on-footer);
+}
+
+.site-footer a {
+  color: var(--highlight);
+}
+
+.site-footer .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s) var(--space-l);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* ========== Hero and buttons ========== */
+.lead {
+  color: var(--text-soft);
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.25rem);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.25rem;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-pill);
+  background-color: var(--accent);
+  color: var(--on-accent);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.1s;
+
+  &:hover {
+    background-color: var(--accent-strong);
+    border-color: var(--accent-strong);
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+
+  /* The variation: an element with both classes, .button.button-outline */
+  &.button-outline {
+    background-color: transparent;
+    color: var(--accent);
+
+    &:hover {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: var(--on-accent);
+    }
+  }
+}
+
+/* ========== Menu ========== */
+/* Cards: a grid that chooses its own number of columns */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+  gap: var(--space-m);
+  list-style: none;
+  margin: 0 0 var(--space-l);
+  padding: 0;
+}
+
+/* Each list item is a container: the card inside it can ask how much room it has */
+.cards li {
+  container: card / inline-size;
+}
+
+/* The featured card takes the whole row */
+.featured {
+  grid-column: 1 / -1;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  padding: var(--space-m);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-s);
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  /* A card that contains a badge (:has) gets a golden edge */
+  &:has(.badge) {
+    border-color: var(--highlight);
+  }
+
+  /* Lifting on hover only makes sense for devices that can hover (not fingers) */
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-m);
+      border-color: color-mix(in oklab, var(--accent) 40%, var(--border));
+    }
+  }
+
+  h3,
+  p {
+    margin: 0 0 0.25rem;
+  }
+
+  /* In a flex column, an auto top margin pushes the price to the bottom of the card */
+  .price {
+    margin-top: auto;
+  }
+}
+
+.price {
+  color: var(--accent);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.tip {
+  padding: var(--space-m);
+  margin: var(--space-l) 0;
+  background-color: var(--highlight-soft);
+  border-inline-start: 6px solid var(--highlight);
+  border-start-end-radius: var(--radius);
+  border-end-end-radius: var(--radius);
+}
+
+.tip :last-child {
+  margin-bottom: 0;
+}
+
+/* ========== Tables ========== */
+table {
+  width: 100%;
+  margin-bottom: var(--space-l);
+  border-collapse: collapse;
+}
+
+caption {
+  padding: var(--space-s) 0;
+  font-weight: 700;
+  text-align: start;
+}
+
+th {
+  text-align: start;
+}
+
+th,
+td {
+  padding: var(--space-s) 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ========== Forms ========== */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+fieldset {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+  gap: var(--space-m);
+  margin: 0 0 var(--space-l);
+  padding: var(--space-m);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+legend {
+  padding: 0 var(--space-s);
+  font-weight: 700;
+}
+
+fieldset fieldset,
+.field-wide {
+  grid-column: 1 / -1;
+}
+
+fieldset fieldset {
+  margin: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+/* A label that comes right after a radio button or checkbox sits beside it */
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+  display: inline;
+  font-weight: 400;
+}
+
+/* A star after the label of a required field. The empty text after the slash is the
+   "alt text" for screen readers, so that they don't read the star out. */
+label:has(+ input:required)::after,
+label:has(+ select:required)::after {
+  content: " *" / "";
+  color: var(--accent);
+}
+
+input:not([type="radio"], [type="checkbox"]),
+select,
+textarea {
+  width: 100%;
+  max-width: 28rem;
+  padding: var(--space-s);
+  border: 1px solid var(--border-strong);
+  border-radius: 0.5rem;
+  background-color: var(--surface);
+}
+
+textarea {
+  max-width: none;
+  resize: vertical;
+}
+
+/* After the visitor has touched a field, show clearly when it is wrong */
+input:user-invalid,
+select:user-invalid,
+textarea:user-invalid {
+  border-color: var(--error);
+  outline: 2px solid var(--error);
+}
+
+/* The browser's own radio buttons and checkboxes in our colour */
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+/* The size options are tiles. The tile that has a checked radio button lights up */
+fieldset fieldset > div {
+  padding: var(--space-s) var(--space-m);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+
+  &:has(input:checked) {
+    border-color: var(--accent);
+    background-color: var(--highlight-soft);
+  }
+}
+
+/* ========== Looks and motion ========== */
+.hero {
+  display: grid;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  align-items: center;
+  gap: var(--space-xl);
+  margin: var(--space-l) 0 var(--space-m);
+  padding: var(--space-l);
+  background: linear-gradient(135deg, var(--tint) 0%, var(--page) 75%);
+  border-radius: calc(var(--radius) * 2);
+}
+
+.hero-img,
+figure img {
+  border-radius: var(--radius);
+}
+
+.hero-img {
+  box-shadow: var(--shadow-m);
+}
+
+tbody tr {
+  transition: background-color 0.15s;
+}
+
+tbody tr:hover {
+  background-color: var(--highlight-soft);
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-8deg);
+  }
+
+  75% {
+    transform: rotate(8deg);
+  }
+}
+
+.brand:hover img {
+  animation: wiggle 0.6s ease-in-out;
+}
+
+/* People who asked their device for less motion get (almost) none */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========== Grid layouts ========== */
+
+/* Our story: a title across the top, then picture and text side by side */
+.story {
+  display: grid;
+  grid-template-areas:
+    "title"
+    "picture"
+    "text";
+  gap: var(--space-m) var(--space-xl);
+}
+
+.story h2 {
+  grid-area: title;
+}
+
+.story figure {
+  grid-area: picture;
+  margin: 0;
+}
+
+.story-text {
+  grid-area: text;
+}
+
+/* Visit us: the title across the top, hours and address side by side */
+.visit {
+  display: grid;
+  gap: 0 var(--space-xl);
+}
+
+/* ========== Positioning ========== */
+
+/* The "New" badge sits on the top right corner of its card */
+.badge {
+  position: absolute;
+  top: -0.6rem;
+  inset-inline-end: var(--space-m);
+  padding: 0.15rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--highlight);
+  color: var(--on-highlight);
+  font-size: 0.8rem;
+  font-weight: 700;
+  transform: rotate(4deg);
+}
+
+/* The skip link hides above the window, and drops down when it gets keyboard focus */
+.skip-link {
+  position: absolute;
+  top: -4rem;
+  inset-inline-start: var(--space-m);
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 var(--radius) var(--radius);
+  background-color: var(--accent);
+  color: var(--on-accent);
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* A decoration made only of CSS: no extra HTML */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -6rem;
+  inset-inline-end: -6rem;
+  z-index: -1;
+  width: 20rem;
+  height: 20rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--highlight) 0%, transparent 70%);
+  opacity: 0.6;
+}
+
+/* Smooth scrolling, but only for people who have not asked for less motion */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ========== Bigger screens (mobile-first) ========== */
+/* The rules above are for phones. These add the columns from 48rem (768px) up. */
+@media (min-width: 48rem) {
+  .hero {
+    grid-template-columns: 1.1fr 1fr;
+    padding: var(--space-xl);
+  }
+
+  .story {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "title title"
+      "picture text";
+    align-items: center;
+  }
+
+  .visit {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .visit h2 {
+    grid-column: 1 / -1;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  nav[popover] {
+    display: block;
+    position: static;
+    inset: auto;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-s) var(--space-l);
+  }
+}
+
+/* ========== Components that adapt to their container ========== */
+.card-icon {
+  margin-bottom: var(--space-s);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+/* A card with room (28rem or more): icon on the left, text in the middle, price on the right */
+@container card (min-width: 28rem) {
+  .card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "icon title price"
+      "icon text  price";
+    column-gap: var(--space-l);
+    align-items: center;
+  }
+
+  .card-icon {
+    grid-area: icon;
+    margin: 0;
+    font-size: 3rem;
+  }
+
+  .card h3 {
+    grid-area: title;
+  }
+
+  .card p:not(.price) {
+    grid-area: text;
+  }
+
+  .card .price {
+    grid-area: price;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+}
+
+/* A wide table scrolls inside its own box, not the page */
+.table-scroll {
+  margin-bottom: var(--space-l);
+  overflow-x: auto;
+}
+
+.table-scroll table {
+  margin-bottom: 0;
+}
+
+/* ========== Printing ========== */
+@media print {
+  .site-header,
+  .site-footer,
+  .skip-link,
+  form,
+  .hero::before {
+    display: none;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .card {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+  }
+}

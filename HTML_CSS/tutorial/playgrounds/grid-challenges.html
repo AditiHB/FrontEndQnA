@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grid challenges | Bunny Bakery course</title>
+    <link rel="stylesheet" href="playground.css">
+  </head>
+  <body>
+    <header class="pg-header">
+      <h1>Grid challenges</h1>
+      <p>Nine small puzzles. Write CSS for the dashed box so that the boxes land exactly where the goal shows them.</p>
+      <ul class="pg-nav">
+        <li><a href="../11-css-grid.md">Lesson 11: CSS Grid</a></li>
+        <li><a href="grid-playground.html">Grid playground</a></li>
+        <li><a href="flexbox-challenges.html">Flexbox challenges</a></li>
+      </ul>
+    </header>
+
+    <main id="app"></main>
+
+    <script src="challenge-engine.js"></script>
+    <script>
+      startChallenges({
+        kind: 'grid',
+        storageKey: 'bunny-css-grid-challenges',
+        levels: [
+          {
+            title: 'Meet display: grid',
+            text: 'A **grid container** has rows and columns, and its children fall into the cells. The container is the dashed box, called `.field`.\n\nWith only `display: grid`, you get one column. You choose the columns with `grid-template-columns`. The unit `fr` means "a share of the free space".',
+            goal: 'Make three equal columns.',
+            items: 6,
+            start: '.field {\n  display: grid;\n  \n}',
+            solution: '.field {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr;\n}',
+            must: ['grid-template-columns'],
+            mustName: '`grid-template-columns`',
+            hint: '`grid-template-columns: 1fr 1fr 1fr;` (one `fr` for each column), or the short form `repeat(3, 1fr)`.'
+          },
+          {
+            title: 'The gap',
+            text: '`gap` puts space between the rows and between the columns, but never around the outside.',
+            goal: 'Keep the three equal columns, and add a gap of `1rem` between all the cells.',
+            items: 6,
+            start: '.field {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  \n}',
+            solution: '.field {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 1rem;\n}',
+            must: ['gap'],
+            mustName: '`gap`',
+            hint: 'Add `gap: 1rem;`.'
+          },
+          {
+            title: 'Columns of different widths',
+            text: 'Tracks can have different sizes. You can mix units: a fixed size such as `8rem`, and shares of the leftover space such as `1fr` and `2fr`. A `2fr` track gets twice as much as a `1fr` track.',
+            goal: 'Three columns: the first exactly `8rem` wide, then two columns that share the rest: the second gets one share, the third gets two.',
+            items: 6,
+            start: '.field {\n  display: grid;\n  gap: 0.5rem;\n  \n}',
+            solution: '.field {\n  display: grid;\n  gap: 0.5rem;\n  grid-template-columns: 8rem 1fr 2fr;\n}',
+            must: ['grid-template-columns'],
+            mustName: '`grid-template-columns`',
+            hint: 'The three column sizes, separated by spaces: `8rem 1fr 2fr`.'
+          },
+          {
+            title: 'Rows',
+            text: 'Rows work the same way with `grid-template-rows`. This box is taller than its content, so the rows can have sizes of their own. A row of size `1fr` takes whatever is left.',
+            goal: 'Make two rows: the top row exactly `5rem` tall, and the bottom row taking all the space that is left.',
+            items: 6,
+            fieldStyle: 'height: 16rem;',
+            start: '.field {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 0.5rem;\n  \n}',
+            solution: '.field {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 0.5rem;\n  grid-template-rows: 5rem 1fr;\n}',
+            must: ['grid-template-rows'],
+            mustName: '`grid-template-rows`',
+            hint: '`grid-template-rows: 5rem 1fr;`'
+          },
+          {
+            title: 'Span two columns',
+            text: 'An **item** can be bigger than one cell. `grid-column: span 2` means "cover two columns". The other items flow around it automatically.',
+            goal: 'Make carrot 1 wide: it should cover two columns.',
+            items: 5,
+            start: '.field {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 0.5rem;\n}\n\n.item-1 {\n  \n}',
+            solution: '.field {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 0.5rem;\n}\n\n.item-1 {\n  grid-column: span 2;\n}',
+            must: ['grid-column'],
+            mustName: '`grid-column`',
+            hint: 'Inside `.item-1 { }` write `grid-column: span 2;`. A longer way is `grid-column: 1 / 3;` (from line 1 to line 3).'
+          },
+          {
+            title: 'Span two rows',
+            text: '`grid-row: span 2` covers two rows. Items that come later fill the remaining empty cells.',
+            goal: 'Make carrot 1 tall: it should cover two rows.',
+            items: 5,
+            start: '.field {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 0.5rem;\n}\n\n.item-1 {\n  \n}',
+            solution: '.field {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 0.5rem;\n}\n\n.item-1 {\n  grid-row: span 2;\n}',
+            must: ['grid-row'],
+            mustName: '`grid-row`',
+            hint: '`.item-1 { grid-row: span 2; }`'
+          },
+          {
+            title: 'Centre in the cell',
+            text: 'When an item is smaller than its cell, you can place it inside the cell. `justify-items` works horizontally and `align-items` vertically. `place-items` sets both at once.\n\nHere the carrots are small, and each cell is big.',
+            goal: 'Put each carrot in the exact centre of its own cell.',
+            items: 4,
+            fieldStyle: 'height: 14rem;',
+            itemStyle: 'width: 3.5rem; height: 3.5rem;',
+            start: '.field {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  grid-template-rows: 1fr 1fr;\n  \n}',
+            solution: '.field {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  grid-template-rows: 1fr 1fr;\n  place-items: center;\n}',
+            must: ['(place-items|justify-items)\\s*:', '(place-items|align-items)\\s*:'],
+            mustName: '`place-items` (or `justify-items` and `align-items`)',
+            hint: '`place-items: center;`'
+          },
+          {
+            title: 'A grid that adapts by itself',
+            text: 'The most useful grid line in CSS: `repeat(auto-fit, minmax(7rem, 1fr))`.\n\n`minmax(7rem, 1fr)` means "at least 7rem, at most a share of the space". `auto-fit` means "as many columns as fit". The grid changes its number of columns by itself when the window changes, with **no media query**.',
+            goal: 'Use as many columns as fit, each at least `7rem` wide, sharing the leftover space equally, with a gap of `0.5rem`. (Then make your browser window narrower and wider: the goal changes too.)',
+            items: 8,
+            start: '.field {\n  display: grid;\n  gap: 0.5rem;\n  \n}',
+            solution: '.field {\n  display: grid;\n  gap: 0.5rem;\n  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));\n}',
+            must: ['auto-(fit|fill)', 'minmax'],
+            mustName: '`repeat(auto-fit, minmax(...))`',
+            hint: '`grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));`'
+          },
+          {
+            title: 'Named areas: a page layout',
+            text: 'You can draw the layout with words. `grid-template-areas` lists the names of the cells, row by row. Each item then says which area it lives in with `grid-area`.\n\nThe four items have the classes `.header`, `.sidebar`, `.main` and `.footer`.',
+            goal: 'Build this page layout. The columns are `8rem 1fr`, the rows are `auto 1fr auto`, and the gap is `0.5rem`.',
+            picture: ' ┌──────────────────────┐\n │        header        │\n ├────────┬─────────────┤\n │sidebar │    main     │\n ├────────┴─────────────┤\n │        footer        │\n └──────────────────────┘',
+            items: ['header', 'sidebar', 'main', 'footer'],
+            fieldStyle: 'height: 20rem;',
+            itemStyle: 'min-height: 2.5rem;',
+            start: '.field {\n  display: grid;\n  \n}\n\n.header {\n  grid-area: header;\n}\n\n.sidebar {\n  \n}\n\n.main {\n  \n}\n\n.footer {\n  \n}',
+            solution: '.field {\n  display: grid;\n  grid-template-columns: 8rem 1fr;\n  grid-template-rows: auto 1fr auto;\n  gap: 0.5rem;\n  grid-template-areas:\n    "header header"\n    "sidebar main"\n    "footer footer";\n}\n\n.header {\n  grid-area: header;\n}\n\n.sidebar {\n  grid-area: sidebar;\n}\n\n.main {\n  grid-area: main;\n}\n\n.footer {\n  grid-area: footer;\n}',
+            must: ['grid-template-areas', 'grid-area'],
+            mustName: '`grid-template-areas` and `grid-area`',
+            hint: 'Each row of the picture is one quoted string: `"header header"`, `"sidebar main"`, `"footer footer"`. Then give each item its `grid-area`: `.sidebar { grid-area: sidebar; }` and so on.'
+          }
+        ]
+      });
+    </script>
+  </body>
+</html>

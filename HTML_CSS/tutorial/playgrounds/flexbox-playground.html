@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flexbox playground | Bunny Bakery course</title>
+    <link rel="stylesheet" href="playground.css">
+  </head>
+  <body>
+    <header class="pg-header">
+      <h1>Flexbox playground</h1>
+      <p>Change the settings on the left and watch the boxes move. Click a box to give <em>that box</em> its own settings. Drag the bottom-right corner of the dashed area to make it smaller or bigger.</p>
+      <ul class="pg-nav">
+        <li><a href="../10-flexbox.md">Lesson 10: Flexbox</a></li>
+        <li><a href="flexbox-challenges.html">Flexbox challenges (game)</a></li>
+        <li><a href="grid-playground.html">Grid playground</a></li>
+      </ul>
+    </header>
+
+    <main class="pg">
+      <section class="pg-controls" aria-label="Controls">
+        <fieldset>
+          <legend>The container (the parent)</legend>
+          <div id="container-controls"></div>
+          <div class="ctl">
+            <label for="ctl-gap">gap <output id="out-gap">8px</output></label>
+            <input id="ctl-gap" type="range" min="0" max="48" step="4" value="8">
+            <span class="hint">Space between the items.</span>
+          </div>
+          <div class="ctl">
+            <label for="ctl-count">Number of items <output id="out-count">5</output></label>
+            <input id="ctl-count" type="range" min="1" max="10" step="1" value="5">
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend id="item-legend">The selected item: 1</legend>
+          <div class="ctl">
+            <label for="ctl-grow">flex-grow</label>
+            <input id="ctl-grow" type="number" min="0" max="10" step="1" value="0">
+            <span class="hint">How much of the free space does this item take? 0 means none.</span>
+          </div>
+          <div class="ctl">
+            <label for="ctl-shrink">flex-shrink</label>
+            <input id="ctl-shrink" type="number" min="0" max="10" step="1" value="1">
+            <span class="hint">How willing is it to get smaller when there is not enough room? 0 means never.</span>
+          </div>
+          <div class="ctl">
+            <label for="ctl-basis">flex-basis</label>
+            <select id="ctl-basis">
+              <option value="auto">auto</option>
+              <option value="0">0</option>
+              <option value="6rem">6rem</option>
+              <option value="12rem">12rem</option>
+              <option value="40%">40%</option>
+            </select>
+            <span class="hint">The size before growing or shrinking.</span>
+          </div>
+          <div class="ctl">
+            <label for="ctl-align-self">align-self</label>
+            <select id="ctl-align-self"></select>
+            <span class="hint">This item's own alignment on the cross axis.</span>
+          </div>
+          <div class="ctl">
+            <label for="ctl-order">order</label>
+            <input id="ctl-order" type="number" min="-5" max="10" step="1" value="0">
+            <span class="hint">Items go in order from the smallest number. Same number: the HTML order.</span>
+          </div>
+          <p><button type="button" class="btn btn-outline" id="reset-item">Reset this item</button></p>
+        </fieldset>
+
+        <p><button type="button" class="btn btn-outline" id="reset-all">Reset everything</button></p>
+      </section>
+
+      <section class="pg-stage" aria-label="Result">
+        <div class="stage-box" id="stage-box">
+          <div class="demo" id="demo" role="group" aria-label="The flex container with its items"></div>
+        </div>
+        <p class="stage-help">The dashed area is the page's available space. The items are buttons: press <kbd>Tab</kbd> then <kbd>Enter</kbd> to select one with the keyboard.</p>
+
+        <div class="out-head">
+          <h2>The CSS you just made</h2>
+          <button type="button" class="btn btn-outline" id="copy">Copy</button>
+        </div>
+        <pre class="css-out" id="css-out" aria-live="polite"></pre>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        var CONTAINER = [
+          { name: 'flex-direction', values: ['row', 'row-reverse', 'column', 'column-reverse'], initial: 'row',
+            hint: 'The main axis: which way do the items run?' },
+          { name: 'flex-wrap', values: ['nowrap', 'wrap', 'wrap-reverse'], initial: 'nowrap',
+            hint: 'May items move to a new line when they run out of room? Shrink the dashed area to see it.' },
+          { name: 'justify-content', values: ['flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly'], initial: 'flex-start',
+            hint: 'Spread the items along the MAIN axis.' },
+          { name: 'align-items', values: ['stretch', 'flex-start', 'center', 'flex-end', 'baseline'], initial: 'stretch',
+            hint: 'Place the items along the CROSS axis.' },
+          { name: 'align-content', values: ['normal', 'flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'stretch'], initial: 'normal',
+            hint: 'Spread the lines of items when there are several (needs flex-wrap: wrap).' }
+        ];
+        var ALIGN_SELF = ['auto', 'flex-start', 'center', 'flex-end', 'stretch', 'baseline'];
+        var PAD_Y = [1, 2.5, 1.5, 3, 2, 1, 2.2, 1.4, 2.8, 1.2];
+        var PAD_X = [1.2, 2, 1, 1.6, 2.4, 1.1, 1.8, 1.3, 2.2, 1.5];
+        var ITEM_DEFAULT = { grow: '0', shrink: '1', basis: 'auto', alignSelf: 'auto', order: '0' };
+
+        var demo = document.getElementById('demo');
+        var out = document.getElementById('css-out');
+        var state, items;
+
+        function freshState() {
+          var s = { gap: 8, count: 5, selected: 1, container: {}, items: {} };
+          CONTAINER.forEach(function (c) { s.container[c.name] = c.initial; });
+          return s;
+        }
+
+        // ----- build controls
+        var cc = document.getElementById('container-controls');
+        CONTAINER.forEach(function (c) {
+          var wrap = document.createElement('div');
+          wrap.className = 'ctl';
+          var label = document.createElement('label');
+          label.htmlFor = 'ctl-' + c.name;
+          label.textContent = c.name;
+          var sel = document.createElement('select');
+          sel.id = 'ctl-' + c.name;
+          c.values.forEach(function (v) {
+            var o = document.createElement('option');
+            o.value = o.textContent = v;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function () { state.container[c.name] = sel.value; render(); });
+          var hint = document.createElement('span');
+          hint.className = 'hint';
+          hint.textContent = c.hint;
+          wrap.appendChild(label);
+          wrap.appendChild(sel);
+          wrap.appendChild(hint);
+          cc.appendChild(wrap);
+        });
+        var alignSel = document.getElementById('ctl-align-self');
+        ALIGN_SELF.forEach(function (v) {
+          var o = document.createElement('option');
+          o.value = o.textContent = v;
+          alignSel.appendChild(o);
+        });
+
+        function itemState(n) {
+          return state.items[n] || (state.items[n] = Object.assign({}, ITEM_DEFAULT));
+        }
+
+        // ----- events
+        document.getElementById('ctl-gap').addEventListener('input', function (e) { state.gap = +e.target.value; render(); });
+        document.getElementById('ctl-count').addEventListener('input', function (e) {
+          state.count = +e.target.value;
+          if (state.selected > state.count) state.selected = state.count;
+          buildItems();
+          render();
+        });
+        [['ctl-grow', 'grow'], ['ctl-shrink', 'shrink'], ['ctl-basis', 'basis'], ['ctl-align-self', 'alignSelf'], ['ctl-order', 'order']].forEach(function (p) {
+          var el = document.getElementById(p[0]);
+          el.addEventListener('input', function () { itemState(state.selected)[p[1]] = el.value === '' ? ITEM_DEFAULT[p[1]] : el.value; render(); });
+        });
+        document.getElementById('reset-item').addEventListener('click', function () {
+          state.items[state.selected] = Object.assign({}, ITEM_DEFAULT);
+          render();
+        });
+        document.getElementById('reset-all').addEventListener('click', function () { start(); });
+        document.getElementById('copy').addEventListener('click', function (e) {
+          try { navigator.clipboard.writeText(out.textContent); e.target.textContent = 'Copied!'; }
+          catch (err) { e.target.textContent = 'Select the text and copy it'; }
+          setTimeout(function () { e.target.textContent = 'Copy'; }, 1500);
+        });
+
+        // ----- the items
+        function buildItems() {
+          demo.textContent = '';
+          for (var n = 1; n <= state.count; n++) {
+            (function (n) {
+              var b = document.createElement('button');
+              b.type = 'button';
+              b.className = 'item';
+              b.textContent = n;
+              b.dataset.n = n;
+              b.style.setProperty('--i', n);
+              b.style.padding = PAD_Y[n - 1] + 'rem ' + PAD_X[n - 1] + 'rem';
+              b.addEventListener('click', function () { state.selected = n; render(); });
+              demo.appendChild(b);
+            })(n);
+          }
+        }
+
+        // ----- draw
+        function render() {
+          demo.style.display = 'flex';
+          CONTAINER.forEach(function (c) {
+            demo.style.setProperty(c.name, state.container[c.name]);
+            document.getElementById('ctl-' + c.name).value = state.container[c.name];
+          });
+          demo.style.gap = state.gap + 'px';
+          document.getElementById('ctl-gap').value = state.gap;
+          document.getElementById('out-gap').textContent = state.gap + 'px';
+          document.getElementById('ctl-count').value = state.count;
+          document.getElementById('out-count').textContent = state.count;
+
+          var sel = itemState(state.selected);
+          document.getElementById('item-legend').textContent = 'The selected item: ' + state.selected;
+          document.getElementById('ctl-grow').value = sel.grow;
+          document.getElementById('ctl-shrink').value = sel.shrink;
+          document.getElementById('ctl-basis').value = sel.basis;
+          document.getElementById('ctl-align-self').value = sel.alignSelf;
+          document.getElementById('ctl-order').value = sel.order;
+
+          Array.prototype.forEach.call(demo.children, function (b) {
+            var n = +b.dataset.n;
+            var s = itemState(n);
+            b.style.flexGrow = s.grow;
+            b.style.flexShrink = s.shrink;
+            b.style.flexBasis = s.basis;
+            b.style.alignSelf = s.alignSelf;
+            b.style.order = s.order;
+            b.setAttribute('aria-pressed', n === state.selected ? 'true' : 'false');
+          });
+
+          // the CSS text: only what differs from the defaults
+          var lines = ['display: flex;'];
+          CONTAINER.forEach(function (c) {
+            if (state.container[c.name] !== c.initial) lines.push(c.name + ': ' + state.container[c.name] + ';');
+          });
+          if (state.gap) lines.push('gap: ' + state.gap + 'px;');
+          var text = '.container {\n  ' + lines.join('\n  ') + '\n}';
+          for (var n = 1; n <= state.count; n++) {
+            var s = itemState(n), l = [];
+            if (s.grow !== ITEM_DEFAULT.grow) l.push('flex-grow: ' + s.grow + ';');
+            if (s.shrink !== ITEM_DEFAULT.shrink) l.push('flex-shrink: ' + s.shrink + ';');
+            if (s.basis !== ITEM_DEFAULT.basis) l.push('flex-basis: ' + s.basis + ';');
+            if (s.alignSelf !== ITEM_DEFAULT.alignSelf) l.push('align-self: ' + s.alignSelf + ';');
+            if (s.order !== ITEM_DEFAULT.order) l.push('order: ' + s.order + ';');
+            if (l.length) text += '\n\n.item-' + n + ' {\n  ' + l.join('\n  ') + '\n}';
+          }
+          out.textContent = text;
+        }
+
+        function start() {
+          state = freshState();
+          document.getElementById('stage-box').style.width = '';
+          document.getElementById('stage-box').style.height = '';
+          buildItems();
+          render();
+        }
+        start();
+      })();
+    </script>
+  </body>
+</html>
