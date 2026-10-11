@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grid playground | Bunny Bakery course</title>
+    <link rel="stylesheet" href="playground.css">
+  </head>
+  <body>
+    <header class="pg-header">
+      <h1>Grid playground</h1>
+      <p>Type the tracks, change the settings and watch the boxes fall into cells. The pink dashed cells show the grid. Click a box to give <em>that box</em> its own placement, for example <code>span 2</code>. Drag the bottom-right corner of the dashed area to resize it.</p>
+      <ul class="pg-nav">
+        <li><a href="../11-css-grid.md">Lesson 11: CSS Grid</a></li>
+        <li><a href="grid-challenges.html">Grid challenges (game)</a></li>
+        <li><a href="flexbox-playground.html">Flexbox playground</a></li>
+      </ul>
+    </header>
+
+    <main class="pg">
+      <section class="pg-controls" aria-label="Controls">
+        <fieldset>
+          <legend>The container (the parent)</legend>
+          <div class="ctl">
+            <label for="ctl-columns">grid-template-columns</label>
+            <input id="ctl-columns" type="text" list="columns-presets" value="repeat(3, 1fr)" autocomplete="off" spellcheck="false">
+            <datalist id="columns-presets">
+              <option value="repeat(3, 1fr)"></option>
+              <option value="1fr 2fr"></option>
+              <option value="100px 1fr 100px"></option>
+              <option value="8rem 1fr"></option>
+              <option value="repeat(auto-fit, minmax(7rem, 1fr))"></option>
+              <option value="repeat(auto-fill, 6rem)"></option>
+              <option value="200px auto"></option>
+            </datalist>
+            <span class="hint">The columns. Try the suggestions (click the box and clear it), or type your own.</span>
+          </div>
+          <div class="ctl">
+            <label for="ctl-rows">grid-template-rows</label>
+            <input id="ctl-rows" type="text" list="rows-presets" value="auto" autocomplete="off" spellcheck="false">
+            <datalist id="rows-presets">
+              <option value="auto"></option>
+              <option value="repeat(2, 1fr)"></option>
+              <option value="5rem 1fr"></option>
+              <option value="1fr 2fr"></option>
+            </datalist>
+            <span class="hint">The rows. Extra rows are created automatically when needed.</span>
+          </div>
+          <div class="ctl">
+            <label for="ctl-column-gap">column-gap <output id="out-column-gap">8px</output></label>
+            <input id="ctl-column-gap" type="range" min="0" max="48" step="4" value="8">
+          </div>
+          <div class="ctl">
+            <label for="ctl-row-gap">row-gap <output id="out-row-gap">8px</output></label>
+            <input id="ctl-row-gap" type="range" min="0" max="48" step="4" value="8">
+          </div>
+          <div id="container-controls"></div>
+          <div class="ctl">
+            <label for="ctl-count">Number of items <output id="out-count">7</output></label>
+            <input id="ctl-count" type="range" min="1" max="12" step="1" value="7">
+          </div>
+          <div class="ctl">
+            <label><input id="ctl-lines" type="checkbox" checked> Show the grid lines</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend id="item-legend">The selected item: 1</legend>
+          <div class="ctl">
+            <label for="ctl-grid-column">grid-column</label>
+            <input id="ctl-grid-column" type="text" list="span-presets" value="auto" autocomplete="off" spellcheck="false">
+            <datalist id="span-presets">
+              <option value="auto"></option>
+              <option value="span 2"></option>
+              <option value="span 3"></option>
+              <option value="1 / 3"></option>
+              <option value="2 / -1"></option>
+              <option value="1 / -1"></option>
+            </datalist>
+            <span class="hint">Which column lines it sits between, or how many columns it spans.</span>
+          </div>
+          <div class="ctl">
+            <label for="ctl-grid-row">grid-row</label>
+            <input id="ctl-grid-row" type="text" list="span-presets" value="auto" autocomplete="off" spellcheck="false">
+            <span class="hint">The same for rows.</span>
+          </div>
+          <div class="ctl">
+            <label for="ctl-justify-self">justify-self</label>
+            <select id="ctl-justify-self"></select>
+            <span class="hint">Its own horizontal alignment inside its cell.</span>
+          </div>
+          <div class="ctl">
+            <label for="ctl-align-self">align-self</label>
+            <select id="ctl-align-self"></select>
+            <span class="hint">Its own vertical alignment inside its cell.</span>
+          </div>
+          <p><button type="button" class="btn btn-outline" id="reset-item">Reset this item</button></p>
+        </fieldset>
+
+        <p><button type="button" class="btn btn-outline" id="reset-all">Reset everything</button></p>
+      </section>
+
+      <section class="pg-stage" aria-label="Result">
+        <div class="stage-box" id="stage-box">
+          <div class="demo" id="demo" role="group" aria-label="The grid container with its items"></div>
+          <div class="overlay" id="overlay" aria-hidden="true"></div>
+        </div>
+        <p class="stage-help">The items are buttons: press <kbd>Tab</kbd> then <kbd>Enter</kbd> to select one with the keyboard. A red box means the browser does not understand what you typed.</p>
+
+        <div class="out-head">
+          <h2>The CSS you just made</h2>
+          <button type="button" class="btn btn-outline" id="copy">Copy</button>
+        </div>
+        <pre class="css-out" id="css-out" aria-live="polite"></pre>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        var CONTAINER = [
+          { name: 'justify-items', values: ['stretch', 'start', 'center', 'end'], initial: 'stretch',
+            hint: 'Where each item sits horizontally inside its cell.' },
+          { name: 'align-items', values: ['stretch', 'start', 'center', 'end'], initial: 'stretch',
+            hint: 'Where each item sits vertically inside its cell.' },
+          { name: 'justify-content', values: ['start', 'center', 'end', 'space-between', 'space-around', 'space-evenly', 'stretch'], initial: 'start',
+            hint: 'Where the whole grid sits horizontally (when the columns are narrower than the box).' },
+          { name: 'align-content', values: ['start', 'center', 'end', 'space-between', 'space-around', 'space-evenly', 'stretch'], initial: 'start',
+            hint: 'Where the whole grid sits vertically (when the rows are shorter than the box).' },
+          { name: 'grid-auto-flow', values: ['row', 'column', 'dense'], initial: 'row',
+            hint: 'The order in which unplaced items fill the cells.' }
+        ];
+        var SELF = ['auto', 'stretch', 'start', 'center', 'end'];
+        var PAD = [0.5, 1, 0.75, 1.25, 0.6, 1.5, 0.9, 0.5, 1.1, 0.7, 1.4, 0.8];
+        var ITEM_DEFAULT = { gridColumn: 'auto', gridRow: 'auto', justifySelf: 'auto', alignSelf: 'auto' };
+
+        var demo = document.getElementById('demo');
+        var overlay = document.getElementById('overlay');
+        var out = document.getElementById('css-out');
+        var state;
+
+        function freshState() {
+          var s = { columns: 'repeat(3, 1fr)', rows: 'auto', columnGap: 8, rowGap: 8, count: 7, selected: 1, lines: true, container: {}, items: {} };
+          CONTAINER.forEach(function (c) { s.container[c.name] = c.initial; });
+          return s;
+        }
+        function itemState(n) { return state.items[n] || (state.items[n] = Object.assign({}, ITEM_DEFAULT)); }
+        function $(id) { return document.getElementById(id); }
+
+        // ----- build the select controls
+        var cc = $('container-controls');
+        CONTAINER.forEach(function (c) {
+          var wrap = document.createElement('div');
+          wrap.className = 'ctl';
+          var label = document.createElement('label');
+          label.htmlFor = 'ctl-' + c.name;
+          label.textContent = c.name;
+          var sel = document.createElement('select');
+          sel.id = 'ctl-' + c.name;
+          c.values.forEach(function (v) {
+            var o = document.createElement('option');
+            o.value = o.textContent = v;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function () { state.container[c.name] = sel.value; render(); });
+          var hint = document.createElement('span');
+          hint.className = 'hint';
+          hint.textContent = c.hint;
+          wrap.appendChild(label);
+          wrap.appendChild(sel);
+          wrap.appendChild(hint);
+          cc.appendChild(wrap);
+        });
+        ['ctl-justify-self', 'ctl-align-self'].forEach(function (id) {
+          SELF.forEach(function (v) {
+            var o = document.createElement('option');
+            o.value = o.textContent = v;
+            $(id).appendChild(o);
+          });
+        });
+
+        // ----- events
+        function textInput(id, set) {
+          $(id).addEventListener('input', function (e) {
+            var v = e.target.value.trim();
+            set(v === '' ? null : v);
+            render();
+          });
+        }
+        textInput('ctl-columns', function (v) { state.columns = v || 'none'; });
+        textInput('ctl-rows', function (v) { state.rows = v || 'auto'; });
+        textInput('ctl-grid-column', function (v) { itemState(state.selected).gridColumn = v || 'auto'; });
+        textInput('ctl-grid-row', function (v) { itemState(state.selected).gridRow = v || 'auto'; });
+        $('ctl-column-gap').addEventListener('input', function (e) { state.columnGap = +e.target.value; render(); });
+        $('ctl-row-gap').addEventListener('input', function (e) { state.rowGap = +e.target.value; render(); });
+        $('ctl-count').addEventListener('input', function (e) {
+          state.count = +e.target.value;
+          if (state.selected > state.count) state.selected = state.count;
+          buildItems();
+          render();
+        });
+        $('ctl-lines').addEventListener('change', function (e) { state.lines = e.target.checked; render(); });
+        $('ctl-justify-self').addEventListener('change', function (e) { itemState(state.selected).justifySelf = e.target.value; render(); });
+        $('ctl-align-self').addEventListener('change', function (e) { itemState(state.selected).alignSelf = e.target.value; render(); });
+        $('reset-item').addEventListener('click', function () { state.items[state.selected] = Object.assign({}, ITEM_DEFAULT); render(); });
+        $('reset-all').addEventListener('click', function () { start(); });
+        $('copy').addEventListener('click', function (e) {
+          try { navigator.clipboard.writeText(out.textContent); e.target.textContent = 'Copied!'; }
+          catch (err) { e.target.textContent = 'Select the text and copy it'; }
+          setTimeout(function () { e.target.textContent = 'Copy'; }, 1500);
+        });
+        if (window.ResizeObserver) new ResizeObserver(function () { drawLines(); }).observe($('stage-box'));
+
+        function buildItems() {
+          demo.textContent = '';
+          for (var n = 1; n <= state.count; n++) {
+            (function (n) {
+              var b = document.createElement('button');
+              b.type = 'button';
+              b.className = 'item';
+              b.textContent = n;
+              b.dataset.n = n;
+              b.style.setProperty('--i', n);
+              b.style.padding = PAD[n - 1] + 'rem 1rem';
+              b.addEventListener('click', function () { state.selected = n; render(); });
+              demo.appendChild(b);
+            })(n);
+          }
+        }
+
+        function setChecked(id, prop, value) {
+          // apply a value only if the browser understands it; mark the field red otherwise
+          var ok = window.CSS && CSS.supports ? CSS.supports(prop, value) : true;
+          $(id).setAttribute('aria-invalid', ok ? 'false' : 'true');
+          return ok;
+        }
+
+        function drawLines() {
+          overlay.textContent = '';
+          if (!state || !state.lines) return;
+          var cs = getComputedStyle(demo);
+          var cols = cs.gridTemplateColumns === 'none' ? [] : cs.gridTemplateColumns.split(' ');
+          var rows = cs.gridTemplateRows === 'none' ? [] : cs.gridTemplateRows.split(' ');
+          if (!cols.length || !rows.length) return;
+          overlay.style.display = 'grid';
+          overlay.style.gridTemplateColumns = cs.gridTemplateColumns;
+          overlay.style.gridTemplateRows = cs.gridTemplateRows;
+          overlay.style.columnGap = cs.columnGap;
+          overlay.style.rowGap = cs.rowGap;
+          overlay.style.justifyContent = cs.justifyContent;
+          overlay.style.alignContent = cs.alignContent;
+          for (var i = 0; i < cols.length * rows.length; i++) overlay.appendChild(document.createElement('div'));
+        }
+
+        function render() {
+          demo.style.display = 'grid';
+          if (setChecked('ctl-columns', 'grid-template-columns', state.columns)) demo.style.gridTemplateColumns = state.columns;
+          if (setChecked('ctl-rows', 'grid-template-rows', state.rows)) demo.style.gridTemplateRows = state.rows;
+          demo.style.columnGap = state.columnGap + 'px';
+          demo.style.rowGap = state.rowGap + 'px';
+          CONTAINER.forEach(function (c) {
+            demo.style.setProperty(c.name, state.container[c.name]);
+            $('ctl-' + c.name).value = state.container[c.name];
+          });
+          $('out-column-gap').textContent = state.columnGap + 'px';
+          $('out-row-gap').textContent = state.rowGap + 'px';
+          $('ctl-column-gap').value = state.columnGap;
+          $('ctl-row-gap').value = state.rowGap;
+          $('out-count').textContent = state.count;
+          $('ctl-count').value = state.count;
+          $('ctl-lines').checked = state.lines;
+
+          var sel = itemState(state.selected);
+          $('item-legend').textContent = 'The selected item: ' + state.selected;
+          if (document.activeElement !== $('ctl-grid-column')) $('ctl-grid-column').value = sel.gridColumn;
+          if (document.activeElement !== $('ctl-grid-row')) $('ctl-grid-row').value = sel.gridRow;
+          $('ctl-justify-self').value = sel.justifySelf;
+          $('ctl-align-self').value = sel.alignSelf;
+          setChecked('ctl-grid-column', 'grid-column', sel.gridColumn);
+          setChecked('ctl-grid-row', 'grid-row', sel.gridRow);
+
+          Array.prototype.forEach.call(demo.children, function (b) {
+            var n = +b.dataset.n, s = itemState(n);
+            if (CSS.supports('grid-column', s.gridColumn)) b.style.gridColumn = s.gridColumn;
+            if (CSS.supports('grid-row', s.gridRow)) b.style.gridRow = s.gridRow;
+            b.style.justifySelf = s.justifySelf;
+            b.style.alignSelf = s.alignSelf;
+            b.setAttribute('aria-pressed', n === state.selected ? 'true' : 'false');
+          });
+
+          var lines = ['display: grid;', 'grid-template-columns: ' + state.columns + ';'];
+          if (state.rows !== 'auto') lines.push('grid-template-rows: ' + state.rows + ';');
+          if (state.columnGap === state.rowGap) { if (state.columnGap) lines.push('gap: ' + state.columnGap + 'px;'); }
+          else lines.push('gap: ' + state.rowGap + 'px ' + state.columnGap + 'px;');
+          CONTAINER.forEach(function (c) {
+            if (state.container[c.name] !== c.initial) lines.push(c.name + ': ' + state.container[c.name] + ';');
+          });
+          var text = '.container {\n  ' + lines.join('\n  ') + '\n}';
+          for (var n = 1; n <= state.count; n++) {
+            var s = itemState(n), l = [];
+            if (s.gridColumn !== 'auto') l.push('grid-column: ' + s.gridColumn + ';');
+            if (s.gridRow !== 'auto') l.push('grid-row: ' + s.gridRow + ';');
+            if (s.justifySelf !== 'auto') l.push('justify-self: ' + s.justifySelf + ';');
+            if (s.alignSelf !== 'auto') l.push('align-self: ' + s.alignSelf + ';');
+            if (l.length) text += '\n\n.item-' + n + ' {\n  ' + l.join('\n  ') + '\n}';
+          }
+          out.textContent = text;
+          drawLines();
+        }
+
+        function start() {
+          state = freshState();
+          $('stage-box').style.width = '';
+          $('stage-box').style.height = '';
+          buildItems();
+          render();
+        }
+        start();
+      })();
+    </script>
+  </body>
+</html>

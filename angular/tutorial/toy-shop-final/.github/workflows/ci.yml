@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# The robot only needs to read our code.
+permissions:
+  contents: read
+
+# A new push cancels the older, still-running check of the same branch.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Check, test and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      # "ci" installs exactly what package-lock.json says. Same result on every machine.
+      - run: npm ci
+      - run: npm run format:check
+      - run: npm run lint
+      - run: npm audit --audit-level=high --omit=dev
+      - run: npm run test:coverage
+      # The production build also enforces our size budgets (see angular.json).
+      - run: npm run build
+      - uses: actions/upload-artifact@v7
+        with:
+          name: toy-shop-dist
+          path: dist/toy-shop
+          retention-days: 7
+
+  e2e:
+    name: Browser tests
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      # Start the real production server, and wait until /healthz answers.
+      - run: node dist/toy-shop/server/server.mjs &
+      - run: curl --silent --fail --retry 20 --retry-connrefused --retry-delay 1 http://localhost:4000/healthz
+      - run: npx playwright test
+        env:
+          BASE_URL: http://localhost:4000
+      - run: node scripts/smoke.mjs http://localhost:4000
+
+  publish:
+    name: Publish the Docker image
+    needs: [check, e2e]
+    # Only for real changes on main, never for pull requests.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v7
+      - run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+      # The image name must be lowercase. We tag with the commit id, so every version can be found again.
+      - run: |
+          IMAGE=ghcr.io/$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')/toy-shop
+          docker build -t "$IMAGE:${{ github.sha }}" -t "$IMAGE:latest" .
+          docker push --all-tags "$IMAGE"

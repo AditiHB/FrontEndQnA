@@ -1,0 +1,31 @@
+<h1>Log in</h1>
+<p class="hint">
+  Pretend shop! Use any email and the password <strong>toys123</strong>. An email that starts with
+  <strong>admin</strong> gets the admin powers.
+</p>
+
+<form class="form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <label for="email">Email</label>
+  <input id="email" type="email" formControlName="email" autocomplete="email" />
+  @if (form.controls.email.touched && form.controls.email.invalid) {
+    <p class="error" role="alert">
+      @if (form.controls.email.hasError('required')) {
+        Please type your email.
+      } @else {
+        That does not look like an email.
+      }
+    </p>
+  }
+
+  <label for="password">Password</label>
+  <input id="password" type="password" formControlName="password" autocomplete="current-password" />
+  @if (form.controls.password.touched && form.controls.password.invalid) {
+    <p class="error" role="alert">The password needs at least 4 letters.</p>
+  }
+
+  @if (message()) {
+    <p class="error" role="alert">{{ message() }}</p>
+  }
+
+  <button class="btn" type="submit">Log in</button>
+</form>

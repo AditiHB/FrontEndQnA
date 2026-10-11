@@ -1,0 +1,49 @@
+<h1 i18n="@@cart.title">Your cart 🛒</h1>
+
+@if (cart.items().length === 0) {
+  <p i18n="@@cart.empty">Your cart is empty. <a routerLink="/">Go find a toy!</a></p>
+} @else {
+  <ul class="lines">
+    @for (item of cart.items(); track item.product.id) {
+      <li class="line" animate.enter="slide-in" animate.leave="slide-out">
+        <span class="emoji" aria-hidden="true">{{ item.product.emoji }}</span>
+        <a [routerLink]="['/product', item.product.id]">{{ item.product.name }}</a>
+        <span>{{ item.product.price | currency }}</span>
+
+        <!-- One-way in, and an event out: the cart service does the changing. -->
+        <app-quantity-stepper
+          [value]="item.quantity"
+          [max]="item.product.stock"
+          (valueChange)="cart.setQuantity(item.product.id, $event)"
+        />
+
+        <button
+          class="btn secondary"
+          type="button"
+          i18n-aria-label="@@cart.remove.label"
+          aria-label="Remove {{ item.product.name }}"
+          (click)="remove(item.product.id, item.product.name)"
+          i18n="@@cart.remove"
+        >
+          Remove
+        </button>
+      </li>
+    }
+  </ul>
+
+  <dl class="totals">
+    <dt i18n="@@cart.toys">Toys</dt>
+    <dd>{{ cart.subtotal() | currency }}</dd>
+    <dt i18n="@@cart.tax">Tax</dt>
+    <dd>{{ cart.tax() | currency }}</dd>
+    <dt i18n="@@cart.total">Total</dt>
+    <dd class="grand">{{ cart.total() | currency }}</dd>
+  </dl>
+
+  <div class="actions">
+    <a class="btn" routerLink="/checkout" i18n="@@cart.checkout">Go to checkout</a>
+    <button class="btn secondary" type="button" (click)="confirmEmpty()" i18n="@@cart.empty.button">
+      Empty the cart
+    </button>
+  </div>
+}

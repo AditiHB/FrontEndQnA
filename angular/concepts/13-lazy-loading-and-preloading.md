@@ -17,7 +17,7 @@ export const routes: Routes = [
   },
   {
     path: 'settings',
-    loadComponent: () => import('./settings/settings.component').then(m => m.SettingsComponent),
+    loadComponent: () => import('./settings/settings').then(m => m.Settings),
   },
 ];
 ```
@@ -69,5 +69,7 @@ async exportPdf() {
 
 ## Important points
 - Do not import a lazy feature's module or service into the shell. That pulls it into the main bundle.
-- Use `providedIn: 'root'` for shared services, and route-level `providers` for feature services, to avoid duplicate instances.
-- Add `canMatch` guards so unauthorized users never download a restricted feature.
+- Use `@Service()` (or `providedIn: 'root'`) for shared services, and route-level `providers` for feature services, to avoid duplicate instances.
+- Add `canMatch` guards so unauthorized users never download a restricted feature. A `CanMatchFn` has **three** parameters: `(route, segments, currentSnapshot)`.
+- Careful: **preloading ignores `canMatch`**. In the tutorial's Toy Shop, marking the admin route for preloading made a visitor download the admin chunk even though the guard says they cannot open it. Preload only pages everyone may use. Hiding code in the browser is never security; the server must check the role.
+- Learn it by doing: [Tutorial chapter 17](../tutorial/17-lazy-loading.md) lazy-loads the cart, orders, and admin corner.

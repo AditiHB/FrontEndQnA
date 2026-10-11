@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flexbox challenges | Bunny Bakery course</title>
+    <link rel="stylesheet" href="playground.css">
+  </head>
+  <body>
+    <header class="pg-header">
+      <h1>Flexbox challenges</h1>
+      <p>Eight small puzzles. Write CSS for the dashed box so that the carrots land exactly where the goal shows them.</p>
+      <ul class="pg-nav">
+        <li><a href="../10-flexbox.md">Lesson 10: Flexbox</a></li>
+        <li><a href="flexbox-playground.html">Flexbox playground</a></li>
+        <li><a href="grid-challenges.html">Grid challenges</a></li>
+      </ul>
+    </header>
+
+    <main id="app"></main>
+
+    <script src="challenge-engine.js"></script>
+    <script>
+      startChallenges({
+        kind: 'flex',
+        storageKey: 'bunny-css-flexbox-challenges',
+        levels: [
+          {
+            title: 'Meet display: flex',
+            text: 'The boxes inside a normal container stack one under the other. A **flex container** lines its children up in a row.\n\nThe container is the dashed box, called `.field`. The carrots are its children.',
+            goal: 'Line up the four carrots in a row.',
+            items: 4,
+            start: '.field {\n  \n}',
+            solution: '.field {\n  display: flex;\n}',
+            must: ['display\\s*:\\s*flex'],
+            mustName: '`display: flex`',
+            hint: 'Write `display: flex;` between the curly braces. Do not forget the semicolon.'
+          },
+          {
+            title: 'justify-content: the main axis',
+            text: '`justify-content` decides where the items sit along the **main axis**. In a row, the main axis runs from left to right.\n\nValues: `flex-start`, `center`, `flex-end`, `space-between`, `space-around`, `space-evenly`.',
+            goal: 'Push all four carrots to the right end of the box.',
+            items: 4,
+            start: '.field {\n  display: flex;\n  \n}',
+            solution: '.field {\n  display: flex;\n  justify-content: flex-end;\n}',
+            must: ['justify-content'],
+            mustName: '`justify-content`',
+            hint: 'The end of a row is the right. Try `justify-content: flex-end;`.'
+          },
+          {
+            title: 'Share the space',
+            text: 'With `space-between` the first and last items touch the edges and the leftover space is shared equally **between** the items.',
+            goal: 'Put the first carrot at the left edge, the last one at the right edge, and share the space in between equally.',
+            items: 4,
+            start: '.field {\n  display: flex;\n  \n}',
+            solution: '.field {\n  display: flex;\n  justify-content: space-between;\n}',
+            must: ['justify-content'],
+            mustName: '`justify-content`',
+            hint: 'Try `justify-content: space-between;`.'
+          },
+          {
+            title: 'align-items: the cross axis',
+            text: 'The **cross axis** is perpendicular to the main axis. In a row, it runs from top to bottom. `align-items` places the items along it. Values: `stretch` (the default), `flex-start`, `center`, `flex-end`, `baseline`.\n\nThis box is taller than the carrots, so you can see the difference.',
+            goal: 'Put the three carrots exactly in the middle of the box, both horizontally and vertically.',
+            items: 3,
+            fieldStyle: 'height: 12rem;',
+            start: '.field {\n  display: flex;\n  \n}',
+            solution: '.field {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}',
+            must: ['justify-content', 'align-items'],
+            mustName: '`justify-content` and `align-items`',
+            hint: 'The main axis needs `justify-content: center;` and the cross axis needs `align-items: center;`.'
+          },
+          {
+            title: 'flex-direction',
+            text: '`flex-direction` turns the main axis. `row` (default) goes left to right; `column` goes top to bottom. Then `justify-content` works **vertically**, because the main axis is now vertical.',
+            goal: 'Stack the three carrots in a column: the first at the top of the box, the last at the bottom, and the middle one halfway between them.',
+            items: 3,
+            fieldStyle: 'height: 16rem;',
+            start: '.field {\n  display: flex;\n  \n}',
+            solution: '.field {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}',
+            must: ['flex-direction', 'justify-content'],
+            mustName: '`flex-direction` and `justify-content`',
+            hint: 'First `flex-direction: column;`. Now the main axis is vertical, and `justify-content: space-between;` spreads the items from the top to the bottom.'
+          },
+          {
+            title: 'gap and wrap',
+            text: 'Flex items never wrap by default: they squeeze in a single line. `flex-wrap: wrap` lets them move to a new line when there is no room. `gap` sets the space between the items (and between the lines).\n\nThis box is narrow, on purpose.',
+            goal: 'Let the eight carrots wrap onto several lines, with a gap of `1rem` between them.',
+            items: 8,
+            fieldStyle: 'width: 21rem;',
+            start: '.field {\n  display: flex;\n  \n}',
+            solution: '.field {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 1rem;\n}',
+            must: ['flex-wrap', 'gap'],
+            mustName: '`flex-wrap` and `gap`',
+            hint: 'Two lines: `flex-wrap: wrap;` and `gap: 1rem;`.'
+          },
+          {
+            title: 'flex-grow: take the free space',
+            text: '`flex-grow` is set on an **item**, not on the container. It says how much of the leftover space this item should take. `flex: 1` is the short way to write "grow".\n\nThe items are selected with their classes: `.item-1`, `.item-2`, `.item-3`.',
+            goal: 'Make the middle carrot (`.item-2`) stretch to fill all the free space between the other two. Carrots 1 and 3 keep their size.',
+            items: 3,
+            start: '.field {\n  display: flex;\n}\n\n.item-2 {\n  \n}',
+            solution: '.field {\n  display: flex;\n}\n\n.item-2 {\n  flex: 1;\n}',
+            must: ['flex(-grow)?\\s*:'],
+            mustName: '`flex` or `flex-grow`',
+            hint: 'Inside `.item-2 { }` write `flex: 1;` (or `flex-grow: 1;`).'
+          },
+          {
+            title: 'align-self and order',
+            text: '`align-self` lets **one item** break the container\'s `align-items` rule. `order` changes the position of an item in the row without touching the HTML: lower numbers come first, and the default is `0`.',
+            goal: 'Carrot 1 sits at the bottom of the box, and carrot 4 jumps to the very front of the row.',
+            items: 4,
+            fieldStyle: 'height: 12rem;',
+            start: '.field {\n  display: flex;\n  gap: 0.5rem;\n}\n\n.item-1 {\n  \n}\n\n.item-4 {\n  \n}',
+            solution: '.field {\n  display: flex;\n  gap: 0.5rem;\n}\n\n.item-1 {\n  align-self: flex-end;\n}\n\n.item-4 {\n  order: -1;\n}',
+            must: ['align-self', 'order'],
+            mustName: '`align-self` and `order`',
+            hint: '`.item-1 { align-self: flex-end; }` and `.item-4 { order: -1; }`. A negative number goes before the items that have the default `0`.'
+          }
+        ]
+      });
+    </script>
+  </body>
+</html>

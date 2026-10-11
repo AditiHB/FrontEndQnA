@@ -2,6 +2,8 @@
 
 > **Like I'm 5:** The frontend is a front door that everyone can see. The real lock must be on the server. Never hide secret keys in the app, because anyone can peek inside.
 
+> **Learn it by doing:** build this step by step in the tutorial: [Chapter 26: Security](../tutorial/26-security.md).
+
 ## Key concepts
 - Angular protects against many common web attacks by default, but application code can still introduce vulnerabilities.
 - The frontend is **not** a security boundary. Every rule must be enforced by the server.

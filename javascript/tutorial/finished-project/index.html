@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sunny Lemonade Stand</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <header class="top-bar" id="top-bar">
+      <h1 id="stand-name">Lemonade Stand</h1>
+      <p id="stand-hours"></p>
+      <p id="table-info"></p>
+      <a id="back-link" class="back" rel="noopener noreferrer" hidden>Back to the party page</a>
+      <button type="button" id="theme-toggle">Dark</button>
+    </header>
+
+    <main class="layout">
+      <section class="panel" aria-labelledby="menu-title">
+        <h2 id="menu-title">Menu</h2>
+        <label class="search">
+          Search the menu
+          <input type="search" id="search" autocomplete="off" />
+        </label>
+        <ul id="menu"></ul>
+      </section>
+
+      <aside class="panel" aria-labelledby="cart-title">
+        <h2 id="cart-title">Your cart</h2>
+        <ul id="cart"></ul>
+        <p id="cart-total" class="cart-total"></p>
+        <form id="order-form" class="order-form">
+          <label>
+            Your name
+            <input name="customer" required autocomplete="off" />
+          </label>
+          <label>
+            <input type="checkbox" name="takeAway" />
+            Take-away (adds a box fee)
+          </label>
+          <button type="submit">Place order</button>
+        </form>
+        <p id="message" role="status"></p>
+      </aside>
+    </main>
+
+    <section class="panel kitchen" aria-labelledby="kitchen-title">
+      <h2 id="kitchen-title">Kitchen board</h2>
+      <ul id="board"></ul>
+    </section>
+
+    <section class="panel wide" id="orders-section" aria-labelledby="orders-title">
+      <h2 id="orders-title">Recent orders (from the server)</h2>
+      <ul id="server-orders"></ul>
+    </section>
+
+    <section class="panel wide" id="report-section" aria-labelledby="report-title">
+      <h2 id="report-title">End-of-day report (made by a Web Worker)</h2>
+      <p id="report-status">Waiting until you scroll here...</p>
+      <ul id="report"></ul>
+    </section>
+
+    <footer class="footer">
+      <p id="layout-info"></p>
+    </footer>
+  </body>
+</html>

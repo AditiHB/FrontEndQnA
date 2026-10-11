@@ -2,6 +2,8 @@
 
 > **Like I'm 5:** Every component is born, grows up, and then goes away. Lifecycle hooks are alarm clocks that ring at each stage, so you can act: "I was just born, get my toys" (`ngOnInit`) or "I'm leaving, tidy up" (`ngOnDestroy`).
 
+> **Learn it by doing:** build this step by step in the tutorial: [Chapter 8: Lifecycle hooks](../tutorial/08-lifecycle-hooks.md).
+
 ## Key concepts
 Angular calls lifecycle hooks on components, directives, and pipes at specific moments. Implement the interface to use the hook.
 

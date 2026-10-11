@@ -34,11 +34,11 @@
 > **Like I'm 5:** Only redraw the parts of the picture that changed, not the whole picture.
 
 **Answer:**
-- Use `OnPush` on all presentational components.
+- Use `OnPush` on all presentational components (it is the default in Angular 22; older code sets it by hand).
 - Use signals so only the views that read the changed signal are updated.
 - Avoid function calls in templates that run on every check, such as `{{ format(item) }}`. Use a pure pipe or a `computed`.
 - Run high-frequency events (scroll, mousemove) outside Angular with `NgZone.runOutsideAngular` (only with Zone.js), and re-enter only when needed.
-- Consider zoneless change detection for new apps.
+- Use zoneless change detection (the default for new Angular 22 apps), and consider it when upgrading older ones.
 
 ---
 

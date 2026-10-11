@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Bunny Bakery | Fresh bread and sweet treats</title>
+    <meta name="description" content="Bunny Bakery in Meadowtown: sourdough, croissants, cupcakes and more, baked by hand every morning.">
+    <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script src="site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to the content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top"><img src="images/logo.svg" alt="" width="40" height="40"> Bunny Bakery</a>
+        <button class="nav-toggle" type="button" popovertarget="site-nav">
+          <span aria-hidden="true">☰</span> Menu
+        </button>
+        <nav id="site-nav" aria-label="Main" popover>
+          <ul>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#story">Our story</a></li>
+            <li><a href="#visit">Visit</a></li>
+            <li><a href="#order">Order</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="container">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-text">
+          <h1 id="hero-title">Fresh bread and sweet treats, baked every morning</h1>
+          <p class="lead">
+            Welcome to <strong>Bunny Bakery</strong>, a small neighbourhood bakery in Meadowtown.
+            Everything is made by hand, in small batches, with real butter.
+          </p>
+          <div class="actions">
+            <a class="button" href="#menu">See the menu</a>
+            <a class="button button-outline" href="#order">Order a box</a>
+          </div>
+        </div>
+        <img
+          class="hero-img"
+          src="images/hero-800.webp"
+          srcset="images/hero-400.webp 400w, images/hero-800.webp 800w, images/hero-1200.webp 1200w"
+          sizes="(min-width: 48rem) 45vw, calc(100vw - 5rem)"
+          alt="The Bunny Bakery shop front: a striped awning, a window full of fresh bread and a bunny baker holding a tray of rolls"
+          width="800"
+          height="600"
+          fetchpriority="high">
+      </section>
+
+      <section id="menu" aria-labelledby="menu-title">
+        <h2 id="menu-title">Our menu</h2>
+        <p>New this week: <mark>carrot cupcakes</mark> with cream-cheese frosting.</p>
+        <ul class="cards">
+          <li class="featured">
+            <article class="card">
+              <span class="card-icon" aria-hidden="true">🍞</span>
+              <h3>Sourdough loaf</h3>
+              <span class="badge">Bestseller</span>
+              <p>Slow-risen, with a crackly crust and a soft middle.</p>
+              <p class="price">$6.00</p>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <span class="card-icon" aria-hidden="true">🥐</span>
+              <h3>Butter croissant</h3>
+              <p>Flaky layers, golden on the outside, tender inside.</p>
+              <p class="price">$3.50</p>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <span class="card-icon" aria-hidden="true">🧁</span>
+              <h3>Carrot cupcake</h3>
+              <span class="badge">New</span>
+              <p>Spiced sponge, cream-cheese frosting and a tiny candied carrot.</p>
+              <p class="price">$4.00</p>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <span class="card-icon" aria-hidden="true">🍪</span>
+              <h3>Oat and raisin cookie</h3>
+              <p>Chewy in the middle, crisp at the edge.</p>
+              <p class="price">$2.50</p>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <span class="card-icon" aria-hidden="true">🍩</span>
+              <h3>Cinnamon bun</h3>
+              <p>Warm, sticky and swirled with brown sugar.</p>
+              <p class="price">$4.00</p>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <span class="card-icon" aria-hidden="true">🍓</span>
+              <h3>Strawberry tart</h3>
+              <p>Crisp pastry, vanilla cream and fresh strawberries.</p>
+              <p class="price">$5.00</p>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <span class="card-icon" aria-hidden="true">🍋</span>
+              <h3>Lemon loaf cake</h3>
+              <p>Zesty lemon sponge under a thin, crackly sugar glaze.</p>
+              <p class="price">$4.50</p>
+            </article>
+          </li>
+        </ul>
+        <aside class="tip">
+          <h3>Bunny's tip</h3>
+          <p>Bread tastes best on the day it is baked. The next day, toast it with butter.</p>
+        </aside>
+      </section>
+
+      <section class="story" id="story" aria-labelledby="story-title">
+        <h2 id="story-title">Our story</h2>
+        <figure>
+          <picture>
+            <source
+              media="(min-width: 48rem)"
+              srcset="images/story-wide-640.webp 640w, images/story-wide-1280.webp 1280w"
+              sizes="(min-width: 68rem) 520px, 45vw"
+              width="1280"
+              height="720">
+            <img
+              src="images/story-square-800.webp"
+              srcset="images/story-square-400.webp 400w, images/story-square-800.webp 800w"
+              sizes="calc(100vw - 2rem)"
+              alt="Bunny in a chef's hat pointing at a glowing oven, with fresh loaves cooling on a table beside it"
+              width="800"
+              height="800"
+              loading="lazy">
+          </picture>
+          <figcaption>Bunny checks the first loaves of the morning.</figcaption>
+        </figure>
+        <div class="story-text">
+          <p>
+            Bunny learned to bake in her grandmother's kitchen, standing on a wooden box
+            to reach the counter. Her first loaf was a little flat, and everybody ate it anyway.
+          </p>
+          <p>
+            Today she gets up before the sun to start the ovens, so that the first warm
+            bread is on the shelf when the neighbours walk by. Every recipe is still made
+            the slow, careful way she was taught.
+          </p>
+        </div>
+      </section>
+
+      <section class="visit" id="visit" aria-labelledby="visit-title">
+        <h2 id="visit-title">Visit us</h2>
+        <div>
+          <h3>Opening hours</h3>
+          <table>
+            <caption>Our weekly opening times</caption>
+            <thead>
+              <tr>
+                <th scope="col">Day</th>
+                <th scope="col">Opens</th>
+                <th scope="col">Closes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Monday to Friday</th>
+                <td>7:00</td>
+                <td>18:00</td>
+              </tr>
+              <tr>
+                <th scope="row">Saturday</th>
+                <td>8:00</td>
+                <td>16:00</td>
+              </tr>
+              <tr>
+                <th scope="row">Sunday</th>
+                <td>8:00</td>
+                <td>13:00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3>Find us</h3>
+          <address>
+            Bunny Bakery<br>
+            12 Carrot Lane<br>
+            Meadowtown<br>
+            <a href="tel:+15550123">+1&nbsp;555&nbsp;0123</a><br>
+            <a href="mailto:hello@bunnybakery.example">hello@bunnybakery.example</a>
+          </address>
+          <p>
+            <a href="https://www.openstreetmap.org/search?query=Carrot%20Lane" target="_blank" rel="noopener">Open the map</a>
+            (opens in a new tab)
+          </p>
+        </div>
+      </section>
+
+      <section id="order" aria-labelledby="order-title">
+        <h2 id="order-title">Order a box</h2>
+        <p>Choose your treats and tell us when you will come by. We will have your box ready.</p>
+
+        <section class="table-scroll" tabindex="0" aria-label="Our boxes (scrolls sideways on small screens)">
+          <table>
+            <caption>Our boxes</caption>
+            <thead>
+              <tr>
+                <th scope="col">Box</th>
+                <th scope="col">Treats</th>
+                <th scope="col">Great for</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Small box</th>
+                <td>4</td>
+                <td>Breakfast for two</td>
+                <td>$14</td>
+              </tr>
+              <tr>
+                <th scope="row">Large box</th>
+                <td>8</td>
+                <td>A family treat</td>
+                <td>$26</td>
+              </tr>
+              <tr>
+                <th scope="row">Party box</th>
+                <td>16</td>
+                <td>Birthdays and office parties</td>
+                <td>$48</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <form method="get">
+          <p>Fields marked with <strong>*</strong> are required.</p>
+          <fieldset>
+            <legend>About you</legend>
+            <div>
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div>
+              <label for="phone">Phone (optional)</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel">
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Your box</legend>
+            <fieldset>
+              <legend>Size</legend>
+              <div>
+                <input id="size-small" name="size" type="radio" value="small">
+                <label for="size-small">Small box (4 treats)</label>
+              </div>
+              <div>
+                <input id="size-large" name="size" type="radio" value="large" checked>
+                <label for="size-large">Large box (8 treats)</label>
+              </div>
+              <div>
+                <input id="size-party" name="size" type="radio" value="party">
+                <label for="size-party">Party box (16 treats)</label>
+              </div>
+            </fieldset>
+            <div>
+              <label for="favourite">Favourite treat</label>
+              <select id="favourite" name="favourite">
+                <option value="sourdough">Sourdough loaf</option>
+                <option value="croissant">Butter croissant</option>
+                <option value="cupcake" selected>Carrot cupcake</option>
+                <option value="cookie">Oat and raisin cookie</option>
+                <option value="bun">Cinnamon bun</option>
+                <option value="tart">Strawberry tart</option>
+              </select>
+            </div>
+            <div>
+              <label for="boxes">How many boxes?</label>
+              <input id="boxes" name="boxes" type="number" min="1" max="10" value="1" required>
+            </div>
+            <div>
+              <label for="pickup">Pick-up day</label>
+              <input id="pickup" name="pickup" type="date" required>
+            </div>
+            <div class="field-wide">
+              <label for="notes">Anything we should know? (allergies, a birthday&hellip;)</label>
+              <textarea id="notes" name="notes" rows="4"></textarea>
+            </div>
+            <div class="field-wide">
+              <input id="sms" name="sms" type="checkbox" value="yes">
+              <label for="sms">Text me when my box is ready</label>
+            </div>
+          </fieldset>
+
+          <button class="button" type="submit">Send my order</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2026 Bunny Bakery. Made with &hearts; and a lot of butter.</p>
+        <p><a href="#top">Back to the top</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

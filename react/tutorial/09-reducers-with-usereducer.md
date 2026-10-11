@@ -52,7 +52,7 @@ React's `useReducer` hands you the current state and a function called `dispatch
 
 ## 2. Write the rule book
 
-The reducer goes in **its own file**. It doesn't import React at all, which makes it easy to test (Lesson 21).
+The reducer goes in **its own file**. It doesn't import React at all, which makes it easy to test.
 
 📄 **`src/context/cartReducer.ts`** (new file)
 
@@ -604,7 +604,7 @@ React is allowed to call your reducer more than once. In development `StrictMode
 - Actions describe *what happened* (`'removed'`), not *how to change the cart*. The "how" lives only in the reducer.
 - The `QuantityPicker` from Lesson 5 worked in a new place without changes. That's what reusable bricks are for.
 - The `Modal` from Lesson 7 is reused for the confirmation.
-- Keep the reducer in its own file. In Lesson 21 we test it without drawing anything.
+- Keep the reducer in its own file so it can be tested without drawing anything. (In Lesson 16 these same rules move into a store, and Lesson 21 tests them there.)
 
 ## 🧪 Try it yourself
 

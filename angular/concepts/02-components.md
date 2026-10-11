@@ -6,11 +6,13 @@
 - A **component** is a class with a `@Component` decorator, a template, and optional styles. It is the basic building block of the UI.
 - **Standalone** components declare their own dependencies in `imports`. This is the default in modern Angular.
 - **Encapsulation** controls how styles apply: `Emulated` (default), `None`, `ShadowDom`.
+- In Angular 22, components are **OnPush by default**, `ng generate component order-card` makes `order-card.ts`, `order-card.html`, `order-card.css`, and a test (no `.component` in the file names and no `Component` at the end of the class name `OrderCard`). Older code with `OrderCardComponent` in `order-card.component.ts` is still valid.
+- Learn it by doing: [Tutorial chapter 2](../tutorial/02-components.md) builds the Toy Shop's first components.
 
 ## Basic component
 
 ```ts
-import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { DatePipe, CurrencyPipe } from '@angular/common';
 
 @Component({
@@ -18,10 +20,9 @@ import { DatePipe, CurrencyPipe } from '@angular/common';
   imports: [DatePipe, CurrencyPipe],
   templateUrl: './order-card.html',
   styleUrl: './order-card.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'order-card' },
 })
-export class OrderCardComponent {
+export class OrderCard {
   order = input.required<Order>();
   cancelled = output<string>();
 

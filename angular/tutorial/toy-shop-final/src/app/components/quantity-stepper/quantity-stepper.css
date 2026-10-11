@@ -1,0 +1,11 @@
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+output {
+  min-width: 2ch;
+  text-align: center;
+  font-weight: 700;
+}

@@ -1,0 +1,461 @@
+/* Shared look of the Bunny Bakery playgrounds. Plain CSS, no tools needed. */
+:root {
+  --brown: #4a2c17;
+  --brown-soft: #7a5a44;
+  --cream: #fff8f0;
+  --white: #fff;
+  --berry: #b3365f;
+  --berry-dark: #8f2a4c;
+  --butter: #ffd166;
+  --butter-pale: #fff0d6;
+  --line: #e8d5c4;
+  --line-strong: #b89a84;
+  --radius: 0.75rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--brown);
+  background-color: var(--cream);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.5rem;
+  color: var(--berry);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 1.75rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+a {
+  color: var(--berry);
+}
+
+:focus-visible {
+  outline: 3px solid var(--berry);
+  outline-offset: 2px;
+}
+
+code {
+  padding: 0.1em 0.35em;
+  background-color: var(--butter-pale);
+  border-radius: 0.3em;
+  font-size: 0.92em;
+}
+
+/* ---------- page frame ---------- */
+.pg-header {
+  padding: 1rem 1.25rem;
+  background-color: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+
+.pg-header p {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--brown-soft);
+}
+
+.pg-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+}
+
+.pg {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  max-width: 82rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+@media (min-width: 52rem) {
+  .pg {
+    grid-template-columns: 22rem minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .pg-controls {
+    position: sticky;
+    top: 1rem;
+  }
+}
+
+/* ---------- controls ---------- */
+fieldset {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem 0.25rem;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+legend {
+  padding: 0 0.5rem;
+  font-weight: 700;
+}
+
+.ctl {
+  display: grid;
+  gap: 0.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.ctl label {
+  font-weight: 600;
+}
+
+.ctl .hint {
+  margin: 0;
+  color: var(--brown-soft);
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+select,
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.5rem;
+  background-color: var(--white);
+  color: inherit;
+  font: inherit;
+}
+
+input[type="text"][aria-invalid="true"] {
+  border-color: var(--berry);
+  background-color: #fde8ee;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--berry);
+}
+
+.ctl output {
+  float: right;
+  font-weight: 400;
+}
+
+.pg-note {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--butter-pale);
+  border-left: 6px solid var(--butter);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.92rem;
+}
+
+button {
+  font: inherit;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--berry);
+  border-radius: 999px;
+  background-color: var(--berry);
+  color: var(--white);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--berry-dark);
+  border-color: var(--berry-dark);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--berry);
+}
+
+.btn-outline:hover {
+  background-color: var(--berry);
+  border-color: var(--berry);
+  color: var(--white);
+}
+
+.btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- the stage ---------- */
+.stage-box {
+  position: relative;
+  height: 20rem;
+  min-height: 8rem;
+  padding: 0.5rem;
+  overflow: auto;
+  resize: both;
+  background-color: rgb(255 255 255 / 0.7);
+  border: 2px dashed var(--berry);
+  border-radius: var(--radius);
+}
+
+.stage-box > .demo {
+  min-height: 0;
+}
+
+.demo {
+  height: 100%;
+}
+
+.item {
+  min-width: 0;
+  padding: 1rem;
+  border: 3px solid transparent;
+  border-radius: 0.6rem;
+  background-color: hsl(calc(var(--i, 1) * 47) 85% 82%);
+  color: var(--brown);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+.item[aria-pressed="true"] {
+  border-color: var(--berry);
+  box-shadow: 0 0 0 2px var(--white), 0 4px 10px rgb(74 44 23 / 0.25);
+}
+
+.stage-help {
+  margin: 0.5rem 0 1rem;
+  color: var(--brown-soft);
+  font-size: 0.9rem;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0.5rem;
+  pointer-events: none;
+}
+
+.overlay > div {
+  border: 1px dashed rgb(179 54 95 / 0.55);
+  background-color: rgb(179 54 95 / 0.05);
+}
+
+.css-out {
+  margin: 0;
+  padding: 1rem;
+  overflow: auto;
+  background-color: var(--brown);
+  border-radius: var(--radius);
+  color: var(--cream);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: pre;
+}
+
+.out-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.out-head h2 {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- challenge games ---------- */
+.ch {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  max-width: 82rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+@media (min-width: 56rem) {
+  .ch {
+    grid-template-columns: minmax(20rem, 28rem) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.ch-side {
+  padding: 1rem 1.25rem;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.ch-count {
+  margin: 0;
+  color: var(--brown-soft);
+  font-size: 0.9rem;
+}
+
+.ch-text p {
+  margin: 0 0 0.75rem;
+}
+
+.ch-goal {
+  padding: 0.75rem 1rem;
+  background-color: var(--butter-pale);
+  border-left: 6px solid var(--butter);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.ch-goal pre {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.3;
+  overflow: auto;
+}
+
+#ch-css {
+  min-height: 9rem;
+  background-color: var(--brown);
+  color: var(--cream);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.ch-label {
+  display: block;
+  margin: 1rem 0 0.25rem;
+  font-weight: 700;
+}
+
+.ch-status {
+  min-height: 3rem;
+  margin: 0.75rem 0;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background-color: #f6eee6;
+}
+
+.ch-status[data-state="solved"] {
+  background-color: #dff3df;
+  color: #1d4d1d;
+  font-weight: 700;
+}
+
+.ch-status[data-state="almost"] {
+  background-color: var(--butter-pale);
+}
+
+.ch-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ch-hint {
+  margin: 0.75rem 0 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px dashed var(--line-strong);
+  border-radius: 0.5rem;
+  font-size: 0.92rem;
+}
+
+.ch-levels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ch-levels button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid var(--line-strong);
+  border-radius: 50%;
+  background-color: var(--white);
+  color: var(--brown);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ch-levels button[aria-current="step"] {
+  border-color: var(--berry);
+  background-color: var(--berry);
+  color: var(--white);
+}
+
+.ch-levels button[data-done="true"]:not([aria-current="step"]) {
+  border-color: #2e7d32;
+  background-color: #e4f5e4;
+}
+
+.ch-stages h3 {
+  margin: 0 0 0.4rem;
+}
+
+.arena {
+  margin-bottom: 1.25rem;
+}
+
+.arena .field {
+  width: 100%;
+  min-height: 4rem;
+  padding: 0.5rem;
+  border: 2px dashed var(--line-strong);
+  border-radius: var(--radius);
+  background-color: var(--white);
+}
+
+.arena .item {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 3.5rem;
+  border-radius: 0.6rem;
+  background-color: hsl(calc(var(--i, 1) * 47) 85% 82%);
+  color: var(--brown);
+  font-weight: 700;
+}
+
+.ch-note {
+  margin: 0;
+  color: var(--brown-soft);
+  font-size: 0.9rem;
+}

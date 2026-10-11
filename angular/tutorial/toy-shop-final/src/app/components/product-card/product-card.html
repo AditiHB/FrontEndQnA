@@ -1,0 +1,48 @@
+@let p = product();
+
+<article class="card" [ngClass]="cardClasses()">
+  <button
+    class="heart"
+    type="button"
+    [attr.aria-pressed]="liked()"
+    [attr.aria-label]="heartLabel()"
+    (click)="likeToggled.emit(p)"
+  >
+    {{ liked() ? '❤️' : '🤍' }}
+  </button>
+  <div class="emoji" aria-hidden="true">{{ p.emoji }}</div>
+  <h2>
+    <a [routerLink]="['/product', p.id]">{{ p.name }}</a>
+  </h2>
+  <p class="category">{{ categoryLabel() }}</p>
+  <p class="price" appHighlight="#ffe08a">{{ p.price | currency }}</p>
+  <p class="description">{{ p.description | truncate: 50 }}</p>
+
+  <div class="stars" role="img" [attr.aria-label]="ratingLabel()" [title]="ratingLabel()">
+    <div class="stars-fill" [ngStyle]="{ width: ratingPercent() + '%' }"></div>
+  </div>
+
+  @switch (stockLevel()) {
+    @case ('out') {
+      <p class="badge out" i18n="@@card.soldOut">Sold out</p>
+    }
+    @case ('low') {
+      <p class="badge low" i18n="@@card.low">
+        Only
+        {{
+          p.stock // i18n(ph="count")
+        }}
+        left!
+      </p>
+    }
+    @default {
+      <p class="badge ok" i18n="@@card.inStock">In stock</p>
+    }
+  }
+
+  <app-quantity-stepper [(value)]="quantity" [max]="p.stock" />
+
+  <button class="btn" type="button" [disabled]="p.stock === 0" (click)="add()" i18n="@@card.add">
+    Add to cart
+  </button>
+</article>
